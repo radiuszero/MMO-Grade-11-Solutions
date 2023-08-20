@@ -1,0 +1,19 @@
+# ignore asymptote build
+build
+
+# ignore miscellaneous folder
+misc
+
+# ignore auxillary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.pre
+*.toc
+*.synctex.gz
+*.log
+*.pdf
+
+# MacOS BS
+*.DS_Store

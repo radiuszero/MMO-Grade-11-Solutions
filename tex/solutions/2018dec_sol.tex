@@ -1,0 +1,616 @@
+\solutionheader{2018 National Round}
+\begin{question}
+    To construct a triangle $ABC$, only given that $AB = 10$ and $\angle ABC$
+    is $30^\circ$. Find all values of $AC$ for which 
+    \begin{enumerate}
+        \item there are two possible triangles $ABC$.
+        
+        \item there is only one triangle $ABC$. 
+        
+        \item there is no triangle $ABC$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let $\ell$ be the ray originating from $B$ which is inclined to segment
+    $AB$ at a $30^\circ$ angle. Obviously $C$ must lie on this ray. Now let $H$
+    be the foot of perpendicular from $A$ onto $\ell$. Let $x = AC$ be the
+    length of segment $AC$, and let $\omega(x)$ be the circle centered at $A$
+    with radius $x$. It is easy to see that $AH = AB \sin 30^\circ = 5$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real s = 1/3;
+            pair A = (0, 0);
+            pair B = (1, 0);
+            pair C1 = 1.5*dir(30);
+            pair H = foot(B, A, C1);
+            pair X = B + s*dir(75);
+            draw(A--C1, arrow=Arrow(size=10));
+            draw(A--B);
+            draw(B--H, mydash);
+            draw(B--X, arrow=Arrow(size=5));
+            draw(rightanglemark(A, H, B, 2));
+            draw(arc(B, s, 45, 195), mydash);
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(315));
+            dot("$H$", H, dir(120));
+            label("$x$", midpoint(B--X), dir(-15));
+            label("$\omega(x)$", B + s*dir(45), dir(45));
+        \end{asy}
+    \end{center}
+    \begin{case}{$x < AH$}
+        In this case, $\omega(x)$ does not intersect $\ell$ at all, so there is
+        no triangle $ABC$.
+    \end{case}
+    \begin{case}{$x = AH$}
+        In this case, $\omega(x)$ is tangent to $\ell$ at $H$. Therefore, there
+        is only one place $C$ can be, namely $H$ and hence there is only one
+        triangle $ABC$.
+    \end{case}
+    \begin{case}{$AH < x < AB$}
+        In this case, $\omega(x)$ intersects the ray $\ell$ at two points.
+        Therefore, $C$ can be at any of those two points, which gives two
+        possible triangles $ABC$.
+    \end{case}
+    \begin{case}{$AB \leq x$}
+        Finally in this case, $\omega(x)$ intersects ray $\ell$ at only one
+        point, so similarly to case 2 there is only one triangle $ABC$.
+    \end{case}
+        Therefore, the final answers are 
+        \begin{enumerate}
+            \item $\{ x \in \mathbb{R} \mid 5 < x < 10 \}$.
+            \item $\{ x \in \mathbb{R} \mid x = 5 \text{ or } x \geq 10 \}$.
+            \item $\{ x \in \mathbb{R} \mid 0 < x < 5 \}$. \qedhere
+        \end{enumerate}
+\end{solution}
+
+\begin{question}
+    In the given figure, $O$ is the center of the circle. $OA$ and $OC$ are
+    radii with $OA = OC = 5$ units. Find the area of region $ABCD$, bounded by
+    arc $ABC$, line segments $CD$ and $DA$, in terms of $\theta$, if the line
+    segment $DA = 8$ units and $\angle AOC$ is $\theta^\circ$. 
+\end{question}
+\begin{solution}
+    First, let's calculate the area of sector $AOC$. It subtends an angle of
+    $\theta$ degrees at the center, so its area $A_1$ is
+    \[ A_1 = \frac{\theta}{360}\cdot \pi(5)^2 = \frac{5 \pi \theta}{72}. \] 
+    Therefore we just need to calculate the area of $\triangle DOC$. The length
+    of $OD$ is $8 - 5 = 3$ units.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            real s = 35;
+            pair A = dir(s);
+            pair C = dir(-s);
+            pair B = dir(0);
+            pair D = (3/5)*dir(180+s);
+            pair O = (0, 0);
+            pair H = foot(C, A, D);
+            draw(A--O--C--cycle);
+            draw(O--D--C);
+            draw(circle(O, 1));
+            draw(anglemark(C, O, A, 5));
+            draw(C--H, mydash);
+            dot("$A$", A, dir(A));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(210));
+            dot("$O$", O, dir(135));
+            dot("$H$", H, dir(135));
+            label("$B$", B, dir(0));
+            label("\contour{white}{$\theta^\circ$}", 0.15*dir(0), dir(0));
+        \end{asy}
+    \end{center}
+    Let $H$ be the foot of perpendicular from $C$ onto line $AD$. Then the area
+    $A_2$ of $\triangle DOC$ is
+    \[ A_2 = \frac{CH \cdot OD}{2} = \frac{CO \cdot \sin \angle HOC \cdot
+    OD}{2} = \frac{CO \cdot \sin \angle AOC \cdot OD}{2} = \frac{5 \cdot \sin
+    \theta \cdot 3}{2} = \frac{15 \sin \theta}{2}. \]
+    Therefore, the total area of the region is 
+    \[ A_1 + A_2 = \frac{5 \pi \theta}{72} + \frac{15 \theta}{2}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Prove that
+    \begin{enumerate}
+        \item $\cos 20^\circ$,
+        
+        \item $\log 21$, and 
+        
+        \item $\sqrt{3}$ 
+    \end{enumerate}
+    are irrational.
+\end{question}
+\begin{solution}
+    We will use proof by contradiction in all the following subproblems.
+    \begin{enumerate}
+        \item Suppose in contrary that $\cos 20^\circ$ is rational. Then $\cos
+            20^\circ = \frac{a}{b}$ for some relatively prime integers $a$ and
+            $b$. Then since $\cos(3x) = 4\cos^3 x - 3\cos x$, we see that
+        \[ \frac{1}{2} = \cos 60^\circ = 4 \cos^3 20^\circ - 3\cos 20^\circ =
+        \frac{4a^3}{b^3} - \frac{3a}{b}. \]
+        Multiplying both sides of the equation by $2b^3$ gives $b^3 = 8a^3 -
+        6ab^2$, and since $a$ divides the right hand side it follows that $a
+        \mid b^3$. However, since we assumed that $a$ and $b$ are relatively
+        prime, this is a contradiction. Therefore, $\cos 20^\circ$ must be
+        irrational.
+
+        \item Similarly, assume that $\log 21$ is rational. Then $\log 21 =
+            \frac{a}{b}$ for some relatively prime integers $a$ and $b$. Hence
+            \[ \log 21 = \frac{a}{b} \Longrightarrow 21 = 10^\frac{a}{b}
+            \Longrightarrow 21^b = 10^a. \]
+            However, the left hand side is even and the right hand side is odd
+            which is clearly not possible. Therefore, $\log 21$ must be
+            irrational. 
+
+        \item Finally, suppose that $\sqrt{3}$ is irrational. Then $\sqrt{3} =
+            \frac{a}{b}$ for some relatively prime integers $a$ and $b$. Then 
+            \[ \sqrt{3} = \frac{a}{b} \Longrightarrow 3b^2 = a^2. \]
+            Since 3 divides the left hand side, $3 \mid a^2 \Rightarrow 3 \mid
+            a$. Therefore, $a = 3k$ for some $k$. Substituting gives
+            \[ 3b^2 = 9k^2 \Longrightarrow 3k^2 = b^2. \]
+            Similarly to above, this means that 3 also divides $b$. However,
+            since we assumed that $a$ and $b$ are relatively prime, this is not
+            possible. Hence $\sqrt{3}$ is irrational. \qedhere
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    Triangle $ABC$ with $AB = c$, $BC = a$ and $CA = b$ is inscribed in a
+    circle. Find the radius of the circle in terms of $a$, $b$ and $c$.
+\end{question}
+\begin{solution}
+    Let $H$ be the foot of perpendicular from $A$ onto side $BC$, and let $A'$
+    be the diametrically opposide point of $A$ on circle $(ABC)$. Then $\angle
+    ABA' = \angle ACA' = 90^\circ$. We also have $\angle ABH = \angle ABC =
+    \angle AA'C$ so $\triangle ABH \sim \triangle AA'C$. Let $S$ be the area of
+    $\triangle ABC$ and $R$ be the radius of $(ABC)$. Then
+    \[ 2S = AH \cdot BC = \frac{AB \cdot AC \cdot BC}{AA'} = \frac{abc}{2R}. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair O = (0, 0);
+            pair A1 = 2*O-A;
+            pair H = foot(A, B, C);
+            draw(A--B--C--cycle);
+            draw(A--H);
+            draw(A--A1);
+            draw(A1--C);
+            draw(circle(O, 1));
+            draw(rightanglemark(A, H, B, 3));
+            draw(rightanglemark(A, C, A1, 3));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$H$", H, dir(270));
+            dot("$A'$", A1, dir(A1));
+            dot("$O$", O, dir(180));
+        \end{asy}
+    \end{center}
+    Meanwhile, by Heron's formula, 
+    \[ S = \sqrt{s(s - a)(s - b)(s - c)}, \]
+    where $s = \frac{a + b + c}{2}$ is the semiperimeter of $\triangle ABC$.
+    Therefore,
+    \[ R = \frac{abc}{4S} = \frac{abc}{4\sqrt{s(s - a)(s - b)(s - c)}}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Prove the following Ptolemy's theorem: 
+    \par In a cyclic quadrilateral $PQRS$, 
+    $$PQ \cdot SR + PS \cdot QR = PR \cdot SQ,$$ 
+    That is, the sum of the products of the opposite sides is equal to the
+    product of the diagonals.
+\end{question}
+\begin{solution}
+    This is \hyperref[thm: ptolemy]{Ptolemy's theorem} which has appeared before as \hyperref[sol: 2015 National Round P18]{2015 National Round P18}. 
+\end{solution}
+
+\begin{question}
+    $f(x)$ is a real-valued function defined on $a < x < b$ such that 
+    \[f\left( \frac{x_{1} + x_{2}}{2} \right) \leq \frac{1}{2}(f(x_{1}) + f(x_{2})),\] 
+    for all $a < x_{1}, x_{2} < b$. Prove that 
+    \[f\left(\frac{x_{1} + x_{2} + \cdots + x_{n}}{n}\right)\leq \frac{1}{n}(f(x_{1}) + f(x_{2}) + \cdots + f(x_{n}))\] 
+    for all $a < x_{1}, x_{2}, \ldots, x_{n} < b$.
+\end{question}
+\begin{solution}
+    This is one of the rare problems which need \hyperref[teq:
+    f.b.induction]{forward - backward induction} to be solved. The base case $n
+    = 2$ is true. Now suppose that the inequality is true for $n = k$. We must
+    first show that it is true for $n = 2k$:
+    \begin{align*}
+        \MoveEqLeft
+    f\left( \frac{x_1 + x_2 + \cdots + x_k + x_{k + 1} + \cdots + x_{2k}}{2k} \right)\\
+        &= f\left( \frac{1}{2} \left( \dfrac{x_1 + x_2 + \cdots + x_k}{k} + \dfrac{x_{k + 1} + x_{k + 2} + \cdots + x_{2k}}{k} \right) \right)\\
+        &\leq \frac{1}{2}\left( f\left( \frac{x_1 + x_2 + \cdots + x_k}{k} \right) + f\left( \frac{x_{k + 1} + x_{k + 2} + \cdots + x_{2k}}{k} \right) \right) \\
+        &\leq \frac{1}{2} \left( \frac{1}{k} \left( f(x_1) + f(x_2) + \cdots + f(x_k) \right) + \frac{1}{k} \left( f(x_{k + 1}) + f(x_{k + 2}) + \cdots + f(x_{2k}) \right) \right) \\
+        &= \frac{f(x_1) + f(x_2) + \cdots + f(x_{2k})}{2k}.
+    \end{align*}
+    Hence the inequality is true for $n = 2k$. Now observe that
+    \[
+        f \left( \frac{1}{k} \left( x_1 + x_2 + \cdots + x_{k - 1} + \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) \right) = f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right)
+    \]
+    Since the inequality is true for any $k$ real numbers between $a$ and $b$,
+    it is also true when $x_k = \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1}$.
+    As $a < x_1, x_2, \ldots, x_{k - 1} < b$, it is guaranteed that $x_k$ lies
+    between $a$ and $b$ as well.
+    Therefore, we have
+    \begin{align*}
+        f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq \frac{1}{k} \left( f(x_1) + f(x_2) + \cdots + f\left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) \right)\\
+        (k - 1) f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq f(x_1) + f(x_2) + \cdots + f(x_{k - 1})\\
+        f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq \frac{f(x_1) + f(x_2) + \cdots + f(x_{k - 1})}{k - 1}
+    \end{align*}
+    Therefore, we have proved that this inequality is also true for $n = k -
+    1$, and we are done by forward-backward induction.
+\end{solution}
+
+\begin{question}
+    Point $A$ has position vector $\overrightarrow{OA}$ and point $B$ has
+    position vector $\overrightarrow{OB}$. Prove that for $0\leq \lambda \leq
+    1$, the vector $\lambda \overrightarrow{OA} + (1 - \lambda)
+    \overrightarrow{OB}$ is a position vector of a point on the line segment
+    $AB$. Prove also that any point on the line segment $AB$ has position
+    vector $\lambda \overrightarrow{OA} + (1 - \lambda)\overrightarrow{OB}$ for
+    some $0\leq \lambda \leq 1$.
+\end{question}
+\begin{solution}
+    Let $P$ be a point such that $P$ has position vector $\lambda
+    \overrightarrow{OA} + (1 - \lambda) \overrightarrow{OB}$. This means that
+    \[ \overrightarrow{AP} = \overrightarrow{OP} - \overrightarrow{OA} =
+    \lambda \overrightarrow{OA} + (1 - \lambda) \overrightarrow{OB} -
+    \overrightarrow{OA} = (1 - \lambda)(\overrightarrow{OB} - \overrightarrow{OA})
+    = (1 - \lambda)\overrightarrow{AB}, \]
+    which shows that $A$, $P$ and $B$ are collinear. Also, as $AP = (1 -
+    \lambda)AB$, it follows that $AP \leq AB$ and hence $P$ lies on segment
+    $AB$.
+    
+    Now suppose that $P$ is a point on segment $AB$. We will show that this
+    point $P$ has the position vector $\lambda \overrightarrow{OA} + (1 -
+    \lambda) \overrightarrow{OB}$ for some $0\leq \lambda \leq 1$. Since
+    $\overrightarrow{BP}$ and $\overrightarrow{BA}$ have the same direction, we
+    must have $\overrightarrow{BP} = \lambda\overrightarrow{BA}$ for some
+    positive constant $\lambda$. As $P$ lies on segment $AB$, we also have $0
+    \leq \lambda \leq 1$. Therefore, 
+    \[ \overrightarrow{OP} = \overrightarrow{OB} + \overrightarrow{BP} =
+        \overrightarrow{OB} + \lambda \overrightarrow{BA} = \overrightarrow{OB}
+        + \lambda \overrightarrow{OA} - \lambda \overrightarrow{OB} = \lambda
+        \overrightarrow{OA} + (1 - \lambda)\overrightarrow{OB}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    $f(x)$ is a real-valued function defined on the interval $a < x < b$ such
+    that 
+    \[f(tx_{1} + (1 - t)x_{2}) \leq tf(x_{1}) + (1 - t)f(x_{2})\] 
+    for all $a < x_{1}, x_{2} < b$ and for all $0 \leq t \leq 1$. Prove that
+    for each triple $x_1$, $x_2$, $x_3$ of distinct numbers in the interval, 
+    \[\frac{(x_{3} - x_{2})f(x_{1}) + (x_{2} - x_{1})f(x_{3}) + (x_{1} -
+    x_{3})f(x_{2})}{(x_{1} - x_{2})(x_{2} - x_{3})(x_{3} - x_{1})}\geq 0.\]
+\end{question}
+\begin{solution}
+    WLOG, we can assume that $x_1 < x_2 < x_3$. Then $(x_1 - x_2)$ and $(x_2 -
+    x_3)$ are negative while $(x_3 - x_1)$ is positive, so $(x_1 - x_2)(x_2 -
+    x_3)(x_3 - x_1)$ must be positive. Therefore, we just need to show the
+    numerator is also positive, i.e.,
+    \[ (x_3 - x_2)f(x_1) + (x_2 - x_1)f(x_3) + (x_1 - x_3)f(x_2) \geq 0. \]
+    Let $P_1 = (x_1, f(x_1))$ and $P_3 = (x_3, f(x_3))$ be points in the plane.
+    Since $x_2$ lies between $x_1$ and $x_3$, by the above problem we must have 
+    \[ x_2 = tx_1 + (1 - t)x_3 \]
+    for some real number $0 < t < 1$. Now define $P_2$ to be the point which
+    has position vector 
+    \[ \overrightarrow{P_2} = t\overrightarrow{P_1} + (1 - t)\overrightarrow{P_3}. \]
+    From the above problem, $P_2$ lies on segment $P_1P_2$. The coordinates of
+    this point must be $(x_2, y_2) = (tx_1 + (1 - t)x_3, tf(x_1) + (1 -
+    t)f(x_3))$.
+    From the given condition, we have
+    \[ f(x_2) = f(tx_1 + (1 - t)x_3) \leq tf(x_1) + (1 - t)f(x_3) = y_2. \]
+    Therefore,
+    \begin{align*}
+        \MoveEqLeft
+    (x_3 - x_2)f(x_1) + (x_2 - x_1)f(x_3) + (x_1 - x_3)f(x_2)\\
+        &\geq (x_3 - x_2)f(x_1) + (x_2 - x_1)f(x_3) + (x_1 - x_3)y_2\\
+        &= (x_3 - x_2)f(x_1) + (x_2 - x_1)f(x_3) - ((x_3 - x_2) + (x_2 - x_1))y_2\\
+        &= (x_3 - x_2)(f(x_1) - y_2) + (x_2 - x_1)(f(x_3) - y_2). 
+    \end{align*}
+    However, since $P_1$, $P_2$ and $P_3$ are collinear, lines $P_1P_2$ and
+    $P_2P_3$ have the same slope. Therefore,
+    \[ \frac{y_2 - f(x_1)}{x_2 - x_1} = \frac{f(x_3) - y_2}{x_3 - x_2}
+    \Longrightarrow (x_3 - x_2)(f(x_1) - y_2) + (x_2 - x_1)(f(x_3) - y_2) = 0.
+    \]
+    and we are done. 
+\end{solution}
+\begin{remark}
+    Functions that satisfy the given relation are called \href{https://en.wikipedia.org/wiki/Convex_function}{convex functions}. 
+\end{remark}
+% Add in area motivation? 
+\begin{question}
+    Equilateral triangle $ABC$ is inscribed in a circle. $P$ is a point on arc
+    $AB$. Prove that $PA + PB = PC$.
+\end{question}
+\begin{solution}
+    Let $p$ be the side length of the equilateral triangle $ABC$. Then by
+    \hyperref[thm: ptolemy]{Ptolemy's theorem} on quadrilateral $ACBP$,
+    \[ PA \cdot p + PB \cdot p = PC \cdot p \Longrightarrow PA + PB = PC. \qedhere \]
+\end{solution}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        size(6cm);
+        defaultpen(fontsize(11pt));
+        pen mydash = linetype(new real[] {5,5});
+        pair A = dir(90);
+        pair B = dir(210);
+        pair C = dir(330);
+        pair P = dir(295);
+        draw(A--B--C--cycle);
+        draw(circle((0, 0), 1));
+        draw(P--A);
+        draw(P--B);
+        draw(P--C);
+        add(pathticks(A--B, s=3));
+        add(pathticks(B--C, s=3)); 
+        add(pathticks(C--A, s=3));
+        dot("$A$", A, dir(A));
+        dot("$B$", B, dir(B));
+        dot("$C$", C, dir(C));
+        dot("$P$", P, dir(P));
+    \end{asy}
+\end{center}
+
+\begin{question}
+    $\triangle ABC$ is inscribed in a circle. The tangent at $C$ and the line
+    through $B$ parallel to $AC$ meet at $D$. The tangent at $B$ and the line
+    through $C$ parallel to $AB$ meet at $E$. Prove that $BC^2 = BE \cdot CD$. 
+\end{question}
+\begin{solution}
+    Since $AB \parallel CE$ and $BE$ is tangent to $(ABC)$, we have $\angle ABC
+    = \angle BCE$ and $\angle CAB = \angle EBC$, so $\triangle ABC \sim
+    \triangle BCE$. Analogously, as $AC \parallel BD$ and $CD$ is tangent to
+    $(ABC)$, we have $\angle BCA = \angle DBC$ and $\angle CAB = \angle BCD$.
+    Hence $\triangle BCE \sim \triangle ABC \sim \triangle CDB$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair O = circumcenter(A, B, C);
+            pair A1 = B + C - A;
+            pair A2 = extension(B, rotate(90, B)*O, C, rotate(90, C)*O);
+            pair D = extension(C, A2, B, A1);
+            pair E = extension(C, A1, B, A2);
+            draw(A--B--C--cycle, black+1);
+            draw(B--D--C);
+            draw(B--E--C);
+            draw(circle(O, 1));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(270));
+        \end{asy}
+    \end{center}
+    Finally, 
+    \[ \frac{BC}{CD} = \frac{EB}{BC} \Longrightarrow BC^2 = BE \cdot CD. \qedhere \]
+\end{solution}
+
+\begin{question}
+    $\triangle ABC$ is isosceles with $AB = AC$. $D$ is the midpoint of $BC$.
+    $AB$ and $AC$ are produced to $X$ and $Y$ respectively such that $\angle
+    XDY = \angle DCY$. Prove that $\triangle XBD$, $\triangle XDY$ and
+    $\triangle DCY$ are similar triangles. 
+\end{question}
+\begin{solution}
+    Since $AB = AC$, we must have $\angle XBD = \angle DCY = \angle XDY$. Also,
+    \[ \angle BDX = 180^\circ - \angle XDY - \angle YDC = 180^\circ - \angle
+    DCY - \angle YDC = \angle CYD, \]
+    so it follows that $\triangle XBD \sim \triangle DCY$. This means that
+    $\frac{XD}{DY} = \frac{XB}{DC} = \frac{XB}{BD}$. As $\angle XDY = \angle
+    XBD$, we also see that $\triangle XBD \sim \triangle XDY$ as desired.
+\end{solution}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        size(7cm);
+        defaultpen(fontsize(11pt));
+        pen mydash = linetype(new real[] {5,5});
+        real s = 110;
+        real k = 40;
+        pair A = dir(s);
+        pair X = dir(-s-k);
+        pair Y = dir(-s+k);
+        pair D = incenter(A, X, Y);
+        pair B = extension(A, X, D, rotate(90, D)*A);
+        pair C = extension(A, Y, D, rotate(90, D)*A);
+        pair O = (0, 0);
+        draw(A--B--C--cycle);
+        draw(X--D--Y--cycle, black+1);
+        draw(X--B--D, black+1);
+        draw(Y--C--D, black+1);
+        add(pathticks(A--B, s=3));
+        add(pathticks(A--C, s=3));
+        add(pathticks(B--D, n=2, spacing=1, s=3));
+        add(pathticks(C--D, n=2, spacing=1, s=3));
+        draw(anglemark(X, B, D, 3));
+        draw(anglemark(X, D, Y, 3));
+        draw(anglemark(D, C, Y, 3));
+        dot("$A$", A, dir(90));
+        dot("$B$", B, dir(180));
+        dot("$C$", C, dir(0));
+        dot("$X$", X, dir(225));
+        dot("$Y$", Y, dir(315));
+        dot("$D$", D, dir(90));
+    \end{asy}
+\end{center}
+\begin{question}
+    $a_{1}$, $b_{1}$, $c_{1}$, $a_{2}$, $b_{2}$, $c_{2}$ are positive real
+    numbers with $a_{1}c_{1} - b_{1}^2 \geq 0$ and $a_{2}c_{2} - b_{2}^2 \geq
+    0$. Show that $(a_{1} + a_{2})(c_{1} + c_{2}) - (b_{1} + b_{2})^2 \geq 0$.
+\end{question}
+\begin{solution}
+    From the given conditions we have $a_1 c_1 \geq b_1^2$ and $a_2 c_2 \geq
+    b_2^2$. By \hyperref[thm: cs]{Cauchy Schwarz} inequality,
+    \[ (a_1 + a_2)(c_1 + c_2) = ((\sqrt{a_1})^2 +
+    (\sqrt{a_2})^2)((\sqrt{c_1})^2 + (\sqrt{c_2})^2) \geq (\sqrt{a_1c_1} +
+    \sqrt{a_2c_2})^2 = (b_1 + b_2)^2. \qedhere \]
+\end{solution}
+
+\begin{question}
+    How many permutations of the word `TRIANGLE' have none of the vowels together?
+\end{question}
+\begin{solution}
+    First notice that there are 5 consonants and 3 vowels. Consider the
+    following template; blue boxes are for consonants and red boxes are for
+    vowels. 
+    \begin{center}
+        \begin{asy}
+            size(10cm);
+            pair S = (2, 0);
+            real t = 1;
+            for (int i = 0; i < 11; i = i + 2){
+                draw(shift(i*S)*polygon(4), red+t);
+            }
+            for (int i = 1; i < 10; i = i + 2){
+                draw(shift(i*S)*polygon(4), Cyan+t);
+            }
+        \end{asy}
+    \end{center}
+    Since no two vowels can be together, this means that there must be at most
+    1 vowel in each red box. There are 6 red boxes, so the number of ways to
+    arrange 3 vowels in 6 red boxes is $6 \times 5 \times 4 = 120$. Now the
+    number of ways to arrange the 5 consonants in 5 blue boxes is $5! = 120$.
+    Therefore, the total number of words is $120^2 = 14400$.
+\end{solution}
+
+\begin{question}
+    From the group of $2n + 1$ people, how many ways to choose a group of $n$
+    people or less?
+\end{question}
+\begin{solution}[1]
+    Label the people from 1 to $2n + 1$, and let $S$ be the set $\{ 1, 2,
+    \ldots, 2n + 1 \}$. Let $A$ be the set of subsets of $S$ which have $n$
+    elements or less, and let $B$ be the set of subsets of $S$ which has $n +
+    1$ or more elements. It is easy to see that for each element $X$ in $A$, we
+    can pair it up with $S \setminus X$, which belongs in $B$. This means that
+    $A$ and $B$ have the same number of elements. Meanwhile, the number of
+    subsets of a set of $2n + 1$ elements is $2^{2n + 1}$, so 
+    \[ |A| + |B| = 2^{2n + 1} \Longrightarrow |A| = 2^{2n} = 4^n. \]
+    One thing to be careful is that we also included the empty set in $A$.
+    Subtracting it from the total, we see that the number of ways to choose a
+    group of $n$ people or less from a group of $2n + 1$ people is $4^n - 1$.
+\end{solution}
+\begin{solution}[2]
+    The number of ways to choose a group of $i$ people from a group of $2n + 1$
+    people is $\binom{2n + 1}{i}$. Therefore, the quantity we seek is
+    \[N = \binom{2n + 1}{1} + \binom{2n + 1}{2} + \cdots + \binom{2n + 1}{n} \]
+    where $N$ is the total number of ways. Now by the binomial theorem, we have
+    \[ 2^{2n + 1} = (1 + 1)^{2n + 1} = \binom{2n + 1}{0} + \binom{2n + 1}{1} +
+    \cdots + \binom{2n + 1}{2n + 1}. \]
+    However, remember that $\binom{2n + 1}{i} = \binom{2n + 1}{2n + 1 - i}$ for
+    $0 \leq i \leq 2n + 1$. Therefore, the quantity on the right hand side can
+    be rewritten as
+    \begin{align*}
+        \MoveEqLeft
+    \binom{2n + 1}{0} + \binom{2n + 1}{1} + \cdots + \binom{2n + 1}{n} + \binom{2n + 1}{n + 1} + \cdots + \binom{2n + 1}{2n + 1}\\ 
+        &= 2\left( \binom{2n + 1}{0} + \binom{2n + 1}{1} + \cdots + \binom{2n + 1}{n} \right)\\
+        &= 2\left( N + \binom{2n + 1}{0} \right)\\
+        &= 2N + 2.
+    \end{align*}
+    Therefore, we finally have
+    \[ N = \frac{2^{2n + 1} - 2}{2} = 4^n - 1. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Show that the product of any positive integer and its $k - 1$ successors is
+    divisible by $k!$. 
+\end{question}
+\begin{solution}
+    Let the $k$ consecutive integers be $n + 1, n + 2, \ldots, n + k$. Then 
+    \[ N = \frac{(n + 1)(n + 2) \cdots (n + k)}{k!} = \frac{n!(n + 1)(n + 2)
+    \cdots (n + k)}{n!k!} = \frac{(n + k)!}{n!(n + k - n)!} = \binom{n + k}{n}.
+    \]
+    On the other hand, the right hand side is the number of ways to choose $n$
+    objects from $n + k$ objects, so this is clearly an integer. Hence $N$ is
+    an integer and we are done.
+\end{solution}
+
+\begin{question}
+    How many integers between 1 and 1,000,000 have the sum of digits equal to 10?
+\end{question}
+\begin{solution}
+    Let $f(n)$ denote the number of $n$-tuples $(x_1, x_2, \ldots, x_n)$ where
+    $x_1, x_2, \ldots, x_n$ are non-negative integers and
+    \setcounter{equation}{0}
+    \begin{equation}
+        x_1 + x_2 + \cdots + x_n = 10. 
+    \end{equation}
+    Call an $n$-tuple \emph{good} if it satisfies (1). Finally, let $g(n)$ be
+    the number of $n$-digit numbers whose digits sum to $10$. It is easy to see
+    that $f(n)$ is the sum of number of elements in the following three sets:
+    \begin{enumerate}
+        \item the set of good $n$-tuples with $x_1 = 0$.
+        \item the set of good $n$-tuples with $x_1 > 0$ and $x_i < 10$ for all $i$.
+        \item the set of good $n$-tuples with $x_1 > 0$ and $x_i = 10$ for some $i$.
+    \end{enumerate}
+    Notice that the elements in the first set are just good $(n - 1)$-tuples
+    with 0 added in front of them. Hence there are $f(n - 1)$ elements in this
+    set. Meanwhile, the number of elements in the second set is equivalent to
+    the number of $n$-digit numbers whose digits sum to $10$, which is just
+    $g(n)$. Finally, the number of elements in the final set is just 1, which
+    is $(10, 0, 0, \ldots, 0)$. Therefore, we have
+    \[ g(n) = f(n + 1) - f(n) - 1. \]
+    The quantity we seek is 
+    \begin{align*}
+        g(1) + g(2) + \cdots + g(6) &= (f(1) - f(0) - 1) + (f(2) - f(1) - 1) + \cdots + (f(6) - f(5) - 1)\\
+        &= f(6) - f(0) - 6.
+    \end{align*}
+    By \hyperref[teq: starsandbars]{Stars and Bars}, $f(6) = \binom{15}{5} =
+    72072$. Meanwhile, $f(0)$ is obviously 0. Therefore,
+    there are a total of $72066$ numbers between 1 and 1,000,000 whose digits
+    sum to 10.
+\end{solution}
+
+\begin{question}
+    Each side and diagonal of a regular hexagon is coloured either red or blue.
+    Show that there is a triangle with all three sides of the same colour. 
+\end{question}
+\begin{solution}
+    Take any vertex $v$ of the hexagon. Since there are 5 edges connected to
+    $v$, by the \hyperref[thm: pigeonhole]{Pigeonhole principle}, there are at
+    least three edges of the same colour. WLOG, suppose that these three edges
+    are blue, and suppose that they connect $v$ to three other vertices $x$,
+    $y$ and $z$. Then if one of the edges $(x, y)$, $(y, z)$ or $(z, x)$ are
+    blue, we will have a completely blue triangle, so suppose that none of them
+    are blue. This means that those three edges form a completely red triangle,
+    and hence we have proved that there is always a triangle with all three
+    sides of the same colour.
+\end{solution}
+
+\begin{question}
+    Find the value of $2018^2 - 2017^2 + 2016^2 - 2015^2 + \cdots + 2^2 - 1$.
+\end{question}
+\begin{solution} 
+    Differences of squares!
+    \begin{align*}
+        \MoveEqLeft
+    2018^2 - 2017^2 + 2016^2 - 2015^2 + \cdots + 2^2 - 1\\
+        &= (2018 + 2017)(2018 - 2017) + (2016 + 2015)(2016 - 2015) + \cdots + (2 + 1)(2 - 1)\\
+        &= 2018 + 2017 + 2016 + 2015 + \cdots + 2 + 1\\
+        &= \frac{2018 \cdot 2019}{2}\\
+        &= 2037171.
+    \end{align*}
+\end{solution}

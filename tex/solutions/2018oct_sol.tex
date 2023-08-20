@@ -1,0 +1,386 @@
+\solutionheader{2018 Regional Round}
+\begin{question}
+    In the figure, $AP$, $BQ$, $CR$ are perpendicular to the straight line
+    $ABC$. Prove that 
+    \begin{enumerate}
+        \item $\triangle PAB \sim \triangle RCB$
+        
+        \item $\frac{1}{BQ} = \frac{1}{AP} + \frac{1}{CR}$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Notice that $\angle PAQ = \angle CRQ$ and $\angle APQ = \angle RCQ$, so
+    $\triangle PAQ \sim \triangle CRQ$. Since $BQ \parallel PA$, we have
+    \[ \frac{AB}{BC} = \frac{PQ}{QC} = \frac{PA}{RC} \Longrightarrow
+    \frac{PA}{AB} = \frac{RC}{CB}. \]
+    As $\angle PAB = \angle RCB = 90^\circ$, we see that $\triangle PAB \sim
+    \triangle RCB$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (-1, 0);
+            pair B = (0, 0);
+            pair C = (1.5, 0);
+            pair P = (-1, 2/3);
+            pair Q = extension(B, rotate(90, B)*A, P, C);
+            pair R = extension(A, Q, rotate(90, C)*A, C);
+            draw(A--R--C--P--cycle);
+            draw(A--C);
+            draw(P--B--R);
+            draw(Q--B);
+            dot("$A$", A, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$B$", B, dir(270));
+            dot("$P$", P, dir(135));
+            dot("$Q$", Q, dir(90));
+            dot("$R$", R, dir(45));
+        \end{asy}
+    \end{center}
+    Finally, 
+    \[ \frac{BQ}{AP} + \frac{BQ}{CR} = \frac{CB}{CA} + \frac{AB}{CA} = 1
+    \Longrightarrow \frac{1}{AP} + \frac{1}{CR} = \frac{1}{BQ}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    $PA$ and $PB$ are the tangent segments at $A$ and $B$ to a circle whose
+    center is $O$. $AB$ and $OP$ are intercept at $Q$. Prove that $AB \perp
+    OP$. Hence show that $OQ : QP = AO^2 : AP^2$. Hence also show that
+    $\alpha(\triangle OAB) : \alpha(\triangle PAB)=AO^2 : AP^2$.
+\end{question}
+\begin{solution}
+    Since $PA = PB$ and $OA = OB$, $OAPB$ is a kite, and hence $AB \perp OP$.
+    Now, $Q$ is the foot of perpendicular from $A$ in right triangle $OAP$.
+    Therefore,
+    \[ \frac{AO^2}{AP^2} = \frac{OQ \cdot OP}{PQ \cdot PO} = \frac{OQ}{QP}. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair C = dir(120);
+            pair A = dir(210);
+            pair B = dir(330);
+            pair O = circumcenter(A, B, C);
+            pair P = 2*circumcenter(A, O, B)-O;
+            pair Q = extension(A, B, O, P);
+            draw(A--B--C--cycle, black+1);
+            draw(P--A--O--B--cycle);
+            draw(O--P);
+            draw(circle(O, 1));
+            draw(rightanglemark(O, Q, A, 3));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$O$", O, dir(90));
+            dot("$P$", P, dir(270));
+            dot("$Q$", Q, dir(45));
+        \end{asy}
+    \end{center}
+    Since $\triangle OAB$ and $\triangle PAB$ share the same base $AB$, the
+    ratio of their areas is equal to the ratio of their heights. Hence
+    \[ \frac{[\triangle OAB]}{[\triangle PAB]} = \frac{OQ}{QP} =
+    \frac{AO^2}{AP^2}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    If $T_{1}$, $T_{2}$, $T_{3}$ are the sums of $n$ terms of three series in
+    AP, the first term of each being $a$ and the respective common differences
+    being $d$, $2d$, $3d$, then show that $T_{1} + T_{3} = 2T_{2}$.
+\end{question}
+\begin{solution}
+    Let $(x_k)$, $(y_k)$ and $(z_k)$ denote the three APs. First, for any $i
+    \in \mathbb{N}$, we have
+    \[ x_i + z_i = a + (i - 1)d + a + 3(i - 1)d = 2a + 4(i - 1)d = 2(a + 2(i -
+    1)d) = 2y_i. \]
+    Therefore,
+    \[ T_1 + T_3 = \sum_{i = 1}^n x_i + \sum_{i = 1}^n y_i = \sum_{i = 1}^n(x_i
+    + z_i) = \sum_{i = 1}^n 2y_i = 2\sum_{i = 1}^n y_i = 2T_2. \qedhere \]
+\end{solution}
+
+\begin{question}
+    The positive difference between the zeros of the quadratic expression $x^2
+    + kx + 3$ is $\sqrt{69}$. Find the possible values of $k$.
+\end{question}
+\begin{solution}
+    Let the roots of this polynomial be $p$ and $q$ and WLOG assume that $p
+    \geq q$. Then by \hyperref[thm: vieta]{Vieta's formulas}, $p + q = -k$ and
+    $pq = 3$. We also have $p - q = \sqrt{69}$. Therefore,
+    \[ 3 = pq = \frac{(p + q)^2 - (p - q)^2}{4} = \frac{k^2 - 69}{4}
+    \Longrightarrow k^2 = 81. \]
+    Hence $k = \pm 9$.
+\end{solution}
+
+\begin{question}
+    In $\triangle PQR$, $\angle Q = 90^\circ$ and $S$ is a point on $PR$ such
+    that $QS \perp PR$. If $PR = kQR$, then show that $PS = (k^2 - 1)RS$.
+\end{question}
+\begin{solution}
+    Since $R$ is the foot of perpendicular from $Q$ in right triangle $PQR$,
+    \[ \frac{PS}{RS} = \frac{PS \cdot PR}{RS \cdot PR} = \frac{PQ^2}{QR^2}. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair P = dir(180);
+            pair R = dir(0);
+            pair Q = dir(110);
+            pair S = foot(Q, P, R);
+            draw(P--Q--R--cycle, black+1);
+            draw(Q--S);
+            draw(rightanglemark(Q, S, R, 3));
+            draw(rightanglemark(P, Q, R, 3));
+            dot("$P$", P, dir(225));
+            dot("$R$", R, dir(315));
+            dot("$Q$", Q, dir(90));
+            dot("$S$", S, dir(270));
+        \end{asy}
+    \end{center}
+    Now by Pythagoras's theorem,
+    \[ PQ^2 = PR^2 - QR^2 = k^2QR^2 - QR^2 = (k^2 - 1)QR^2 \Longrightarrow
+    \frac{PQ^2}{QR^2} = k^2 - 1. \]
+    Therefore, $PS = (k^2 - 1)RS$.
+\end{solution}
+
+\begin{question}
+    Prove the following theorem:
+    
+    If a ray from the vertex of an angle of a triangle divides the opposite
+    side into segments that have the same ratio as the other two sides, then it
+    bisects the angle.
+\end{question}
+\begin{solution}
+    Let the triangle be $ABC$. Let the ray originate at $A$ and let it
+    intersect side $BC$ at $D$. Finally, let $E$ and $F$ be the foots of
+    perpendiculars from $D$ onto sides $AB$ and $AC$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair I = incenter(A, B, C);
+            pair D = extension(A, I, B, C);
+            pair E = foot(D, A, B);
+            pair F = foot(D, A, C);
+            draw(A--B--C--cycle, black+1);
+            draw(A--D);
+            draw(D--E);
+            draw(D--F);
+            draw(rightanglemark(D, E, A, 2.5));
+            draw(rightanglemark(D, F, A, 2.5));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(180));
+            dot("$F$", F, dir(45));
+        \end{asy}
+    \end{center}
+    The problem condition then gives us $BD : DC = BA : AC$. Since $\triangle
+    ABD$ and $\triangle ACD$ share the same height, the ratio of their areas is
+    the ratio of the bases. Therefore,
+    \[ \frac{BD}{DC} = \frac{[ABD]}{[ACD]} = \frac{BA \cdot DE}{AC \cdot DF} \Longrightarrow DE = DF. \]
+    In right triangles $ADE$ and $ADF$, we have $DE = DF$ and hypotenuse $AD$,
+    so they are congruent by RHS. Thus $\angle BAD = \angle CAD$ as desired.
+\end{solution}
+\begin{remark}
+    This is commonly known as the angle bisector theorem.
+\end{remark}
+
+\begin{question}
+    The sum to $k$ terms of an AP is 21. The sum to $2k$ terms is 78. The $k$th
+    term is 11. Find the first term and the common difference. 
+\end{question}
+\begin{solution}
+    Let $a$ and $d$ be the first term and common difference of the AP. 
+    Then we have the following three equations:
+    \begin{align*}
+        21 &= \frac{k(u_1 + u_k)}{2},\\
+        78 &= k(u_1 + u_{2k}),\\
+        11 &= u_k.
+    \end{align*}
+    Notice that $u_{2k}$ is obtained by adding $d$ to $u_k$ for $k$ more times.
+    Therefore, $u_{2k} = u_k + kd$. From the first equation, we have $k(u_1 +
+    u_k) = 42$. Therefore, the second equation gives
+    \[ 78 = k(u_1 + u_k) + k^2d = 42 + k^2d \Longrightarrow k^2d = 36. \]
+    We also have $u_k = u_1 + (k - 1)d$, so $u_1 = u_k - (k - 1)d$.
+    Substituting this into the second equation gives
+    \begin{align*}
+        k(u_1 + u_{2k}) &= 78\\
+        k(u_k - (k - 1)d + u_k + kd) &= 78\\
+        k(2u_k + d) &= 78\\
+        22k + kd &= 78\\
+        22k^2 + k^2d &= 78k\\
+        22k^2 - 78k + 36 &= 0\\
+        11k^2 - 39k + 18 &= 0\\
+        (11k - 6)(k - 3) &= 0.
+    \end{align*}
+    Since $k$ is a positive integer, it follows that $k = 3$ and hence $d = 4$.
+    Therefore,
+    \[ u_1 = u_k - (k - 1)d = 11 - 2\cdot 4 = 3. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Prove that if $a$, $b$, $c$ and $d$ are positive, the equation $x^4 + bx^2
+    + cx - d = 0$ has one positive, one negative and two imaginary roots.
+\end{question}
+\begin{solution}
+    Let $f(x) = x^4 + bx^2 + cx - d$. This polynomial has exactly one sign
+    change, so by \hyperref[thm: ruleofsigns]{Descartes' rule of signs}, it has
+    exactly one positive root. Now $f(-x) = x^4 + bx^2 - cx - d$ also has one
+    sign change, so $f$ must also have exactly one negative root. Since $f$ is
+    a polynomial of degree 4, by the \hyperref[thm:
+    fundamentalthmofalg]{fundamental theorem of algebra}, it must have exactly
+    4 complex roots. Since we know that it only has 2 real roots, the rest two
+    roots must be imaginary and we are done.
+\end{solution}
+
+\begin{question}
+    Show that the sum of the squares of the first $n$ odd numbers is
+    $\frac{1}{3}n(4n^2 - 1)$.
+\end{question}
+\begin{solution}
+    This is the same problem as \hyperref[sol: 2016 Regional Round P14]{2016
+    Regional Round problem 14}. 
+\end{solution}
+
+\begin{question}
+    If $100!$ is divisible by $7^{n}$, find the maximum value of $n$. 
+\end{question}
+\begin{solution}
+    Since $14 \cdot 7 < 100 < 15 \cdot 7$, there are 14 numbers less than 100
+    which are divisible by 7. Out of these 14 numbers, there are 2 numbers,
+    namely 49 and 98 which are divisible by $7^2$. Therefore, the power of 7 in
+    the prime factorization of $100!$ is $14 + 2 = 16$ and so $n = 16$.
+\end{solution}
+\begin{remark}
+    The argument in this problem can be generalized to get what is known as
+    \hyperref[thm: legendre]{Legendre's formula}.
+\end{remark}
+
+\begin{question}
+    Show that $x = 10^\circ$ is a solution of $2\sin x=\frac{1 + \tan^2x}{3 -
+    \tan^2x}$.
+\end{question}
+\begin{solution}
+    We will first show the identity
+    \[ \sin 3x = 3\sin x - 4\sin^3 x \]
+    for any real $x$. This can be done as follows:
+    \begin{align*}
+        \sin 3x &= \sin(2x + x)\\
+        &= \sin 2x \cos x + \cos 2x \sin x\\
+        &= 2\sin x \cos^2 x + (1 - 2\sin^2 x)\sin x\\
+        &= \sin x (2 - 2\sin^2 x + 1 - 2\sin^2 x)\\
+        &= 3\sin x - 4\sin^3 x
+    \end{align*}
+    In particular, when $x = 10^\circ$,
+    \begin{align*} 
+        \frac{1}{2} &= 3\sin 10^\circ - 4\sin^3 10^\circ\\
+        \frac{1}{2} &= \sin 10^\circ (3 - 4\sin^2 10^\circ)\\
+        2 \sin 10^\circ &= \frac{1}{3 - 4\sin^2 10^\circ}\\
+        &= \frac{1}{4\cos^2 10^\circ - 1}\\
+        &= \frac{\sec^2 10^\circ}{4 - \sec^2 10^\circ}\\
+        &= \frac{1 + \tan^2 10^\circ}{3 - \tan^2 10^\circ}
+    \end{align*}
+    so $x = 10^\circ$ is a solution to the given equation.
+\end{solution}
+
+\begin{question}
+    Show that $\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \cdots +
+    \frac{1}{\sqrt{n}} > \sqrt{n}$ for all $n > 1$.
+\end{question}
+\begin{solution}
+    For $1 \leq i < n$, we have $\frac{1}{\sqrt{i}} > \frac{1}{\sqrt{n}}$.
+    Therefore,
+    \[ \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}} >
+    \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n}} + \cdots + \frac{1}{\sqrt{n}} =
+    \frac{n}{\sqrt{n}} = \sqrt{n}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    \begin{enumerate}
+        \item Prove the following Cauchy inequality:
+            \par For any real numbers $a_1, \ldots, a_n$ and $b_1, \ldots, b_n$,
+            \[(a_{1}b_{1} + a_{2}b_{2} + \cdots +a_{n}b_{n})^2\leq (a_{1}^2 +
+            a_{2}^2 + \cdots + a_{n}^2)(b_{1}^2 + b_{2}^2 + \cdots + b_{n}^2).\]
+        
+        \item For a set of positive real numbers $x_1, \ldots, x_n$, the
+            Root-Mean Square RMS is defined by the formula 
+            \[\text{RMS} = \sqrt{\frac{x_{1}^2 + \cdots + x_{n}^2}{n}}\] 
+            and the Arithmetic Mean AM is defined by the formula 
+            \[\text{AM} = \frac{x_{1} + \cdots + x_{n}}{n}.\] 
+            Prove that $\text{RMS} \geq \text{AM}$.
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Consider the following quadratic polynomial in $x$:
+    \[ P(x) = (a_1x + b_1)^2 + (a_2x + b_2)^2 + \cdots + (a_nx + b_n)^2 \geq 0.
+    \]
+    Letting $A = a_1^2 + \cdots + a_n^2$, $B = 2(a_1b_1 + \cdots + a_nb_n)$ and
+    $C = b_1^2 + \cdots + b_n^2$, the quadratic can be rewritten as
+    \[ P(x) = Ax^2 + Bx + C \geq 0. \]
+    Since this quadratic is non-negative, it can only have at most one real
+    root (i.e. the parabola cannot intersect the $x$ axis at two distinct
+    points.) Therefore, its discriminant is less than or equal to zero; which
+    yields the desired inequality.
+    \[ B^2 - 4AC \leq 0 \Longrightarrow (a_1b_1 + \cdots + a_nb_n)^2 \leq
+    (a_1^2 + \cdots + a_n^2)(b_1^2 + \cdots +b_n^2). \]
+    Now letting $a_i = x_i$ and $b_i = 1$ for all $1 \leq i \leq n$, by the
+    \hyperref[thm: cs]{Cauchy-Schwarz inequality},
+    \[ (x_1 + x_2 + \cdots + x_n)^2 \leq (x_1^2 + x_2^2 + \cdots + x_n^2)n. \]
+    Rearranging the equation gives
+    \[ \frac{x_1 + x_2 + \cdots + x_n}{n} \leq \sqrt{\frac{x_1^2 + x_2^2 +
+    \cdots + x_n^2}{n}}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    \begin{enumerate}
+        \item Prove that if $p$ is a prime number, then the coefficient of
+            every term in the expansion of $(a + b)^p$ except the first and
+            last is divisible by $p$. 
+        
+        \item Hence show that if $p$ is a prime number and $N$ is a positive
+            integer, then $N^{p} - N$ is a multiple of $p$. 
+        
+        \item Hence also show that if $p$ is a prime number, then $10^p - 7^p -
+            3$ is divisible by $p$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    This problem is a step-by-step proof of \hyperref[thm: FLT]{Fermat's little theorem}.
+    \begin{enumerate}
+        \item By the binomial theorem,
+            \[ (a + b)^p = a^p + \binom{p}{1}a^{p - 1}b + \cdots + \binom{p}{p -
+            1}ab^{p - 1} + b^p. \]
+            For $1 \leq r \leq p - 1$,
+            \[ \binom{p}{r} = \frac{p(p - 1) \cdots (p - r + 1)}{r!}. \]
+            Since $r < p$, there are no factors of $p$ in the denominator. However,
+            $p$ obviously divides the numerator. Since $\binom{p}{r}$ is an
+            integer, during the cancellation, there was no number in the
+            denominator that could cancel out the $p$ in the denominator.
+            Therefore, $p$ divides $\binom{p}{r}$. 
+
+        \item We will show that $n^p - n$ is divisible by $p$, by induction on
+            $n$. For the base case, when $n = 1$, this is equal to 0 so it is
+            divisible by $p$. Now suppose that for $n = k$, $k^p - k$ is
+            divisible by $p$. Then when $n = k + 1$,
+            \[ (k + 1)^p - (k + 1) = (k^p - k) + \left( \binom{p}{1}k^{p - 1} +
+            \binom{p}{2}k^{p - 2} + \cdots + \binom{p}{p - 1}k \right).\]
+            Since $p$ divides the first bracket by the induction hypothesis and
+            the second bracket by the first part, it follows that $p$ also
+            divides $(k + 1)^p - (k + 1)$. Therefore, by induction it follows
+            that $p$ divides $n^p - n$ for all positive integers $n$.
+
+        \item Notice that $10^p - 7^p - 3 = (10^p - 10) - (7^p - 7)$. Since
+            both brackets are divisible by $p$, we are done. \qedhere
+    \end{enumerate}
+\end{solution}

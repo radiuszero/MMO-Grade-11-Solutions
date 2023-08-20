@@ -1,0 +1,427 @@
+\solutionheader{Sample Problems}
+\begin{question}
+    Given the sequence $u_{n} = n^2 - 6n + 13$, what is the smallest term in
+    the sequence? 
+\end{question}
+\begin{solution}
+    By completing the square, we have
+    \[n^2 - 6n + 13 = n^2 - 6n + 9 + 4 = (n - 3)^2 + 4.\]
+    Since squares are non-negative, this means that $(n - 3)^2 + 4 \geq 0 + 4 =
+    4$. Hence the minimum is $u_3 = 4$, achieved when $n = 3$. 
+\end{solution}
+
+\begin{question}
+    A function $f(x) = \frac{p}{x - q}$, $q > 0$, $q \ne x$ is such that $f(p)
+    = p$ and $f(2q) = 2q$. Find the values of $p$ and $q$. If $(f \circ f)(x) =
+    x$, show that $x^2 - x - 2 = 0$.
+\end{question}
+\begin{solution}
+    We have the following two equations:
+    \begin{align}
+        p = f(p) = \frac{p}{p - q} &\Longrightarrow p^2 - pq = p\\
+        2q = f(2q) = \frac{p}{q} &\Longrightarrow p = 2q^2
+    \end{align}
+    Substituting the value of $p$ in (1), we get $4q^4 - 2q^3 - 2q = 0.$ Since
+    $q > 0$, we can cancel out $2q$ from both sides, which leaves us with 
+    \[2q^2 - q - 1 = 0 \Longrightarrow (q - 1)(2q + 1) = 0.\] 
+    Solving this shows that $q = 1$ or $q = -\frac{1}{2}$. Since $q$ is
+    non-negative, we can discard the latter, and hence $q = 1$. This gives us
+    $p = 2$. Therefore, the original function becomes $f(x) = \frac{2}{x - 1}$.
+    Finally, 
+    \[ x = (f \circ f)(x) = \frac{2}{\dfrac{2}{x - 1} - 1} \Longrightarrow x^2
+    - x - 2 = 0. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Let $f(x) = 1 + x + x^2 + \cdots + x^n$. The remainder when $f(x)$ is
+    divided by $2x - 1$ is $\frac{341}{256}$ more than the remainder when
+    $f(x)$ is divided by $2x + 1$. Find the value of $n$.
+\end{question}
+\begin{solution}
+    Since $f$ is a polynomial, by the remainder theorem, the remainder when
+    $f(x)$ is divided by $2x - 1$ is $f(\frac{1}{2})$ and the remainder when
+    $f(x)$ is divided by $2x + 1$ is $f(-\frac{1}{2})$. Therefore, the given
+    condition becomes
+    \begin{align*}
+        f\left(\frac{1}{2}\right) - f\left(-\frac{1}{2}\right) &= \frac{341}{256}\\
+        \left(1 + \frac{1}{2} + \frac{1}{2^2} + \cdots + \frac{1}{2^n}\right) - \left(1 + \frac{1}{(-2)} + \frac{1}{(-2)^2} + \cdots + \frac{1}{(-2)^n}\right) &= \frac{341}{256}
+        \intertext{Notice that all the fractions with even powers cancel out. Therefore, if we let $t$ be the largest odd number less than or equal to $n$, we have}
+        2\left(\frac{1}{2} + \frac{1}{2^3} + \cdots + \frac{1}{2^t}\right) &= \frac{341}{256}\\
+        1 + \frac{1}{2^2} + \frac{1}{2^4} + \cdots + \frac{1}{2^{t - 1}} &= \frac{341}{256}\\
+        \intertext{This is a GP with starting term $a = 1$ and common ratio $r = \frac{1}{4}$. Since $ar^{n - 1} = u_n = \frac{1}{2^{t - 1}}$, it follows that $n = \frac{t + 1}{2}$, so the GP summation formula gives us}
+        \frac{1 - \frac{1}{2^{t + 1}}}{\frac{3}{4}} &= \frac{341}{256}\\
+        \frac{1}{2^{t + 1}} &= 1 - \frac{341 \times 3}{256 \times 4}\\
+        \frac{1}{2^{t + 1}} &= \frac{1}{1024}
+    \end{align*}
+    which shows that $t = 9$. Since $t$ is the largest odd number less than or
+    equal to $n$, this means that $n$ must be either 9 or 10, and these are the
+    only solutions.
+\end{solution}
+
+\stepcounter{question}
+\begin{question}
+    In the binomial expansion of $(1 + x)^n$, the coefficients of 5th, 6th and
+    7th terms are consecutive terms of an AP. Find the first three terms of the
+    binomial expansion.
+\end{question}
+\begin{solution}
+    By the Binomial theorem, the coefficients of 5th, 6th and 7th terms are
+    $\binom{n}{4}$, $\binom{n}{5}$ and $\binom{n}{6}$ respectively. Since these
+    three numbers are in AP,
+    \begin{align*}
+        \binom{n}{4} + \binom{n}{6} &= 2\binom{n}{5}\\
+        \begin{split}
+            \frac{n(n - 1)(n - 2)(n - 3)}{1 \times 2 \times 3 \times 4}\\
+            + \frac{n(n - 1)(n - 2)(n - 3)(n - 4)(n - 5)}{1 \times 2 \times 3 \times 4 \times 5 \times 6} &
+        \end{split} 
+        = \frac{2n(n - 1)(n - 2)(n - 3)(n - 4)}{1 \times 2 \times 3 \times 4 \times 5}\\
+        1 + \frac{(n - 4)(n - 5)}{5 \times 6} &= \frac{2(n - 4)}{5}\\
+        30 + (n - 4)(n - 5) &= 12(n - 4)\\
+        n^2 - 21n + 98 = 0\\
+        (n - 14)(n - 7) = 0
+    \end{align*}
+    and so it follows that $n$ is either 7 or 14. In the first case, the first
+    three terms are 1, $7x$, $21x^2$, and in the second case the first three
+    terms are 1, $14x$, $91x^2$.
+\end{solution}
+
+\begin{question}
+    Find the number of integers between 100 and 999 such that the sum of the
+    three digits is 12.
+\end{question}
+\begin{solution}
+    The numbers we want are of the form $100 < \overline{abc} < 999$ with $a +
+    b + c = 12$. Notice that after we choose $a$ and $b$, the value of $c$ is
+    automatically determined. 
+    
+    When $a = 1$, $b + c = 11$. This means that $b$ cannot be less than 2, as
+    that would make $c$ greater than 9. Since $b \in \{2, 3, \cdots, 9\}$,
+    there are 8 choices of $b$ here.
+
+    When $a = 2$, $b + c = 10$. Similarly to the above case, $b$ cannot be less
+    than 1. Therefore, there are 9 choices of $b$ for this case.
+
+    When $3 \leq a \leq 9$, $b + c \leq 9$, so we don't need to worry about the
+    size of $c$ exceeding 9 anymore. For each choice of $a$, $b$ can range from
+    0 to $12 - a$ so there are $12 - a + 1 = 13 - a$ choices of $b$. Therefore,
+    the total number of choices of $b$ for $3 \leq a \leq 9$ is 
+    \[10 + 9 + 8 + 7 + 6 + 5 + 4 = 49.\] 
+
+    Hence, the total number is $8 + 9 + 49 = 66$.
+\end{solution}
+
+\begin{question}
+    Determine the solution set for which $\frac{(x + 1)(x - 2)}{1 - 2x} > 0$.
+\end{question}
+\begin{solution}
+    For a rational function to be positive, both the numerator and the
+    denominator must have the same sign. Therefore, we can consider two cases
+    as follows.
+
+    \begin{case}{$(x + 1)(x - 2)$ and $1 - 2x$ are both positive.}
+    In this case, since $(x + 1)(x - 2)$ is positive, we must have either $x >
+    -1$ and $x > 2$, or $x < -1$ and $x < 2$. The former is equivalent to $x >
+    2$ and the latter is equivalent to $x < -1$, so we must have $x > 2$ or $x
+    < -1$. Now since $1 - 2x > 0$, we see that $x < -\frac{1}{2}$. Combining
+    all of these shows that $x < -1$.
+    \end{case}
+
+    \begin{case}{$(x + 1)(x - 2)$ and $1 - 2x$ are both negative.}
+    In thise case, since $(x + 1)(x - 2)$ is negative, we must have either $x >
+    -1$ and $x < 2$, or $x < -1$ and $x > 2$. The latter is impossible, so $-1
+    < x < 2$. Since $1 - 2x < 0$, we also have $x > \frac{1}{2}$. Combining
+    these two shows that $\frac{1}{2} < x < 2$ for this case.
+    \end{case}
+    
+    Hence the solution set is $\{x \in \mathbb{R} \mid x < -1 \text{ or }
+    \frac{1}{2} < x < 2\}$.
+\end{solution}
+
+\begin{question}
+    If $a_{1}$, $a_{2}$, $a_{3}$ are in AP, $a_{2}$, $a_{3}$, $a_{4}$ are in GP
+    and $a_{3}$, $a_{4}$, $a_{5}$ are in HP, then prove $a_{1}$, $a_{3}$,
+    $a_{5}$ are in GP.
+\end{question}
+\begin{solution}
+    Write $a_1 = a - d$, $a_2 = a$ and $a_3 = a + d$. Then since $a_2$, $a_3$,
+    $a_4$ are in GP, 
+    \[a_2a_4 = a_3^2 \Longrightarrow a_4 = \frac{a_3^2}{a_2} = \frac{(a +
+    d)^2}{a}.\]
+    Now since $a_3$, $a_4$, $a_5$ are in HP, $\frac{1}{a_3}$, $\frac{1}{a_4}$,
+    $\frac{1}{a_5}$ are in AP. Therefore, 
+    \begin{align*}
+        \frac{1}{a_3} + \frac{1}{a_5} &= \frac{2}{a_4}\\
+        \frac{1}{a_5} &= \frac{2a}{(a+d)^2} - \frac{1}{a + d}\\
+        &= \frac{2a - a - d}{(a + d)^2}\\
+        &= \frac{a - d}{(a + d)^2}\\
+        a_5 &= \frac{(a + d)^2}{a - d}.
+    \end{align*}
+    Therefore,
+    \[\frac{a_1}{a_3} = \frac{a - d}{a + d} = \frac{a_3}{a_5}\]
+    and hence $a_1$, $a_3$, $a_5$ are in GP.
+\end{solution}
+
+\begin{question}
+    Prove by mathematical induction that 
+    \[\sum_{r = 1}^n r^{4} = \frac{n(n + 1)(6n^3 + 9n^2 + n - 1)}{30}.\]
+\end{question}
+\begin{solution}
+    For the base case $n = 1$, it is easy to check that both the left hand side
+    and right hand side are equal to 1. Now suppose that this identity is true
+    for $n = k$. We have to show that it is also true for $n = k + 1$. i.e.
+    \[\sum_{r = 1}^{k + 1}r^4 = \frac{(k + 1)(k + 2)(6(k + 1)^3 + 9(k + 1)^2 +
+    k)}{30}.\]
+    But $\sum_{r = 1}^{k + 1}r^4 = \sum_{r = 1}^{k} r^4 + (k + 1)^4$, and
+    \begin{align*}
+        \sum_{r = 1}^{k} r^4 + (k + 1)^4 &= \frac{k(k + 1)(6k^3 + 9k^2 + k - 1)}{30} + (k + 1)^4\\
+        &= \frac{(k + 1)(6k^4 + 9k^3 + k^2 - k + 30k^3 + 90k^2 + 90k + 30)}{30}\\
+        &= \frac{(k + 1)(6k^4 + 39k^3 + 91k^2 + 89k + 30)}{30}\\
+        &= \frac{(k + 1)(k + 2)(6k^3 + 27k^2 + 37k + 15)}{30}\\
+        &= \frac{(k + 1)(k + 2)(6k^3 + 18k^2 + 18k + 6 + 9k^2 + 18k + 9 + k)}{30}\\
+        &= \frac{(k + 1)(k + 2)(6(k + 1)^3 + 9(k + 1)^2 + k)}{30}
+    \end{align*}
+    so by mathematical induction, this identity is true for all $n \in
+    \mathbb{N}$.
+\end{solution}
+\stepcounter{question}
+
+\begin{question}
+    If the base $BC$ of $\triangle ABC$ is trisected at $P$ and $Q$, show that 
+    \[AB^2 + AC^2 = AP^2 + AQ^2 + 4PQ^2.\]
+\end{question}
+\begin{solution}
+    Let $\angle A$, $\angle B$ and $\angle C$ be $\alpha$, $\beta$ and
+    $\gamma$. By the law of cosines in $\triangle ABP$ and $\triangle ACQ$, 
+    \[AP^2 = AB^2 + BP^2 - 2AB \cdot BP \cos\beta,\]
+    \[AQ^2 = AC^2 + CQ^2 - 2AC \cdot CQ \cos\gamma.\]
+    By law of cosines again in $\triangle ABC$, we also have 
+    \[2AB \cdot BC \cos\beta = AB^2 + BC^2 - AC^2,\]
+    \[2AC \cdot BC \cos\gamma = AC^2 + BC^2 - AB^2.\]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair P = (2/3)*B + (1/3)*C;
+            pair Q = (1/3)*B + (2/3)*C;
+            draw(A--B--C--cycle, black+1);
+            draw(A--P);
+            draw(A--Q);
+            add(pathticks(B--P, 1, .5, 6, 4));
+            add(pathticks(P--Q, 1, .5, 6, 4));
+            add(pathticks(Q--C, 1, .5, 6, 4));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$P$", P, dir(270));
+            dot("$Q$", Q, dir(270));
+        \end{asy}
+    \end{center}
+    Therefore,
+    \begin{align*}
+        AB^2 - AP^2 + AC^2 - AQ^2 &= 2AB \cdot BP \cos\beta + 2AC \cdot CQ \cos\gamma - BP^2 - CQ^2\\
+        &= \frac{1}{3}(2AB \cdot BC \cos\beta + 2AC \cdot BC \cos\gamma) - 2PQ^2\\
+        &= \frac{1}{3}(AB^2 + BC^2 - AC^2 + AC^2 + BC^2 - AB^2) - 2PQ^2\\
+        &= \frac{2BC^2}{3} - 2PQ^2\\
+        &= 6PQ^2 - 2PQ^2\\
+        &= 4PQ^2. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    From a point $O$, two straight lines are at any angle. On one of these
+    lines, points $A$ and $B$ are taken such that $OA = \frac{5}{2}$ inch and
+    $AB = \frac{3}{2}$ inch. Find the point on the other line at which $AB$
+    subtends the greatest angle.
+\end{question}
+\begin{solution}
+    We will only describe how to construct the desired point when $A$ lies
+    between $O$ and $B$, as the other case can be handled in the same way.
+    Since $OA > AB$, we see that $O$ lies outside of segment $AB$. Let the ray
+    on which those two points lie be $k$. We can split the other line, say
+    $\ell$, into two rays $\ell_1$ and $\ell_2$, both originating from $O$ and
+    pointing at opposite directions. Let $X_1$ be a point on $\ell_1$ such that
+    $(X_1AB)$ is tangent to $\ell_1$. We claim that $\angle AX_1B$ is the
+    maximal angle among any point on ray $\ell_1$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair O = (0, 0);
+            pair A = (5/2, 0);
+            pair B = (4, 0);
+            real s = sqrt(10);
+            pair Y = 2*dir(40);
+            pair X = s*dir(40);
+            pair Z = 2*foot(circumcenter(A, B, Y), A, X) - A; 
+            pair X1 = 6*dir(40);
+            pair X2 = (5, 0);
+            draw(circumcircle(A, B, X));
+            draw(circumcircle(A, B, Y), mydash);
+            draw(O--X1, black+1, arrow = Arrow(size=10));
+            draw(O--X2, black+1, arrow = Arrow(size=10));
+            draw(A--X--B);
+            draw(A--Y--B);
+            draw(X--Z--B);
+            dot("$O$", O, dir(225));
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(315));
+            dot("$X_1$", X, dir(135));
+            dot("$Y$", Y, dir(135));
+            dot("$Z$", Z, dir(90));
+            label("$\ell_1$", X1, dir(40));
+            label("$k$", X2, dir(0));
+        \end{asy}
+    \end{center}
+    First, since
+    \[ OX_1^2 = OA \cdot OB = 10 \Longrightarrow OX_1 = \sqrt{10},\] 
+    it follows that there is only one such $X_1$. Now take any point $Y$ other
+    than $X_1$ on $\ell_2$. We must show that $\angle AX_1B > \angle AYB$. Let
+    line $\overline{AX_1}$ meet $(AYB)$ at $Z$. Since $(AYB)$ is not tangent to
+    $\ell_2$, it follows that $X$ lies inside $(AYB)$. Therefore,
+    \[ \angle AX_1B = \angle AZB + \angle X_1BZ > \angle AZB = \angle AYB\] 
+    and hence it follows that $\angle AX_1B$ is indeed maximal.
+    
+    Similarly, we can also choose a point $X_2$ on ray $\ell_2$, such that
+    $\angle AX_2B$ is maximal among any point on $\ell_2$. Now take a point $X
+    \in \{ X_1, X_2 \}$ such that $\angle AXB$ is maximal. We claim that $X$ is
+    our desired point. Take any point $P$ on $\ell$ other than $X$; it must lie
+    either on $\ell_1$ or $\ell_2$. Suppose WLOG that it lies on $\ell_1$. Then 
+    \[ \angle APB < \angle AX_1B \leq AXB, \]
+    and we are done.
+\end{solution}
+\begin{remark}
+    In the case when $k \perp \ell$, we have $\angle AX_1B = \angle AX_2B$, so
+    there are two points on $\ell$ that satisfy the given condition.
+\end{remark}
+
+\begin{question}
+    Given any seven distinct real numbers $x_{1}$, $x_{2}$, $\ldots$, $x_{7}$,
+    prove that we can always find the numbers $x_{i}$, $1 \leq i\leq 7$ and
+    $x_{j}$, $1 \leq j\leq 7$ such that $0 < \frac{x_{i} - x_{j}}{1 +
+    x_{i}x_{j}} < \frac{1}{\sqrt{3}}$.
+\end{question}
+\begin{solution}
+    Choose $0 \leq a_1, a_2, \ldots, a_7 < \pi$ such that $\tan a_i = x_i$ for
+    each $i = 1, 2, \ldots, 7$. Divide the interval $[0, \pi)$ into six equally
+    sized intervals; i.e. consider intervals $I_1, I_2, \ldots, I_6$ such that
+    $I_k = [\frac{(k - 1) \pi}{6}, \frac{k \pi}{6} )$. Since there are 7
+    elements in the sequence $a_1, a_2, \ldots, a_7$, it follows that two of
+    them must be in the same interval. Let the larger one be $a_i$ and the
+    smaller one be $a_j$. Then $0 < a_i - a_j < \frac{\pi}{6}$, so it follows
+    that
+    \[ \frac{x_i - x_j}{1 + x_i x_j} = \frac{\tan a_i - \tan a_j}{1 + \tan a_i
+    \tan a_j} = \tan(a_i - a_j) < \tan \frac{\pi}{6} = \frac{1}{\sqrt{3}}.\] 
+    Since $a_i > a_j$, $\tan(a_i - a_j) > 0$, so we are done.     
+\end{solution}
+
+\begin{question}
+    Prove that $6 \mid n^3 - n$ for all integers $n$.
+\end{question}
+\begin{solution}
+    Notice that $n^3 - n = (n - 1)n(n + 1)$. Since $n - 1$, $n$ and $n + 1$ are
+    three consecutive integers, it follows that one of them must be divisible
+    by 3. Similarly, since $n - 1$ and $n$ are two consecutive integers, one of
+    them must be divisible by 2. Since 2 and 3 are relatively prime, by lemma
+    \ref{lem: weakCRT} it follows that $n^3 - n$ is divisible by $2 \times 3 =
+    6$.
+\end{solution}
+\stepcounter{question}
+
+\begin{question}
+    The 5-digit number $\overline{A986B}$ is divisible by 72. What is the value of $A + B$?
+\end{question}
+\begin{solution}
+    Let the number in the problem be $S$. Since $S$ is divisible by 72, it is
+    divisible by 8, which means that $\overline{86B}$ is divisible by 8. It
+    follows that $B = 4$. Now $S$ is also divisible by 9, so the sum of its
+    digits must be divisible by 9. Hence $A + 9 + 8 + 6 + 4 = A + 27$ is
+    divisible by 9, so $A$ must be divisible by 9. However, $A$ is non-zero
+    since it is the first digit, $A$ must be equal to 9. Therefore, $A + B = 9
+    + 4 = 13$.
+\end{solution}
+
+\begin{question}
+    $AB$ is a chord of a circle and $P$ is any point on the arc of one of the
+    segments cut off. Prove that the bisection of the $\angle APB$ passes
+    through a fixed point on the circumference.
+\end{question}
+\begin{solution}
+    Let the angle bisector of $\angle APB$ intersect the circle at $M$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair P = dir(120);
+            pair A = dir(210);
+            pair B = dir(330);
+            pair I = incenter(A, B, P);
+            pair M = 2*foot(circumcenter(A, B, P), P, I) - P;
+            draw(A--B--P--cycle, black+1);
+            draw(circumcircle(A, B, P));
+            draw(P--M);
+            draw(M--A);
+            draw(M--B);
+            add(pathticks(M--A, 1, .5, 6, 4));
+            add(pathticks(M--B, 1, .5, 6, 4));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$M$", M, dir(M));
+            dot("$P$", P, dir(P));
+        \end{asy}
+    \end{center}
+    Then 
+    \[ \angle MAB = \angle MPB = \angle MPA = \angle MBA,\] 
+    which implies that $MA = MB$. Therefore, $M$ is the midpoint of arc $AB$
+    that does not contain $P$. Since $M$ does not depend on the position of
+    $P$, we are done.
+\end{solution}
+
+\begin{question}
+    Two circles touch each other internally at $A$. Through $B$, a point on the
+    circumference of the inner circle, a tangent is drawn which meets the
+    circumference of the outer at $P$ and $Q$. Show that \mbox{$AP : AQ = BP :
+    BQ$}.
+\end{question}
+\begin{solution}
+    Let the common tangent to the two circles at $A$ meet line $PQ$ at $K$. It
+    is easy to see that $KA = KB$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(140);
+            pair P = dir(210);
+            pair Q = dir(330);
+            pair B = extension(A, incenter(A, P, Q), P, Q);
+            pair O = circumcenter(A, P, Q);
+            pair K = extension(A, rotate(90, A)*O, P, Q);
+            pair O1 = 2*circumcenter(A, B, K) - K;
+            draw(A--K);
+            draw(A--P--Q--cycle, black+1);
+            draw(K--P);
+            draw(A--B);
+            draw(circle(O, abs(O - A)));
+            draw(circle(O1, abs(O1 - A)));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(270));
+            dot("$P$", P, dir(225));
+            dot("$Q$", Q, dir(315));
+            dot("$K$", K, dir(225));
+        \end{asy}
+    \end{center}
+    Then by the tangent-chord theorem, 
+    \[ \angle PAB = \angle BAK - \angle PAK = \angle ABK - \angle AQB = \angle
+    BAQ,\] 
+    so it follows that ray $AB$ internally bisects $\angle PAQ$. Therefore, by
+    the angle bisector theorem, we see that $PA : AQ = PB : BQ$.
+\end{solution}

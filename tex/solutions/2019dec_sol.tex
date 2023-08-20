@@ -1,0 +1,706 @@
+\solutionheader{2019 National Round}
+\begin{question}
+    $\triangle ABC$ is an equilateral triangle. 
+    \begin{enumerate}
+        \item Prove that there are points $D$, $E$ and $F$ on $AB$, $BC$ and
+            $CA$ respectively such that $DE \perp BC$, $EF\perp CA$ and $FD
+            \perp AB$. 
+
+        \item Prove that $\triangle DEF$ is also an equilateral triangle.
+
+        \item Find the ratio of the perimeters of $\triangle DEF$ and
+            $\triangle ABC$.
+        
+        \item Find the ratio of the areas of $\triangle DEF$ and $\triangle
+            ABC$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let $D$, $E$ and $F$ be points on sides $AB$, $BC$ and $CA$ such that $3AD
+    = AB$, $3BE = BC$ and $3CF = CA$. We will first show that $DE \perp BC$.
+    Let $M$ be the midpoint of $BC$. Then since $\triangle ABC$ is equilateral,
+    $AM \perp BC$. Moreover,
+    \[ \frac{BE}{BM} = \frac{\frac{1}{3}BC}{\frac{1}{2}BC} = \frac{2}{3} =
+    \frac{BD}{BA}. \]
+    Therefore, $DE \parallel AM$ and hence $DE \perp BC$. Moreover, it is easy
+    to see that $\triangle AFD \cong \triangle BDE \cong \triangle CEF$, and so
+    $DE = EF = FD$ which implies that $\triangle DEF$ is equilateral. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(90);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = (2/3)*A+(1/3)*B;
+            pair E = foot(D, B, C);
+            pair F = foot(E, A, C);
+            pair M = midpoint(B--C);
+            draw(A--B--C--cycle, black+1);
+            draw(D--E--F--cycle);
+            draw(A--M, mydash);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$E$", E, dir(270));
+            dot("$M$", M, dir(270));
+            dot("$F$", F, dir(30));
+            dot("$D$", D, dir(120));
+        \end{asy}
+    \end{center}
+    Now remember that $\triangle BAM \sim \triangle BDE$, and $\triangle BAM$
+    is a 30-60 right triangle. Since $BA : BD = 3 : 2$,
+    \[ \frac{BD}{DE} = \frac{BA}{AM} = \frac{2}{\sqrt{3}} \Longrightarrow
+    \frac{BA}{DE} = \frac{BA}{BD} \cdot \frac{BD}{DE} = \frac{3}{2} \cdot
+    \frac{2}{\sqrt{3}} = \sqrt{3}. \]
+    Hence the ratio of their perimeters is also $\sqrt{3}$. Finally, since
+    $\triangle ABC$ and $\triangle DEF$ are both equilateral triangles, they
+    are similar. Therefore the ratio of their areas is the square of ratio of
+    their sides, which is equal to $(\sqrt{3})^2 = 3$.
+\end{solution}
+
+\begin{question}
+    \begin{enumerate}
+        \item If $abc = 2ab + 2bc +2ca$ where $a$, $b$ and $c$ are integers and
+            $1 \leq a \leq b \leq c$, then show that $3 \leq a \leq 6$.
+        
+        \item Find all possible ordered triples $(a,b,c)$ such that \[abc = 2ab
+            + 2bc + 2ca\] where $a$, $b$ and $c$ are integers and $1 \leq a
+            \leq b \leq c$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    We can divide the both sides of our given equation by $abc$ to get
+    \[ 1 = \frac{2}{a} + \frac{2}{b} + \frac{2}{c}. \]
+    Suppose that $6 < a$. Then as $a \leq b \leq c$, it follows that both $b$
+    and $c$ are also greater than 6, so
+    \[ 1 = \frac{2}{a} + \frac{2}{b} + \frac{2}{c} < \frac{2}{6} + \frac{2}{6}
+    + \frac{2}{6} = 1, \]
+    which is a contradiction. Therefore, $a \leq 6$. Now suppose that $a < 3$.
+    Then $a \leq 2$ so
+    \[ 1 = \frac{2}{a} + \frac{2}{b} + \frac{2}{c} \geq 1 + \frac{2}{b} +
+    \frac{2}{c} > 1, \]
+    which is also a contradiction. Therefore, $3 \leq a \leq 6$ as desired.
+
+    Now we can plug in each value of $a$ and solve for $b$ and $c$. We will
+    only show how to solve the equation for $a = 3$, as the other cases can be
+    done the exact same way.
+    When $a = 3$, the equation becomes
+    \[ \frac{1}{6} = \frac{1}{b} + \frac{1}{c} \Longleftrightarrow (b - 6)(c -
+    6) = 36. \]
+    Notice that $b$ cannot be less than 6 or otherwise $c$ will be negative.
+    This means that both $b - 6$ and $c - 6$ are positive divisors of 36. This
+    gives us the following set of solutions pairs:
+    \[ (b, c) \in \{ (7, 42) , (8, 24), (9, 18), (10, 15), (12, 12) \}. \]
+
+    When $a = 4$, the equation becomes
+    \[ \frac{1}{4} = \frac{1}{b} + \frac{1}{c} \Longleftrightarrow (b - 4)(c -
+    4) = 16. \]
+    In this case, the solution pairs are $(b, c) \in \{ (5, 20), (6, 12), (8,
+    8) \}$. 
+    
+    When $a = 5$, the equation is
+    \[ \frac{1}{10} = \frac{1}{3b} + \frac{1}{3c} \Longleftrightarrow (3b -
+    10)(3c - 10) = 100. \]
+    In this case, the solution pairs are $(b, c) \in \{(4, 20), (5, 10) \}$. 
+    
+    Finally, when $a = 6$, the equation is
+    \[ \frac{1}{3} = \frac{1}{b} + \frac{1}{c} \Longleftrightarrow (b - 3)(c -
+    3) = 9. \]
+    In this case, the solution pairs are $(b, c) \in \{(4, 12), (6, 6) \}$. 
+    
+    The table below illustrates all the ordered pairs $(a, b, c)$ that satify
+    the given equation. \qedhere
+    \begin{center}
+        \begin{tabular}{ |c|l| }
+            \hline
+            $a$ & Solution triples\\
+            \hline
+            3 & (3, 7, 42), (3, 8, 24), (3, 9, 18), (3, 10, 15), (3, 12, 12)\\
+            4 & (4, 5, 20), (4, 6, 20), (4, 8, 8)\\
+            5 & (5, 4, 20), (5, 5, 10)\\
+            6 & (6, 4, 12), (6, 6, 6)\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{solution}
+% Remark about SFFT
+
+\begin{question}
+    Let $\mathbb{Z}$ be the set of integers. Let $f:\mathbb{Z} \rightarrow
+    \mathbb{Z}$ be a function from $\mathbb{Z}$ to $\mathbb{Z}$ such that 
+    \[f(x + y) + f(x - y) = 2f(x) + 2f(y),\]
+    for all integers $x$ and $y$. 
+    \begin{enumerate}
+        \item Show that $f(0) = 0$ and $f(2x) = 4f(x)$. 
+        
+        \item Show that $f(nx) = n^2f(x)$ for every positive integer $n$. 
+        
+        \item Show that $f(y) = f(-y)$. 
+        
+        \item Determine all functions $f:\mathbb{Z} \rightarrow \mathbb{Z}$ such that 
+        \[f(x + y) + f(x - y) = 2f(x) + 2f(y)\] 
+        for all integers $x$ and $y$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let $P(x, y)$ be the assertion $f(x + y) + f(x - y) = 2f(x) + 2f(y)$.
+    \begin{align*}
+        P(0, 0) &\Longrightarrow & f(0) + f(0) &= 2f(0) + 2f(0)\\
+        & & 2f(0) &= 4f(0)\\
+        & & f(0) &= 0\\
+        P(x, x) &\Longrightarrow & f(2x) + f(0) &= 2f(x) + 2f(x)\\
+        & & f(2x) &= 4x
+    \intertext{We will prove the second part using strong induction. For the
+    base case $n = 1$, we have to show $f(x) = f(x)$ and this is obviously
+    true. So suppose that this is true for all $n \leq k$. We need to show that
+    this is also true for $n = k + 1$. $P(kx, x)$ then gives}
+        P(kx, x) &\Longrightarrow & f((k + 1)x) + f((k - 1)x) &= 2f(kx) + 2f(x)\\
+        & & f((k + 1)x) &= 2f(kx) + 2f(x) - f((k - 1)x)\\
+        & & &= 2k^2f(x) + 2f(x) - (k - 1)^2f(x)\\
+        & & &= (k^2 + 2k + 1)f(x)\\
+        & & &= (k + 1)^2f(x)
+    \intertext{Therefore, by induction it follows that $f(nx) = n^2f(x)$ for
+    all positive integers $n$. In particular if $n$ is a positive integer,
+    $f(n) = n^2f(1)$.}
+        P(0, y) &\Longrightarrow & f(y) + f(-y) &= 2f(0) + 2f(y)\\
+        & & f(-y) &= f(y)
+    \end{align*}
+    Now from the second part, letting $x = -1$ gives $f(-n) = n^2f(-1) =
+    (-n)^2f(1)$. Hence, we see that $f(x) = x^2f(1) = cx^2$ where $c$ is a
+    constant, for all integers $x$. On the other hand, it is easy to check that
+    all functions of the form $f(x) = cx^2$ satisfy the given equation.
+    Therefore, it follows that this must be the only solution.
+\end{solution}
+
+\begin{question}
+    Seven integers are written around a circle in a way that no two or three
+    adjacent numbers have a sum divisible by 3. How many of these seven numbers
+    are divisible by 3? 
+\end{question}
+\begin{solution}
+    There are exactly 3 numbers which are divisible by 3.
+
+    Call a number \emph{good} if it is divisible by 3, and \emph{bad}
+    otherwise. Let $N$ be the number of good numbers. First, suppose that $N >
+    3$. We claim that there are two adjacent good numbers. Otherwise, there has
+    to be a bad number between each of those $N$ good numbers, which is not
+    possible as there are only 7 numbers. Therefore, there are 2 adjacent good
+    numbers, so their sum is  divisible by 3 which is a contradiction to the
+    problem statement. Hence $N \leq 3$.
+
+    Now suppose that $N < 3$. Then we claim that there are 3 consecutive bad
+    numbers. Otherwise, there can only be atmost 2 bad numbers between any 2
+    good numbers. This means that the total number of integers can only be at
+    most 6, which is a contradiction as well. Therefore, there must be three
+    consecutive bad integers. Since an integer can leave a remainder of 0, 1 or
+    2 when divided by 3, a bad integer can only leave a remainder of 1 or 2
+    when divided by 3. If all of those 3 consecutive bad numbers leave the same
+    remainder when divided by 3, their sum is divisible by 3 which is a
+    contradiction. If they leave different remainders when divided by 3, this
+    means that there are 2 consecutive bad numbers which leave different
+    remainders when divided by 3. Then their sum is divisible by 3, which is
+    also a contradiction. Hence $N \geq 3$.
+
+    These two parts show that $N = 3$ and we are done.
+\end{solution}
+\begin{remark}
+    One trick that can help a lot in this problem is that we only need to care
+    about the residue modulo 3 of each of the 7 numbers. That is, we can
+    basically assume that each of those 7 integers are 0, 1 or 2. 
+\end{remark}
+
+\begin{question}
+    \begin{enumerate}
+        \item Find an ordered pair $(x,y)$ such that \[2019x + 2021y = 1\]
+            where $x$ and $y$ are integers. 
+
+        \item By using the ordered pair obtained in question 1, find all
+            solutions of \[2019x + 2021y = 1\] where $x$ and $y$ are integers. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    % Add a technique about Euclidean algorithm and Bezout's lemma.
+    By the \hyperref[teq: euclideanalg]{Euclidean algorithm}, we can find a
+    solution pair as follows:
+    \begin{align*}
+        2021 &= 2019 + 2\\
+        2019 &= 2 \cdot 1009 + 1\\
+        &= (2021 - 2019)(1009) + 1\\
+        2019 &= 2021 \cdot 1009 - 2019 \cdot 1009 + 1\\
+        1010 \cdot 2019 - 1009 \cdot 2021 &= 1.
+    \end{align*}
+    Therefore, $(x, y) = (1010, -1009)$ is a solution pair. Now suppose that
+    $(x_0, y_0)$ is another pair that satisfies the given equation. i.e.
+    \[ 2019x_0 + 2021y_0 = 1 = 1010 \cdot 2019 - 1009 \cdot 2021
+    \Longleftrightarrow 2019(1010 - x_0) = 2021(y_0 + 1009). \]
+    Now notice that $\gcd(2019, 2021) = 1$. Therefore, by \hyperref[lem:
+    euclid]{Euclid's lemma}, $2021 \mid 1010 - x_0 \Rightarrow x_0 = 1010 -
+    2021k$ for some integer $k$. Similarly, $2019 \mid y_0 + 1009 \Rightarrow
+    y_0 = 2019j - 1009$ for some integer $j$. Substituting these back into the
+    equation again gives
+    \[ 2019 \cdot 2021 k = 2021 \cdot 2019 j \Longrightarrow k = j. \]
+    Hence $(x_0, y_0) = (-2021k + 1010, 2019k - 1009)$ for some integer $k$.
+    Now it is easy to check that all pairs of the form $(x, y) = (-2021k +
+    1010, 2019k - 1009)$ satisfy the given equation. Therefore, it follows that
+    they are the only solutions.
+\end{solution}
+
+\begin{question}
+    In $\triangle ABC$, altitudes $AD$, $BE$ and $CF$ pass through the point
+    $H$. Points $A'$, $B'$ and $C'$ are midpoints of $BC$, $CA$, $AB$
+    respectively. Points $A''$, $B''$ and $C''$ are midpoints of $AH$, $BH$,
+    $CH$ respectively. 
+    \begin{enumerate}
+        \item Prove that $B'C'B''C''$ is a rectangle. 
+        
+        \item Prove that $C'A'C''A''$ is a rectangle.
+        
+        \item Prove that the six points $A'$, $B'$, $C'$,$A''$, $B''$, $C''$
+            are concyclic. 
+        
+        \item Prove that the nine points $A',B',C',A'',B'',C'',D,E,F$ are
+            concyclic. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Since $C'$ and $B''$ are midpoints of sides $BA$ and $BH$ in $\triangle
+    BAH$, it follows that $C'B'' \parallel AH$. Now $C'$ and $B'$ are midpoints
+    of sides $AB$ and $AC$, so $B'C' \parallel BC$. Since $BC \perp AH$, $B'C'
+    \perp B''C'$. Similarly, we can show that other three angles are also right
+    angles, so $B'C'B''C''$ is a rectangle. 
+
+    Similarly to above, we can show that $C'A'C''A''$ is also a rectangle. We
+    now have
+    \[ \angle CA'C'' = \angle CA''C'' = \angle CB'C'' = \angle CB''C'' = 90^\circ, \]
+    so $A', B', C', A'', B'', C''$ all lie on the circle with diameter $CC''$.
+    Call this circle $\omega$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(8cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = foot(A, B, C);
+            pair E = foot(B, C, A);
+            pair F = foot(C, A, B);
+            pair H = A+B+C;
+            pair A1 = midpoint(B--C);
+            pair B1 = midpoint(C--A);
+            pair C1 = midpoint(A--B);
+            pair A2 = midpoint(A--H);
+            pair B2 = midpoint(B--H);
+            pair C2 = midpoint(C--H);
+            draw(A--B--C--cycle, black+1);
+            draw(A--D);
+            draw(B--E);
+            draw(C--F);
+            draw(C1--B1--C2--B2--cycle);
+            draw(C1--A2--C2--A1--cycle, mydash);
+            draw(circumcircle(A1, B1, C1), mydash);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$A'$", A1, dir(270));
+            dot("$B'$", B1, dir(45));
+            dot("$C'$", C1, dir(165));
+            dot("\contour{white}{$A''$}", A2, dir(45));
+            dot("\contour{white}{$B''$}", B2, dir(270));
+            dot("\contour{white}{$C''$}", C2, dir(270));
+            dot("$H$", H, dir(305));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(45));
+            dot("$F$", F, dir(165));
+        \end{asy}
+    \end{center}
+    By \hyperref[sol: 2019 Regional Round P11]{2019 Regional Round problem 11},
+    we see that $D$ lies on $(A'B'C')$, which is $\omega$. Similarly, $E$ and
+    $F$ also lie on $\omega$, so combined with above we see that $D, E, F, A',
+    B', C', A'', B'', C''$ all lie on $\omega$ as desired.
+\end{solution}
+
+\begin{question}
+    Let $f:\mathbb{R} \rightarrow \mathbb{R}$ be a function such that 
+    \[f(x + y) + f(x - y) = 2f(x)\cos y,\mathspace x, y \in \mathbb{R}.\]
+    \begin{enumerate}
+        \item Show that $f(\theta) + f(-\theta) = 2a\cos \theta$, where $a =
+            f(0)$. 
+        
+        \item Show that $f(\theta + \pi) + f(\theta) = 0$.
+        
+        \item Show that $f(\theta + \pi) + f(-\theta) = -2b\sin\theta$, where
+            $b = f\left(\frac{\pi}{2}\right)$.
+        
+        \item Find all functions $f:\mathbb{R} \rightarrow \mathbb{R}$ such
+            that $$f(x + y) + f(x - y) = 2f(x)\cos y$$ where $x,y \in
+            \mathbb{R}$.
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let $P(x, y)$ be the assertion $f(x + y) + f(x - y) = 2f(x)\cos
+    y,\mathspace x, y \in \mathbb{R}$. Then
+    \begin{align*}
+        P(0, \theta) &\Longrightarrow & f(\theta) + f(-\theta) &= 2f(0)\cos \theta\\
+        & & &= 2a\cos \theta.\\
+        P \left( \theta + \frac{\pi}{2}, \frac{\pi}{2} \right) &\Longrightarrow & f(\theta + \pi) + f(\theta) &= 2f \left( \theta + \frac{\pi}{2} \right) \cos \frac{\pi}{2}\\
+        & & &= 0.\\
+        P \left(\frac{\pi}{2}, \theta + \frac{\pi}{2} \right) & \Longrightarrow & f(\theta + \pi) + f(-\theta) &= 2f \left( \frac{\pi}{2} \right) \cos \left( \theta + \frac{\pi}{2} \right)\\
+        & & &= -2b \sin \theta.
+    \end{align*}
+    Now subtracting the third equation from the second equation gives
+    \begin{align*}
+        f(\theta) - f(-\theta) &= 2b \sin \theta. \\
+    \intertext{Adding this to the first equation gives}
+        2f(\theta) &= 2a \cos \theta + 2b \sin \theta\\
+        f(\theta) &= a \cos \theta + b \sin \theta. 
+    \end{align*}
+    Hence if $f$ satisfies the given equation, then $f(x) = a \cos x + b \sin
+    x$ for some real constants $a$ and $b$. On the other hand, it is easy to
+    check that all functions of the above form satisfy the given equation.
+    Therefore, it follows that $f(x) = a \cos x + b \sin x$ is the only
+    solution to the given functional equation.
+\end{solution}
+
+\begin{question}
+    A student council must select a two-person welcoming committee and a
+    three-person planning committee from its members. There are exactly 15 ways
+    to select a two-person team for the welcoming committee. It is possible for
+    students to serve on both committees. In how many different ways can a
+    three-person planning committee be selected? 
+\end{question}
+\begin{solution}
+    Let the number of students be $n$. Then
+    \[ 15 = \binom{n}{2} = \frac{n(n - 1)}{2} \Longleftrightarrow (n - 6)(n +
+    5) = 0. \]
+    Since $n$ is a positive integer, $n = 6$. Therefore, the number of ways to
+    choose a three-person planning committee is
+    \[ \binom{6}{3} = \frac{6 \cdot 5 \cdot 4}{1 \cdot 2 \cdot 3} = 20.
+    \qedhere \]
+\end{solution}
+
+\begin{question}
+    $AB$ is a diameter of a circle $O$ with radius 10 cm. $OQ$ is a radius of a
+    circle $O$. such that $QO \perp AB$. A point $P$ is on $OQ$. Draw a
+    semicircle centered at $P$ with diameter $CD$ where $CD$ is the chord of
+    circle $O$ and $CD \perp PQ$. $PQ$ produced meets the semicircle at $R$.
+    Find the maximum possible length of $QR$.
+\end{question}
+\begin{solution}
+    The length of $QR$ is
+    \[ QR = PR - PQ = PC - OQ + OP = PC + OP - 10. \]
+    By the \hyperref[thm: amgm]{AM-RMS inequality}, 
+    \[ CP + OP - 10 \leq 2\sqrt{\frac{CP^2 + OP^2}{2}} - 10 =
+    2\sqrt{\frac{100}{2}} - 10 = 10(\sqrt{2} - 1). \]
+    Hence the maximum value of $QR$ is $10(\sqrt{2} - 1)$, achieved when $CP = OP = 5\sqrt{2}$.
+\end{solution}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        size(7cm);
+        defaultpen(fontsize(11pt));
+        pen mydash = linetype(new real[] {5,5});
+        pair A = dir(180);
+        pair B = dir(0);
+        pair Q = dir(90);
+        real s = 50;
+        pair D = dir(s);
+        pair C = dir(180-s);
+        pair P = midpoint(C--D);
+        pair O = (0, 0);
+        pair R = P+abs(P-D)*unit(P-O);
+        draw(circle(O, 1));
+        draw(A--B);
+        draw(O--R);
+        draw(C--D);
+        draw(arc(P, abs(P-D), 0, 180));
+        draw(rightanglemark(R, P, D, 2.5));
+        draw(rightanglemark(R, O, B, 2.5));
+        dot("$A$", A, dir(180));
+        dot("$B$", B, dir(0));
+        dot("$O$", O, dir(270));
+        dot("$P$", P, dir(225));
+        dot("$C$", C, dir(165));
+        dot("$D$", D, dir(15));
+        dot("$Q$", Q, dir(135));
+        dot("$R$", R, dir(90));
+    \end{asy}
+\end{center}
+
+\begin{question}
+    Find all positive integers $s$ such that $\ceil*{\frac{s}{3}} - 21 =
+    \ceil*{\frac{s}{5}}$ where $\ceil*{x}$ is the smallest integer greater than
+    or equal to $x$. For example, $\ceil*{3.7} = 4$, $\ceil*{3} = 3$ and
+    $\ceil*{3.2} = 4$. 
+\end{question}
+\begin{solution}
+    It is easy to see that for any real number $x$,
+    \[ x \leq \ceil{x} < x + 1. \]
+    Therefore, from the given equation, we have
+    \[ \frac{s}{3} - \frac{s}{5} - 1 < \ceil*{\frac{s}{3}} -
+    \ceil*{\frac{s}{5}} = 21 < \frac{s}{3} + 1 - \frac{s}{5}. \]
+    Simplifying the first part of the inequality gives us
+    \[ 5s - 3s - 15 < 315 \Longrightarrow s < 165. \]
+    Similarly, the second part of the inequality gives us $s > 150$. Therefore,
+    $s$ must be in the set $\{ 151, 152, \ldots, 164 \}$. By checking each
+    element in the set, we see that the only possible values of $s$ are 154,
+    155, 157, 158, 159, 161, 162.
+\end{solution}
+
+\begin{question}
+    In $\triangle ABC$, $AB = 94$ and $AC = 107$. A circle with center $A$ and
+    radius $AB$ intersects $BC$ at points $B$ and $X$. Moreover, $BX$ and $CX$
+    have integer lengths. What is $BC$?
+\end{question}
+\begin{solution}
+    Since $BX$ and $CX$ are integers, $BC$ must also be an integer too. Let the
+    circle intersect line $AC$ at points $D$ and $E$. Then since $B$, $X$, $D$,
+    $E$ are concyclic,
+    \[ CX \cdot CB = CD \cdot CE = (CA + AB)(CA - AB) = CA^2 - AB^2 = 107^2 -
+    94^2 = 2613. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6.5 cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(130);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair X = 2*foot(A, B, C)-B;
+            pair D = A+abs(A-B)*unit(A-C);
+            pair E = A+abs(A-B)*unit(C-A);
+            draw(A--B--C--cycle, black+1);
+            draw(A--X);
+            draw(A--D);
+            draw(circle(A, abs(A-B)), mydash);
+            dot("$A$", A, 1.5*dir(90));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$X$", X, dir(270));
+            dot("$D$", D, dir(135));
+            dot("$E$", E, dir(10));
+        \end{asy}
+    \end{center}
+    By the triangle inequality, $CB < CA + AB = 94 + 107 = 201$. We also have
+    $CB > CX$ since $X$ lies on the side $BC$. Since the factors of 2613 are 1,
+    3, 13, 39, 67, 201, 871 and 2613, we see that $BC$ must be 67.
+\end{solution}
+
+\begin{question}
+    Seven people are sitting around a circular table, each holding a fair coin.
+    All seven people flip their coins and those who flip heads stand while
+    those flip tails seated. What is the probability that no two people
+    adjacent will stand? 
+\end{question}
+\begin{solution}
+    Label the people from 1 to 7. First let's compute the total number of
+    configurations. Each person has 2 possible states, either seated or
+    standing. Since there are 7 people, the total number of configurations is
+    $2^7 = 128$.
+
+    Now let's calculate the number of configurations where no two people
+    standing are adjacent. If the number of people standing is greater than or
+    equal to 4, there will be at least two of them which are adjacent.
+    Therefore, there can only be at most 3 people who are standing. Then it is
+    easy to see that the following are all the possible configurations, unique
+    up to rotation\footnote{This means that any other configuration can be
+    obtained by rotating one of these configurations.}. The blue blocks denote
+    the people who are standing.
+    \begin{center}
+        \begin{asy}
+            size(13cm);
+            defaultpen(fontsize(9pt));
+
+            real s = 360/7;
+            real r1 = .8;
+            real r2 = 1.2;
+            pair S = (3, 0);
+            pen filler = Cyan;
+
+            path block(int i, pair O){
+                return arc(O, r1, (-(i - 1) + 1/2)*s + 90, (-(i - 1) - 1/2)*s + 90)--arc(O, r2, (-(i - 1) - 1/2)*s + 90, (-(i - 1) + 1/2)*s + 90)--cycle;
+            }
+
+            pair O1 = (0, 0);
+            pair O2 = S + O1;
+            pair O3 = S + O2;
+            pair O4 = S + O3;
+            fill(block(1, O1), filler);
+            fill(block(1, O2), filler);
+            fill(block(3, O2), filler);
+            fill(block(1, O3), filler);
+            fill(block(4, O3), filler);
+            fill(block(1, O4), filler);
+            fill(block(3, O4), filler);
+            fill(block(5, O4), filler);
+
+            real t = 1;
+            for (int j = 0; j < 4; ++j){
+                pair O = j*S + (0, 0);
+                draw(circle(O, r1), black+t);
+                draw(circle(O, r2), black+t);
+                for (int i = 0; i < 7; ++i){
+                    pair X = O + dir(-i*s + 90);
+                    pair Y = dir((-i + 1/2)*s + 90);
+                    label(""+string(i + 1)+"", X);
+                    draw((O + r1*Y)--(O + r2*Y), black+t);
+            }
+            }
+        \end{asy}
+    \end{center}
+    Since there are 7 ways to rotate each of those configurations, and since
+    there are 4 of them, the number of configurations is 28. Also counting the
+    configuration where no person is standing, the final number of
+    configurations is 29.
+
+    Therefore, the probability required is $\frac{29}{128}$.
+\end{solution}
+\begin{remark}
+    You can also use the same technique as in \hyperref[sol: 2016 National
+    Round P10]{2016 National Round problem 10} to show that $f(C_7) = 29$.
+\end{remark}
+\begin{question}
+    \begin{enumerate}
+        \item Let $a$ and $b$ be positive integers. If there are integers
+            $x_{0}$, $y_{0}$ such that $ax_{0} + by_{0} = 1$, then prove that
+            the greatest common divisor of $a$ and $b$ is 1. 
+        
+        \item Prove that the fraction $\frac{12n + 5}{14n + 6}$ is in lowest
+            terms for every positive integer $n$.
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let the $\gcd(a, b) = d$. Since $d$ divides both $a$ and $b$, $d$ also
+    divides $ax_0$ and $by_0$ and hence
+    \[ d \mid (ax_0 + by_0) = 1. \]
+    Since the only positive divisor of 1 is 1 itself, it follows that $d = 1$.
+    Now notice that
+    \[ 6(14n + 6) + (-7)(12n + 5) = 1 \]
+    for any positive integer $n$. Therefore, $\gcd(14n + 6, 12n + 5) = 1$, and
+    so $\frac{12n + 5}{14n + 6}$ is in lowest terms for every positive integer
+    $n$.
+\end{solution}
+
+\begin{question}
+    $\triangle ABC$ is inscribed in a circle. Altitudes $AD$, $BE$ and $CF$
+    pass through the point $H$. $EF$ produced meets the circle at $P$. $BP$
+    produced and $DF$ produced meet at the point $Q$. 
+    \begin{enumerate}
+        \item Show that $\angle ACF = \angle ADF = \angle ABE$.
+        
+        \item Show that $\angle AFQ = \angle ACD$. 
+        
+        \item Show that $AP = AQ$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Since $\angle AFC = \angle ADC = 90^\circ$, $AFDC$ is cyclic, and so
+    \[ \angle ACF = \angle ADF. \]
+    Also $\angle HDB + \angle HFB = 90^\circ + 90^\circ = 180^\circ$, so $HFBD$
+    is also cyclic and 
+    \[ \angle ADF = \angle HDF = \angle HBF = \angle ABE. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(8cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(60);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair H = orthocenter(A, B, C);
+            pair D = foot(A, B, C);
+            pair E = foot(B, C, A);
+            pair F = foot(C, A, B);
+            pair O = (0, 0);
+            pair P[] = intersectionpoints(E--(F+unit(F-E)), circle(O, 1));
+            pair P = P[0];
+            pair Q = extension(B, P, D, F);
+            draw(A--B--C--cycle, black+1);
+            draw(A--D);
+            draw(B--E);
+            draw(C--F);
+            draw(Q--B);
+            draw(Q--D);
+            draw(P--E);
+            draw(P--A);
+            draw(Q--A);
+            draw(circumcircle(A, P, Q), mydash);
+            draw(rightanglemark(A, D, B, 2.5));
+            draw(rightanglemark(B, E, C, 2.5));
+            draw(rightanglemark(C, F, A, 2.5));
+            draw(circle(O, 1));
+            dot("$A$", A, dir(45));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(45));
+            dot("\contour{white}{$F$}", F, dir(80));
+            dot("$P$", P, dir(180));
+            dot("$Q$", Q, dir(135));
+            dot("\contour{white}{$H$}", H, dir(315));
+        \end{asy}
+    \end{center}
+    As $AFDC$ is cyclic, we also have $\angle AFQ = \angle ACD$. But since
+    $APBC$ is cyclic, $\angle ACD = \angle APQ$ so $\angle AFQ = \angle APQ$
+    and hence $AQPF$ is cyclic. Since we also have $\angle BFC = \angle BEC =
+    90^\circ$, $BFEC$ is also cyclic. Therefore, finally,
+    \[ \angle AQP = \angle AFE = \angle ACB = \angle APQ, \]
+    and so $AP = AQ$ as desired.
+\end{solution}
+
+\begin{question}
+    A car drives from town $A$ to $B$ at the average speed of 30 km/h, from
+    town $B$ to town $C$ at average speed of 60 km/h; and on the way back, the
+    car drives from $C$ to $B$ at average speed of 30 km/h, from town $B$ to
+    $A$ at average speed of 60 km/h. The whole trip takes 6 hours. What is the
+    total distance of the round trip?
+\end{question}
+\begin{solution}
+    Let $x$ and $y$ be the distances in kilometres between town $A$ and town
+    $B$, and town $B$ and town $C$. Then from the given conditions we have
+    \[ \frac{x}{30} + \frac{y}{60} + \frac{y}{30} + \frac{x}{60} = 6
+    \Longrightarrow (x + y)\left( \frac{1}{30} + \frac{1}{60} \right) = 6. \]
+    Solving this gives $x + y = 120$, so the total distance of the round trip
+    is $2(x + y) = 240 \text{ km}$. 
+\end{solution}
+
+\begin{question}
+    \begin{enumerate}
+        \item Prove that the square of an odd number gives the remainder 1 upon
+            dividing by 8. 
+        
+        \item Prove that if $k$ is odd and $n$ is a positive integer, then
+            $k^{2^n} - 1$ is divisible by $2^{n + 2}$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let the odd number be $2m + 1$. Then 
+    \[ (2m + 1)^2 - 1 = 4m(m + 1). \]
+    Since $m$ and $m + 1$ are consecutive integers, one must be even and the
+    other must be odd. Therefore, their product must be even, and hence $4m(m +
+    1) = (2m + 1)^2 - 1$ must be divisible by 8. Thus $(2m + 1)^2$ leaves a
+    remainder of 1 when divided by 8.
+
+    Now we will prove the general statement by induction on $n$. The base case
+    $n = 1$ is just the first part. Now suppose that this is true for $n = p$.
+    When $n = p + 1$,
+    \[ k^{2^{p + 1}} - 1 = k^{2^p \cdot 2} - 1 = (k^{2^p})^2 - 1 = (k^{2^p} +
+    1)(k^{2^p} - 1). \]
+    Since $k$ is odd, $k^x$ is odd for any positive integer $x$. Therefore,
+    $k^{2^p}$ is odd implying $k^{2^p} + 1$ is even. Hence the left bracket in
+    the above expression is divisible by 2. Meanwhile, the right bracket is
+    divisible by $2^{p + 2}$ by the induction hypothesis. Therefore, the whole
+    expression is divisible by $2^{(p + 1) + 2}$, and so by induction it
+    follows that $k^{2^n} - 1$ is divisible by $2^{n + 2}$ for all positive
+    integers $n$.
+\end{solution}

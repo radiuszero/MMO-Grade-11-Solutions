@@ -1,0 +1,122 @@
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage[inline]{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{mathtools}
+\usepackage{chngcntr}
+\usepackage[most]{tcolorbox}
+\usepackage{diagbox}
+\usepackage{ifthen}
+\usepackage{asymptote}
+\def\asydir{./build}
+
+\KOMAoptions{toc=chapterentrydotfill}
+\setkomafont{chapterentry}{\sffamily}
+
+% Custom sectioning for `Theorems and Techniques' part
+\newcounter{field}
+\setcounter{field}{0}
+\newcommand{\field}[1]{
+    \addchap{#1}
+    \refstepcounter{field}
+}
+
+% Theorems
+\declaretheoremstyle[%
+    headfont=\color{Brown}\fontfamily{ppl}\selectfont\bfseries
+]{theorem}
+\declaretheorem[style=theorem, numberwithin=field]{theorem}
+\declaretheorem[style=theorem, sibling=theorem]{lemma}
+\declaretheorem[style=theorem, parent=theorem]{corollary}
+\declaretheorem[style=theorem, numberwithin=field]{technique}
+\declaretheorem[style=theorem, numberwithin=field]{definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{claim}{Claim}
+
+% Headers and footers
+\usepackage[headsepline, automark]{scrlayer-scrpage}
+\ihead{Kyaw Shin Thant}
+\ohead{\leftmark}
+
+% Contests and problems
+\newcounter{problem}[chapter] 
+\setcounter{problem}{0} 
+\newcommand{\currentcontest}{}
+
+\newcommand{\paperheader}[1]{
+    \addchap{#1}
+    \label{con: #1} \renewcommand{\currentcontest}{#1}
+}
+\colorlet{error}{red!50!white}
+\newcommand{\problem}[1][white]{
+    \refstepcounter{problem}%
+    \label{con: \currentcontest\space P\theproblem}%
+    \item[\fcolorbox{black}{#1}{\makebox[0.45cm]{\normalfont\large\theproblem}}]%
+}
+\newenvironment{problems}{
+    \begin{description}[leftmargin=1cm, labelwidth=0.7cm, labelsep=0.3cm, itemsep=0.7cm]
+}{
+    \end{description}
+}
+
+% Solutions
+\newcounter{question}[chapter]
+\setcounter{question}{0}
+\newcommand{\solutionheader}[1]{
+    \addchap{#1}
+    \label{sol: #1} \renewcommand{\currentcontest}{#1}
+}
+
+\newenvironment{question}{
+    \refstepcounter{question}
+    \phantomsection
+    \label{sol: \currentcontest\space P\thequestion}
+    \begin{tcolorbox}[
+        enhanced,
+        sharp corners=all,
+        colback=Cyan!12!white,
+        colframe=NavyBlue,
+        boxrule=0.8pt]
+        {\sffamily\bfseries\textcolor{NavyBlue}{Problem \thequestion.}}% 
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{solution}[1][\unskip]{
+    \begin{proof}[Solution #1]
+}{
+    \end{proof}
+}
+
+\newcounter{case}
+\setcounter{case}{0}
+\newenvironment{case}[1]{
+    \refstepcounter{case}
+    \par\noindent\textit{\textcolor{NavyBlue}{Case~\thecase:} #1}
+    \par
+}{}
+
+% Useful environements
+\renewenvironment{quote}{\begin{tcolorbox}[colback=white]}{\end{tcolorbox}}
+% Macros
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\hint}{{\color{Brown}Hint}:\space}
+\newcommand{\mathspace}{\text{\space}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\Ex}{\text{E}}
+\newcommand{\HL}[1]{\textcolor{Red}{#1}}
+\newcommand{\erroralert}[1]{\textcolor{red}{#1}}
+
+\DeclareMathOperator{\otriangle}{\triangle}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+% Miscellaneous
+\definecolor{graey}{RGB}{180,180,180}
+\counterwithout{equation}{chapter}
+\definecolor{mygray}{gray}{0.8}
+\hfuzz=2pt
+\graphicspath{ {./images/} }

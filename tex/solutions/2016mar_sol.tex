@@ -1,0 +1,535 @@
+\solutionheader{2015 National Round}
+\begin{question}
+    If $x^{n} + py^{n} + qz^{n}$ is divisible by $x^2 - (ay + bz)x + abyz$ and
+    $y, z \ne 0$, show that 
+    \[\frac{p}{a^n} + \frac{q}{b^n} + 1 = 0.\] 
+\end{question}
+\begin{solution}
+    Since $x^2 - (ay + bz)x + abyz = (x - ay)(x - bz)$, it follows that both $x
+    - ay$ and $x - bz$ divide $f(x) = x^n + py^n + qz^n$. Therefore, by the
+    factor theorem,
+    \[ f(ay) = a^ny^n + py^n + qz^n = 0 \] 
+    and 
+    \[ f(bz) = b^nz^n + py^n + qz^n = 0.\]
+    From the above two equations, we have
+    \[ a^ny^n = b^nz^n = -py^n - qz^n.\]
+    Then the identity we want to prove is just
+    \begin{align*}
+        \frac{p}{a^n} + \frac{q}{b^n} + 1 &= \frac{py^n}{a^ny^n} + \frac{qz^n}{b^nz^n} + 1\\
+        &= \frac{py^n + qz^n}{-(py^n + qz^n)} + 1\\
+        &= -1 + 1 = 0. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    A sequence is defined by $u_{1} = 1$, $u_{n + 1} = u_{n}^2 - ku_{n}$, where
+    $k \ne 0$ is a constant. If $u_{3} = 1$, calculate the value of $k$ and
+    find the value of
+    \[u_{1} + u_{2} + u_{3} + \cdots + u_{100}.\]
+\end{question}
+\begin{solution}
+    First let's find the value of $k$.
+    \[ u_1 = 1, \quad u_2 = 1 - k \quad\text{and}\quad u_3 = (1 - k)^2 - k(1 - k) = 1 - 3k + 2k^2 = 1. \]
+    Since $k \ne 0$, this implies that $k = \frac{3}{2}$, and hence $u_2 = 1 -
+    \frac{3}{2} = -\frac{1}{2}$. Now comes the key fact. Notice that the value
+    of $u_{n + 1}$ is determined entirely by $u_n$, i.e. if $u_a = u_b$, $u_{a
+    + 1} = u_{b + 1}$ as well (Check why this is true.) Therefore, we can
+    deduce that $u_4 = -\frac{1}{2}$, $u_5 = 1$, and so on. In general, terms
+    with odd indices are equal to 1 and those with even indices are equal to
+    $-\frac{1}{2}$. Therefore,
+    \[ u_1 + u_2 + u_3 + \cdots + u_{100} = 1 - \frac{1}{2} + 1 - \cdots -
+    \frac{1}{2} = \frac{50}{2} = 25. \qedhere \]
+\end{solution}
+
+\begin{question}
+    A rectangular room has a width of $x$ yards. The length of the room is 4
+    yards longer than its width. Given that the perimeter of the room is
+    greater than 19.2 yards and the area of the room is less than 21 square
+    yards, find the set of possible values of $x$.
+\end{question}
+\begin{solution}
+    The length of the room is $x + 4$ yards, so the problem conditions give
+    \[ 2x + 2(x + 4) > 19.2 \quad\text{and}\quad x(x + 4) < 21. \]
+    Solving the first inequality gives $x > 2.8$. Now let's solve the second
+    inequality. It is equivalent to
+    \[ x^2 + 4x - 21 < 0 \Longleftrightarrow (x + 7)(x - 3) < 0.\]
+    Therefore, $x > 3$ and $x < -7$ or $x < 3$ and $x > -7$. The former is
+    absurd, so it follows that $-7 < x < 3$. Since $x > 2.8$ by the first
+    inequality, the solution set is $\{ x \text{ yards} \mid x \in \mathbb{R}
+    \text{ and } 2.8 < x < 3 \}$.
+\end{solution}
+
+\begin{question}
+    Two dice are thrown. Event $A$ is that the sum of the numbers on the dice
+    is 7. Event $B$ is that at least one number on the die is 6. Find 
+    \begin{enumerate}
+        \item $\mathbb{P}(A)$, 
+        
+        \item $\mathbb{P}(B)$,
+        
+        \item $\mathbb{P}(A \cap B)$, 
+        
+        \item $\mathbb{P}(A) \cdot \mathbb{P}(B)$.
+    \end{enumerate}
+    Are $A$ and $B$ independent? 
+\end{question}
+\begin{solution}
+    Let $S = \{ (x, y) \mid 1 \leq x, y \leq 6 \}$ be the set where $x$ is the
+    number on the first die and $y$ is the number on the second die. 
+    \begin{enumerate}
+        \item First, let's calculate the number of elements of $S$ where $x + y
+            = 7$. As $x$ ranges from 1 to 6, the value of $y$ must be $7 - x$,
+            so there are 6 such pairs. Meanwhile, the total number of pairs in
+            $S$ is $6 \times 6 = 36$. Therefore, $\mathbb{P}(A) = \frac{6}{36}
+            = \frac{1}{6}$.
+
+        \item Now let's calculate the number of elements of $S$ such that at
+            least one of $x$ or $y$ is 6. When $x \in \{1, 2, 3, 4, 5\}$, $y$
+            must be 6 so there are 5 such pairs. Now when $x = 6$, $y$ can be
+            any number so there are 6 such pairs in this case. Therefore, the
+            total number of pairs where at least one of $x$ and $y$ is 6 is $5
+            + 6 = 11$. Hence $\mathbb{P}(B) = \frac{11}{36}$. 
+
+        \item Out of 6 pairs that satisfy $A$, it is easy to see that only 2 of
+            them, namely $(1, 6)$ and $(6, 1)$ also satisfy $B$. Therefore,
+            $\mathbb{P}(A \cap B) = \frac{2}{36} = \frac{1}{18}$.
+
+        \item This one is a straightforward computation; $\mathbb{P}(A) \cdot
+            \mathbb{P}(B) = \frac{1}{6} \cdot \frac{11}{36} = \frac{11}{216}$. 
+    \end{enumerate}
+
+    Finally, suppose that $A$ and $B$ are independent. Then $\mathbb{P}(A \cap
+    B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$. But obviously this is not true in
+    our case, so we conclude that $A$ and $B$ are not independent. 
+\end{solution}
+
+\begin{question}
+    In $\triangle ABC$, $\angle A = 30^\circ$, $AB = 8$ cm and $BC = x$ cm. If
+    $\angle C > 30^\circ$, determine the set of all possible values of $x$.
+\end{question}
+\begin{solution}
+    Let $\ell$ be a ray originating at $A$ inclined to line $AB$ at a
+    $30^\circ$ angle. Let $C'$ be the point different from $A$ on $\ell$ such
+    that $\angle BC'A = 30^\circ$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (0, 0);
+            pair B = (8, 0);
+            pair D = foot(B, A, dir(30));
+            pair C1 = 2*D - A;
+            pair C2 = C1 + 2*unit(C1);
+            draw(A--C2, arrow=Arrow(size=10));
+            draw(A--B);
+            draw(B--C1, mydash);
+            draw(B--D, mydash);
+            draw(rightanglemark(B, D, A, 15));
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(270));
+            dot("$C'$", C1, dir(120));
+            dot("$D$", D, dir(120));
+        \end{asy}
+    \end{center}
+    Since $\angle BCA < 30^\circ$, it follows that $C$ must lie inside segment
+    $AC'$. Therefore, $x < BA = 8 \text{ cm}$. It remains to find the minimum
+    value of $x$. Let $D$ be the foot of perpendicular from $B$ to $l$. As $x$
+    is minimum when $C = D$, 
+    \[ x \geq BD = AB \sin 30^\circ = \frac{AB}{2} = 4 \text{ cm}. \]
+    Therefore, the set of possible values of $x$ is $\{ x \text{ cm} \mid x \in
+    \mathbb{R} \text{ and } 4 \leq x < 8 \}$.
+\end{solution}
+
+\begin{question}
+    Let $f(x)$ be a polynomial with real coefficients. When $f(x)$ is divided
+    by both $x - a$ and $x - b$, where $a$ and $b$ are distinct real numbers,
+    the remainder is a real constant $r$. Prove that $f(x)$ has also the
+    remainder $r$ when it is divided by $x^2 - (a + b)x + ab$.
+\end{question}
+\begin{solution}
+    Let $g(x) = f(x) - r$. By the remainder theorem, $f(a) = f(b) = r$, so
+    $g(a) = g(b) = 0$. This means that $x - a$ and $x - b$ are factors of
+    $g(x)$. Therefore, there exists a polynomial $h(x)$ such that 
+    \[ g(x) = (x - a)h(x) \Longleftrightarrow 0 = g(b) = (b - a)h(b).\]
+    Since $a \ne b$, $h(b) = 0$ so $x - b$ is also a factor of $h(x)$.
+    Consequently, there exists a polynomial $k(x)$ such that $h(x) = (x -
+    b)k(x)$. Substituting into the above expression gives
+    \[ g(x) = (x - a)(x - b)k(x) \Longleftrightarrow f(x) = (x^2 - (a + b)x +
+    ab)k(x) + r.\]
+    Hence $f(x)$ also leaves the remainder $r$ when divided by $x^2 - (a + b)x
+    + ab$.
+\end{solution}
+
+\begin{question}
+    Three circles are tangent to each other as shown. The two smaller circles
+    are tangent to chord $AB$ which has length 12 at its midpoint. What is the
+    area of the shaded region?
+\end{question}
+\begin{solution}
+    Let the outer circle be $\omega$, and the inner two circles be $\omega_1$
+    and $\omega_2$. Let $C$, $D$ and $E$ be points where $(\omega, \omega_1)$,
+    $(\omega, \omega_2)$ and $(\omega_1, \omega_2)$ touch each other.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real s = 20;
+            pair A = dir(180-s);
+            pair B = dir(s);
+            pair C = dir(90);
+            pair D = dir(270);
+            pair E = midpoint(A--B);
+            pair O1 = midpoint(C--E);
+            pair O2 = midpoint(D--E);
+            filldraw(circle((0, 0), 1), .6*gray + .4*white);
+            filldraw(circle(O1, abs(O1-E)), white);
+            filldraw(circle(O2, abs(O2-E)), white);
+            draw(A--B);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$E$", E, dir(90));
+        \end{asy}
+    \end{center}
+    Then the area of the shaded region is
+    \begin{align*}
+        [\omega] - [\omega_1] - [\omega_2] &= \frac{\pi(CD^2 - CE^2 - DE^2)}{4}\\
+        &= \frac{\pi((CE + DE)^2 - CE^2 - DE^2)}{4}\\
+        &= \frac{2\pi \cdot CE \cdot DE}{4}\\
+        &= \frac{\pi \cdot AE \cdot BE}{2}\\
+        &= \frac{36 \pi}{2}\\
+        &= 18 \pi. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    In a sequence, $u_{1} = 1$, $u_{2} = 2$ and $u_{3} = 3$. For $n \geq 4$,
+    the $n$th term $u_{n}$ is calculated from the previous three terms as
+    $u_{n} = u_{n - 3} + u_{n - 2} - u_{n - 1}$. For example, $u _ {4} = u_{1}
+    + u_{2} - u_{3} = 0$. By using mathematical induction, prove that $u_{2n +
+    1} = 2n + 1$ for all integers $n \geq 0$.
+\end{question}
+\begin{solution}
+    This problem has the same solution as \hyperref[sol: 2015 Regional Round
+    P7]{2015 Regional Round P7}. 
+\end{solution}
+
+\begin{question}
+    In the diagram, $AB = BC = 1$ and $ABC$ is the diameter of the larger
+    semicircle. $AB$ and $BC$ are diameters of the smaller semicircles. What is
+    the diameter of the circle tangent to all three semicircles?
+\end{question}
+\begin{solution}
+    Let $M$ be the midpoint of $AB$. Let the center of the small circle be $O$
+    and let it touch the outer semicircle at $X$. Finally let its radius be
+    $r$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = (0, 0);
+            pair C = dir(0);
+            pair O = (0, 2/3);
+            pair X = dir(90);
+            pair M = midpoint(A--B);
+            pair N = midpoint(B--C);
+            draw(O--M);
+            draw(B--O);
+            draw(O--X, mydash);
+            draw(arc(B, 1, 0, 180)--A--C--cycle);
+            draw(arc(M, 1/2, 0, 180));
+            draw(arc(N, 1/2, 0, 180));
+            draw(circle(O, 1/3));
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(270));
+            dot("$C$", C, dir(315));
+            dot("$X$", X, dir(90));
+            dot("$M$", M, dir(270));
+            dot("$O$", O, dir(0));
+        \end{asy}
+    \end{center}
+    Then by the Pythagoras's theorem,
+    \[ r + \frac{1}{2} = OM = \sqrt{BO^2 + BM^2} = \sqrt{(1 - r)^2 +
+    \frac{1}{4}}. \]
+    Squaring both sides and solving for $r$ gives $r = \frac{1}{3}$, so the
+    diameter of the small circle is $\frac{2}{3}$. 
+\end{solution}
+
+\begin{question}
+    A six-digit number is of the form $abcabc$, where all the digits are
+    nonzero. Find three different prime factors of that number.
+\end{question}
+\begin{solution}
+    Let $N = \overline{abcabc}$. Then 
+    \[ N = 100000a + 10000b + 1000c + 100a + 10b + c = 1001(100a + 10b + c). \]
+    Since 7, 11 and 13 all divide 1001, they must also be the prime factors of
+    $N$.
+\end{solution}
+
+\begin{question}
+    Real numbers $a$ and $b$ are such that $a > b > 0$, $a \ne 1$ and 
+    \[a^{2016} + b^{2016} = a^{2014} + b^{2014}.\] 
+    Prove that $a^2 + b^2 < 2$.
+\end{question}
+\begin{solution}
+    Rearranging the given equation gives
+    \[ a^{2014}(a^2 - 1) = b^{2014}(1 - b^2).\]
+    Therefore,
+    \[ \frac{a^2 - 1}{1 - b^2} = \left( \frac{b}{a} \right)^{2014} < 1
+    \Longrightarrow a^2 - 1 < 1 - b^2 \Longrightarrow a^2 + b^2 < 2. \qedhere \]
+\end{solution}
+
+\begin{question}
+    In $\triangle ABC$, $AC = \frac{1}{2}(AB + BC)$ and $BN$ is the bisector of
+    $\angle ABC$. $K$ and $M$ are the midpoints of $AB$ and $BC$ respectively.
+    If $\angle ABC = \beta$, prove that $\angle KNM = 90^\circ -
+    \frac{1}{2}\beta$.
+\end{question}
+\begin{solution}
+    Let $I$ be the incenter of $\triangle ABC$. By the angle bisector theorem,
+    \[ \frac{AB}{BC} = \frac{AN}{NC} \Longrightarrow \frac{AB}{AN} =
+    \frac{CB}{CN} = \frac{AB + CB}{AN + CN} = \frac{AB + BC}{AC} = 2. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = (-1, 0);
+            pair C = (1, 0);
+            real s = .4;
+            pair N = (1-s)*A + s*C;
+            pair B[] = intersectionpoints(circle(A, 4*s), circle(C, 4-4*s));
+            pair B = B[0];
+            pair K = midpoint(A--B);
+            pair M = midpoint(C--B);
+            pair I = incenter(A, B, C);
+            draw(B--N);
+            draw(N--K);
+            draw(N--M);
+            draw(A--C);
+            draw(A--I, mydash);
+            draw(C--I, mydash);
+            draw(A--B--C--cycle, black+1);
+            add(pathticks(B--K, 1, .5, 6, 3));
+            add(pathticks(K--A, 1, .5, 6, 3));
+            add(pathticks(A--N, 1, .5, 6, 3));
+            add(pathticks(N--C, 2, .5, 1, 3));
+            add(pathticks(C--M, 2, .5, 1, 3));
+            add(pathticks(M--B, 2, .5, 1, 3));
+            dot("$A$", A, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$N$", N, dir(270));
+            dot("$K$", K, dir(180));
+            dot("$M$", M, dir(0));
+            dot("$B$", B, dir(B));
+            dot("\contour{white}{$I$}", I, dir(270));
+        \end{asy}
+    \end{center}
+    Thus $AN = \frac{AB}{2} = AK$ and similarly $CM = CN$. Since $AI$ bisects
+    $\angle A$, this implies that $AI \perp KN$ and similarly $CI \perp MN$.
+    Therefore,
+    \[ \angle KNM = 180^\circ - \angle ANK - \angle MNC = 180^\circ - \left(
+    90^\circ - \frac{\alpha}{2} \right) - \left( 90^\circ - \frac{\gamma}{2}
+    \right) = \frac{\alpha}{2} + \frac{\gamma}{2} = 90^\circ - \frac{\beta}{2}, \]
+    where $\alpha = \angle A$ and $\gamma = \angle C$.
+\end{solution}
+
+\begin{question}
+    If the $(m - n)$th and $(m + n)$th terms of a geometric progression are the
+    arithmetic mean and harmonic mean of $x > 0$ and $y > 0$, prove that the
+    $m$th term is their geometric mean.
+\end{question}
+\begin{solution}
+    Let the common ratio of the geometric progression be $r$. It is easy to see
+    that $u_m$ is obtained by multiplying $u_{m - n}$ with $r$ for $n$ times,
+    and similarly for $u_{m + n}$ and $u_{m}$. Hence,
+    \[ \frac{u_{m}}{u_{m - n}} = r^n = \frac{u_{m + n}}{u_{m}}. \]
+    Therefore,
+    \[ u_m = \sqrt{u_{m - n} \cdot u_{m + n}} = \sqrt{\left( \frac{x + y}{2}
+    \right) \left( \frac{2xy}{x + y} \right)} = \sqrt{xy} \]
+    so $u_m$ is the geometric mean of $x$ and $y$ as desired.
+\end{solution}
+
+\begin{question}
+    Show that the sum of the squares of the lengths of the sides of a
+    parallelogram equals the sum of the squares of the lengths of the
+    diagonals.
+\end{question}
+\begin{solution}
+    Let $\angle ABC = \theta$, and let $AB = CD = x$ and $BC = AD = y$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (-1, 0);
+            pair D = (1, 0);
+            pair B = (-1.3, -1);
+            pair C = B + D - A;
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--C);
+            draw(B--D);
+            dot("$A$", A, dir(135));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(45));
+        \end{asy}
+    \end{center}
+    Since $DA \parallel BC$, $\angle BAD = 180^\circ - \theta$. Therefore, by
+    law of cosines in $\triangle ABC$ and $\triangle ABD$, we have
+    \[ AC^2 = x^2 + y^2 - 2xy \cos \theta, \]
+    and 
+    \[ BD^2 = x^2 + y^2 - 2xy \cos (180^\circ - \theta). \]
+    Adding them gives
+    \begin{align*}
+        AC^2 + BD^2 &= 2x^2 + 2y^2 - 2xy(\cos \theta + \cos (180^\circ - \theta))\\
+        &= 2x^2 + 2y^2 - 2xy(\cos \theta - \cos \theta)\\
+        &= 2x^2 + 2y^2\\
+        &= AB^2 + BC^2 + CD^2 + DA^2. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    If $n$ is a positive even integer, prove by mathematical induction that
+    $x^n - y^n$ is divisible by $x + y$.
+\end{question}
+\begin{solution}
+    The base case $n = 2$ is true since $x^2 - y^2 = (x + y)(x - y)$. Now
+    suppose that $x^{2k} - y^{2k}$ is divisible by $x - y$. We must show that
+    $x^{2k + 2} - y^{2k + 2}$ is also divisible by $x - y$. Observe that
+    \[ x^{2k + 2} - y^{2k + 2} = x^{2k + 2} - x^2 y^{2k} + x^2 y^{2k} - y^{2k +
+    2} = x^2(x^{2k} - y^{2k}) - y^{2k}(x^2 - y^2). \]
+    But both $x^{2k} - y^{2k}$ and $x^2 - y^2$ are divisible by $x + y$, so it
+    follows that $x^{2k + 2} - y^{2k + 2}$ is also divisible by $x + y$. Hence
+    $x^n - y^n$ is divisible by $x + y$ for all even $n$.
+\end{solution}
+
+\begin{question}
+    Prime numbers $p$, $q$ and positive integers $m$, $n$ satisfy the following
+    conditions:
+    \[m < p, n < q \text{  and  }\frac{p}{m}+\frac{q}{n} \text{  is an integer.}\]
+    Prove that $m = n$.
+\end{question}
+\begin{solution}
+    Let the greatest common divisor of $m$ and $n$ be $d$. Then $m = dm'$ and
+    $n = dn'$ for some relatively prime $m'$ and $n'$. Notice that $m' \leq m <
+    p$, so $\gcd(m', p) = 1$, and similarly, $\gcd(n', q) = 1$. Therefore,
+    there exists an integer $S$ such that
+    \begin{align*}
+        S &= \frac{p}{m} + \frac{q}{n}\\
+        mnS &= pn + qm\\
+        m'n'd^2S &= pm'd + qn'd\\
+        m'n'dS &= pm' + qn'\\
+        pm' &= n'(m'dS - q)
+    \end{align*}
+    Therefore, $n'$ divides $pm'$. But $n'$ is relatively prime to both $p$ and
+    $m'$, so it must be the case that $n' = 1$. Similarly, $m' = 1$ so $m = d =
+    n$ as desired.
+\end{solution}
+
+\begin{question}
+    $A$, $B$ and $C$ are three points on the circumference of a circle, and the
+    tangent at $A$ meets $BC$ produced at $T$. Prove that $AB^2 : AC^2 = TB :
+    TC$.
+\end{question}
+\begin{solution}
+    Notice that $\angle TAB = \angle TCA$, so $\triangle TAB \sim \triangle TCA$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(140);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair O = circumcenter(A, B, C);
+            pair T = extension(A, rotate(90, A)*O, B, C);
+            draw(A--B--C--cycle, black+1);
+            draw(T--A);
+            draw(T--B);
+            draw(anglemark(T, A, B));
+            draw(anglemark(A, C, B));
+            draw(circumcircle(A, B, C));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$T$", T, dir(225));
+        \end{asy}
+    \end{center}Hence
+    \[ \frac{TB}{AB} \cdot \frac{AC}{TC} = \frac{TA}{AC} \cdot \frac{AB}{TA} =
+    \frac{AB}{AC} \Longleftrightarrow \frac{TB}{TC} = \frac{AB^2}{AC^2}.
+    \qedhere \]
+\end{solution}
+
+\begin{question}
+    $ABCD$ is a cyclic quadrilateral. $AE$ is drawn to meet $BD$ at $E$ such
+    that $\angle BAE = \angle CAD$. Prove that 
+    \begin{enumerate}
+        \item $\triangle ABE \sim \triangle ACD$, 
+        
+        \item $\triangle AED \sim \triangle ABC$,
+        
+        \item $AB \cdot CD + AD \cdot BC = AC \cdot BD$.
+    \end{enumerate}
+\end{question}
+\begin{solution} 
+    This is known as \hyperref[thm: ptolemy]{Ptolemy's theorem}, or more
+    generally, Ptolemy's inequality.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(110);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = dir(50);
+            pair M = midpoint(A--B);
+            pair O = extension(B, rotate(90, B)*C, M, rotate(90, M)*B);
+            pair E = 2*foot(O, B, D) - B;
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--C);
+            draw(B--D);
+            draw(A--E);
+            draw(anglemark(B, A, E, 5));
+            draw(anglemark(C, A, D, 5));
+            draw(circle((0, 0), 1));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$E$", E, dir(315));
+        \end{asy}
+    \end{center}
+    \begin{enumerate}
+        \item Since $ABCD$ is cyclic, $\angle ABE = \angle ACD$. Combined with
+            the fact that $\angle BAE = \angle CAD$, this lets us deduce that
+            $\triangle ABE \sim \triangle ACD$. Hence
+            \[ \frac{AB}{BE} = \frac{AC}{CD} \Longleftrightarrow AB \cdot CD =
+            AC \cdot BE. \]
+        
+        \item Observe that 
+            \[ \angle BAC = \angle BAE + \angle EAC = \angle CAD + \angle EAC =
+            \angle EAD, \]
+            and $\angle ADE = \angle ACB$. Therefore, $\triangle AED \sim
+            \triangle ABC$. Similarly to above, $AD \cdot BC = AC \cdot ED$.
+
+        \item From the similarities,
+            \[ AC \cdot BD = AC (BE + ED) = AC \cdot BE + AC \cdot ED = AB
+            \cdot CD + AD \cdot BC. \qedhere \]
+    \end{enumerate}
+\end{solution}

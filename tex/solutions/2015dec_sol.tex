@@ -1,0 +1,430 @@
+\solutionheader{2015 Regional Round}
+\begin{question}
+    The operation $\triangle$ is defined as $a \otriangle b = ab + 2a + b$.
+    Find $x$, if $\frac{12}{6 - x} \otriangle 2 = 3 \otriangle 5$.
+\end{question}
+\begin{solution}
+    This is just linear equation solving.
+    \begin{align*}
+        \frac{12}{6 - x} \otriangle 2 &= 3 \otriangle 5\\
+        \frac{24}{6 - x} + \frac{24}{6 - x} + 2 &= 15 + 6 + 5 \\
+        \frac{48}{6 - x} &= 24\\
+        x &= 4. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    If $x + \frac{1}{x} = 7$, find the value of $x^3 + \frac{1}{x^3}$.
+\end{question}
+\begin{solution}
+    Cubing the given expression gives us
+    \begin{align*}
+        343 &= \left( x + \frac{1}{x} \right)^3\\
+        &= x^3 + 3 x^2 \left( \frac{1}{x} \right) + 3 x \left( \frac{1}{x} \right)^2 + \frac{1}{x^3}\\
+        &= x^3 + \frac{1}{x^3} + 3 \left( x + \frac{1}{x} \right)\\
+        &= x^3 + \frac{1}{x^3} + 3 \cdot 7\\
+        &= x^3 + \frac{1}{x^3} + 21\\
+        x^3 + \frac{1}{x^3} &= 322. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    Find the value of 
+    \[\frac{\frac{1}{2} - \frac{1}{3}}{\frac{1}{3} - \frac{1}{4}} 
+    \cdot \frac{\frac{1}{4} - \frac{1}{5}}{\frac{1}{5} - \frac{1}{6}}
+    \cdot \frac{\frac{1}{6} - \frac{1}{7}}{\frac{1}{7} - \frac{1}{8}}
+    \cdot \ldots \cdot \frac{\frac{1}{2014} - \frac{1}{2015}}{\frac{1}{2015} - \frac{1}{2016}}.\]
+\end{question}
+\begin{solution}
+    It is easy to see that the $i$th term is equal to 
+    \begin{align*}
+        \frac{\frac{1}{2i} - \frac{1}{2i + 1}}{\frac{1}{2i + 1} - \frac{1}{2i + 2}} &= \frac{\frac{1}{2i(2i + 1)}}{\frac{1}{(2i + 1)(2i + 2)}} \\
+        &= \frac{2i + 2}{2i} \\
+        &= \frac{i + 1}{i}
+    \end{align*}
+    Therefore, the whole product is equal to
+    \[ \frac{\frac{1}{2} - \frac{1}{3}}{\frac{1}{3} - \frac{1}{4}} 
+    \cdot \frac{\frac{1}{4} - \frac{1}{5}}{\frac{1}{5} - \frac{1}{6}}
+    \cdot \ldots \cdot \frac{\frac{1}{2014} - \frac{1}{2015}}{\frac{1}{2015} - \frac{1}{2016}} = \frac{2}{1}\cdot\frac{3}{2}\cdot \ldots \cdot \frac{1008}{1007} = 1008. \qedhere\]
+\end{solution}
+
+\begin{question}
+    Let $p$ and $q$ be the remainders when the polynomials $f(x) = x^3 + 2x^2 -
+    5ax - 7$ and $g(x) = x^3 + ax^2 - 12x + 6$ are divided by $x + 1$ and $x -
+    2$ respecively. If $2p + q = 6$, find the value of $a$.
+\end{question}
+\begin{solution}
+    By the remainder theorem,
+    \[ p = f(-1) = (-1)^3 + 2(-1)^2 - 5a(-1) - 7 = -1 + 2 + 5a - 7 = 5a - 6,\]
+    and 
+    \[ q = g(2) = 2^3 + a(2)^2 - 12(2) + 6 = 8 + 4a - 24 + 6 = 4a - 10.\]
+    Therefore,
+    \begin{align*}
+        2p + q &= 6\\
+        10a - 12 + 4a - 10 &= 6\\
+        14a &= 28\\
+        a &= 2 \qedhere.
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    Prove that $(a + b)(b + c)(c + a) \geq 8abc$ for any $a, b, c \geq 0$. 
+\end{question}
+\begin{solution}
+    By the \hyperref[thm: amgm]{AM-GM inequality},
+    \[ (a + b)(b + c)(c + a) \geq 2\sqrt{ab} \cdot 2\sqrt{bc} \cdot 2\sqrt{ca}
+    = 8abc. \qedhere \]
+\end{solution}
+
+\begin{question}
+    The point $P$ lies on a circle with radius $r$ which has $AB$ as a
+    diameter. Show that $PA \cdot  PB \leq 2r^2$ and $PA + PB \leq 2\sqrt{2}r$.
+\end{question}
+\begin{solution}
+    By the \hyperref[thm: amgm]{AM - GM inequality}, 
+    \[ PA \cdot PB \leq \frac{PA^2 + PB^2}{2} = \frac{AB^2}{2} = \frac{4r^2}{2} = 2r^2.\]
+    Also, by the \hyperref[thm: amgm]{RMS - AM inequality}, 
+    \[ PA + PB \leq 2\sqrt{\frac{PA^2 + PB^2}{2}} = 2\sqrt{\frac{AB^2}{2}} = 2\sqrt{\frac{4r^2}{2}} = 2\sqrt{2}r. \qedhere\]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = dir(0);
+            pair P = dir(60);
+            pair O = (0, 0);
+            draw(A--B--P--cycle, black+1);
+            draw(circumcircle(A, B, P));
+            draw(rightanglemark(A, P, B, 4));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$P$", P, dir(P));
+            dot("$O$", O, dir(270));
+            label("$r$", (-.5, 0), dir(270));
+            label("$r$", (.5, 0), dir(270));
+        \end{asy}
+    \end{center}
+\end{solution}
+
+\begin{question}
+    In a sequence, $u_{1} = 1$, $u_{2} = 2$ and $u_{3} = 3$. For $n \geq 4$,
+    the $n$th term $u_{n}$ is calculated from the previous three terms as
+    $u_{n} = u_{n - 3} + u_{n - 2} - u_{n - 1}$. For example, $u_{4} = u_{1} +
+    u_{2} - u_{3} = 0$. Write down the first 9 terms. What is the 2015th term
+    of the sequence?
+\end{question}
+\begin{solution}[1]
+    The first 9 terms of this sequence are
+    \begin{align*}
+        u_1 &= \textcolor{Red}{1}\\
+        u_2 &= \textcolor{RoyalBlue}{2}\\
+        u_3 &= \textcolor{Red}{3}\\
+        u_4 &= 1 + 2 - 3 = \textcolor{RoyalBlue}{0}\\
+        u_5 &= 2 + 3 - 0 = \textcolor{Red}{5}\\
+        u_6 &= 3 + 0 - 5 = \textcolor{RoyalBlue}{-2}\\
+        u_7 &= 0 + 5 + 2 = \textcolor{Red}{7}\\
+        u_8 &= 5 - 2 - 7 = \textcolor{RoyalBlue}{-4}\\
+        u_9 &= -2 + 7 + 4 = \textcolor{Red}{11}
+    \end{align*}
+    Obviously, we cannot keep doing this 2015 times, so let's try to find a
+    pattern for general $n$. A closer inspection shows that $u_n = n$ for odd
+    $n$, while it is an AP that decreases by 2 for even $n$. This lets us
+    conjecture that
+    \[u_n = 
+    \begin{cases}
+        n, & \text{if $n$ is odd,}\\
+        4 - n &\text{if $n$ is even.}
+    \end{cases}
+    \]
+    We will prove this using strong induction. The base case $n = 1$ and $n =
+    2$ are easy to check. Now suppose that this is true for all positive
+    integers less than or equal to $2k$. We will show that this also holds for
+    $2k + 1$ and $2k + 2$. It is easy to see that 
+    \[ u_{2k + 1} = u_{2k - 2} + u_{2k - 1} - u_{2k} = (4 - (2k - 2)) + (2k - 1) - (4 - 2k) = 2k + 1,\]
+    and 
+    \[ u_{2k + 2} = u_{2k - 1} + u_{2k} - u_{2k + 1} = (2k - 1) + (4 - 2k) - (2k + 1) = 2 - 2k = 4 - (2k + 2).\]
+    Therefore, by strong induction, it follows that this pattern holds for all
+    $n \in \mathbb{N}$. Now since 2015 is odd, we finally have $u_{2015} =
+    2015$.
+\end{solution}
+\begin{solution}[2]
+    After writing down the first 9 terms as in the first solution, let $a_n =
+    u_n - u_{n - 2}$. The given condition can then be rewritten as
+    \[ u_n - u_{n - 2} = u_{n - 3} - u_{n - 1} \Longrightarrow a_n = -a_{n - 1}. \]
+    Therefore, $a_{n + 2} = -a_{n + 1} = a_n$. Since $a_3 = u_3 - u_1 = 2$,
+    this means that $2 = a_3 = a_5 = \cdots$, or equivalently, for all odd $i$,
+    $a_i = 2$. We can now find $u_{2015}$ as follows.
+    \[ u_{2015} - u_1 = (u_{2015} - u_{2013}) + (u_{2013} - u_{2011}) + \cdots
+    + (u_3 - u_1) = a_{2015} + a_{2013} + \cdots + a_{3}. \]
+    There are 1007 terms in the above expression and all of them are equal to
+    2, so 
+    \[ u_{2015} - u_1 = 1007 \cdot 2 \Longrightarrow u_{2015} = 2015. \qedhere \]
+\end{solution}
+
+\begin{question}
+    In the figure, a square $ABCD$ of side length 6 is given. Two circles with
+    diameters $AD$ and $CD$ are drawn. Determine the combined area of two
+    shaded regions.
+\end{question}
+\begin{solution}
+    Let $O$ be the center of the square. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(225);
+            pair B = dir(135);
+            pair C = dir(45);
+            pair D = dir(315);
+            pair O = (0, 0);
+            pair M = midpoint(D--C);
+            pair N = midpoint(D--A);
+            filldraw(B--arc(N, abs(N-A), 180, 90)--arc(M, abs(M-C), 180, 90)--cycle, .6*gray+.4*white);
+            filldraw(arc(M, abs(M-C), 180, 270)--arc(N, abs(N-A), 90, 0)--cycle, .6*gray+.4*white);
+            draw(circle(M, abs(M-C)));
+            draw(circle(N, abs(N-A)));
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--C);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$O$", O, dir(135));
+        \end{asy}
+    \end{center}
+    Since $\angle AOD = \angle DOC = 90^\circ$, it follows that $O$ lies on
+    both circles, and hence must be the second intersection of the two circles.
+    Also, $O$ is the midpoint of segment $AC$. Now as $OA = OD$, the region
+    bounded by $OD$ and minor arc $OD$ is congruent to the region bounded by
+    $OA$ and minor arc $OA$. This similarly holds for $OC$ and $OD$ as well, so
+    the area of the shaded region is equal to the area of $\triangle ABC$,
+    which turns out to be $\frac{6^2}{2} = 18$.
+\end{solution}
+
+\begin{question}
+    In $\triangle ABC$, $\angle A = 90^\circ$. The point $P$ lies inside
+    $\triangle ABC$ with distances from $AB$, $BC$ and $CA$ equal to $x$, $y$
+    and $z$ respectively. If we denote $a = BC$, $b = CA$ and $c = AB$, show
+    that $z = \frac{bc - cx - ay}{b}$.
+\end{question}
+\begin{solution}
+    Since $\angle A = 90^\circ$, the area of $\triangle ABC$ is $\frac{bc}{2}$, so 
+    \[ ay + bz + cx = 2([BPC] + [CPA] + [APB]) = 2[ABC] = bc.\]
+    This means that 
+    \[ bz = bc - cx - ay \Longleftrightarrow z = \frac{bc - cx - ay}{b}. \qedhere\]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(70);
+            pair B = dir(180);
+            pair C = dir(0);
+            pair P = (.1, .3);
+            pair X = foot(P, A, B);
+            pair Y = foot(P, B, C);
+            pair Z = foot(P, C, A);
+            draw(A--B--C--cycle, black+1);
+            draw(P--X);
+            draw(P--Y);
+            draw(P--Z);
+            draw(rightanglemark(P, Y, C, 3));
+            draw(rightanglemark(P, X, B, 3));
+            draw(rightanglemark(P, Z, C, 3));
+            draw(rightanglemark(B, A, C, 3));
+            draw(P--A, mydash);
+            draw(P--B, mydash);
+            draw(P--C, mydash);
+            label("$x$", midpoint(P--X), dir(35));
+            label("$y$", midpoint(P--Y), dir(180));
+            label("$z$", midpoint(P--Z), dir(-55));
+            label("$a$", midpoint(B--C), dir(270));
+            label("$b$", midpoint(C--A), dir(35));
+            label("$c$", midpoint(A--B), dir(125));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("\contour{white}{$P$}", P, dir(340));
+        \end{asy}
+    \end{center}
+\end{solution}
+
+\begin{question}
+    An integer is chosen from the set $\{1, 2, 3, \ldots, 100\}$. Find the
+    probability that the integer is divisible by 3 or 7.
+\end{question}
+\begin{solution}
+    Let $S$ and $T$ be the sets of numbers less than or equal to 100 which are
+    divisible by 3 and 7 respectively. It is easy to see that $|S| = 33$ and
+    $|T| = 14$. Now the number of integers less than or equal to 100 which are
+    divisible by 3 or 7 is $|S \cup T|$. By the \hyperref[thm:
+    incluexclu]{inclusion-exclusion principle},
+    \[ |S \cup T| = |S| + |T| - |S \cap T|. \]
+    Therefore, we need to find $|S \cap T|$, or the number of numbers below 100
+    which are divisible by both 3 \emph{and} 7, and hence divisible by 21.
+    There are four such numbers. Therefore,
+    \[ |S \cup T| = 33 + 14 - 4 = 43.\]
+    Hence the probability that a chosen integer is divisible by 3 or 7 is
+    $\frac{43}{100}$.
+\end{solution}
+
+\begin{question}
+    Aung Aung says to Bo Bo, ``I am 5 times what you were when I was your
+    age''.  The sum of their current ages is 64. Find their ages.
+\end{question}
+\begin{solution}
+    Let $A$ and $B$ be Aung Aung's and Bo Bo's age respectively. Then when Aung
+    Aung was Bo Bo's current age, Bo Bo's age was $B - (A - B)$, so the problem
+    conditions give
+    \begin{align*}
+        A &= 5(B - (A - B))\\
+        A + B &= 64
+    \end{align*}
+    Solving these two equations show that $A = 40$ and $B = 24$.
+\end{solution}
+
+\begin{question}
+    The sum of squares of three consecutive positive integers is 2 more than
+    100 times the sum of the numbers itself. Find the largest of the three
+    numbers.
+\end{question}
+\begin{solution}
+    Let the three consecutive integers be $n - 1$, $n$ and $n + 1$. Then
+    \[ (n - 1)^2 + n^2 + (n + 1)^2 = 100(n - 1 + n + n + 1) + 2 \Longrightarrow
+    n = 100.\]
+    Therefore, the largest number is $n + 1 = 101$.
+\end{solution}
+
+\begin{question}
+    $P$ and $Q$ are two points on $AB$ and $AC$ respectively, of $\triangle
+    ABC$. If $PQ$ is parallel to $BC$, and bisects $\triangle ABC$, find $AP :
+    PB$.
+\end{question}
+\begin{solution}
+    Since $\angle APQ = \angle ABC$ and $\angle AQP = \angle ACB$, it follows
+    that $\triangle APQ$ and $\triangle ABC$ are similar. Since $PQ$ bisects
+    $\triangle ABC$,
+    \[ \frac{AB^2}{AP^2} = \frac{[ABC]}{[APQ]} = 2 \Longrightarrow
+    \frac{AB}{AP} = \sqrt{2}.\]
+    Finally,
+    \[ \sqrt{2} = \frac{AB}{AP} = \frac{AP + BP}{AP} = 1 + \frac{BP}{AP}
+    \Longrightarrow \frac{AP}{BP} = \frac{1}{\sqrt{2} - 1}. \qedhere\]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair P = (1/sqrt(2))*B + ((sqrt(2)-1)/sqrt(2))*A;
+            pair Q = (1/sqrt(2))*C + ((sqrt(2)-1)/sqrt(2))*A;
+            draw(A--B--C--cycle, black+1);
+            draw(P--Q);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$P$", P, dir(180));
+            dot("$Q$", Q, dir(0));
+        \end{asy}
+    \end{center}
+\end{solution}
+
+\begin{question}
+    Find the remainder when $(x + 1)^{2016} + (x + 2)^{2016}$ is divided by
+    $x^2 + 3x + 2$.
+\end{question}
+\begin{solution}
+    By the remainder theorem, $(x + 1)^{2015}$ leaves a remainder of 
+    \[ (-2 + 1)^{2015} = (-1)^{2015} = -1 \] 
+    when divided by $x + 2$. Therefore,
+    \[(x + 1)^{2015} = (x + 2)g(x) - 1\]
+    for some polynomial $g(x)$. Similarly, $(x + 2)^{2016}$ leaves a remainder
+    of $(-1 + 2)^{2016} = 1$ when divided by $x + 1$. Hence we also have
+    \[(x + 2)^{2015} = (x + 1)h(x) + 1\]
+    for some polynomial $h(x)$. Thus 
+    \begin{align*}
+        (x + 1)^{2016} + (x + 2)^{2016} &= (x + 1)(x + 1)^{2015} + (x + 2)(x + 2)^{2015}\\
+        &= (x + 1)((x + 2)g(x) - 1) + (x + 2)((x + 1)h(x) + 1)\\
+        &= (x + 1)(x + 2)g(x) - x - 1 + (x + 2)(x + 1)h(x) + x + 2\\
+        &= (x + 1)(x + 2)(g(x) + h(x)) + 1
+    \end{align*}
+    Since $g(x) + h(x)$ is a polynomial, it follows that the remainder is 1. 
+\end{solution}
+\begin{remark}
+    We can also solve this problem using modular arithmetic and noticing the
+    fact that $\gcd(x + 1, x + 2) = 1$.
+\end{remark}
+
+\begin{question}
+    If $a$, $b$, $c$, $d$ are in harmonic progression, prove that $ab + bc + cd
+    = 3ad$.
+\end{question}
+\begin{solution}
+    Let $p = \frac{1}{a}$, $q = \frac{1}{b}$, $r = \frac{1}{c}$ and $s =
+    \frac{1}{d}$. Dividing the expression by $abcd$, we just need to show that
+    \[\frac{1}{cd} + \frac{1}{ad} + \frac{1}{ab} = \frac{3}{bc}
+    \Longleftrightarrow rs + sp + pq = 3qr.\]
+    Since $a$, $b$, $c$, $d$ are in HP, $p$, $q$, $r$, $s$ are in AP. Let $t$
+    be the common difference. Then
+    \begin{align*}
+        \frac{rs + sp + pq}{qr} &= \frac{s(r + p) + pq}{qr}\\
+        &= \frac{2sq + pq}{qr}\\
+        &= \frac{2s + p}{r}\\
+        &= \frac{2(p + 3t) + p}{p + 2t}\\
+        &= \frac{3p + 6t}{p + 2t}\\
+        &= 3\\
+        rs + sp + pq &= 3qr. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    Using mathematical induction, prove that 
+    \[1^2 + 2^2 + 3^2 + \cdots + n^2 = \frac{n(n + 1)(2n + 1)}{6}.\]
+\end{question}
+\begin{solution}
+    When $n = 1$, it is easy to see that both the left hand side and the right
+    hand side are equal to 1. Now suppose that this holds for $n = k$. Then
+    \begin{align*}
+        1^2 + 2^2 + \cdots + k^2 + (k + 1)^2 &= \frac{k(k + 1)(2k + 1)}{6} + (k + 1)^2\\
+        &= (k + 1)\left( \frac{k(2k + 1)}{6} + k + 1 \right)\\
+        &= \frac{(k + 1)(2k^2 + 7k + 6)}{6}\\
+        &= \frac{(k + 1)(k + 2)(2(k + 1) + 1)}{6},
+    \end{align*}
+    so the identity also holds for $n = k + 1$. Therefore, by mathematical
+    induction, it follows that the identity holds for all $n \in \mathbb{N}$.
+\end{solution}
+
+\begin{question}
+    Show that $n^7 - n$ is divisible by 42, for all positive integers $n$.
+\end{question}
+\begin{solution}
+    Since $42 = 2 \times 3 \times 7$, by lemma \ref{lem: weakCRT}, it suffices
+    to show that $n^7 - n = n(n^6 - 1)$ is divisible by 2, 3 and 7. If $n$ is
+    even, it is obvious that $n^7 - n$ is divisible by 2. If $n$ is odd, $n^6 -
+    1$ is even so in that case $n^7 - n$ is also divisible by 2. Now by
+    \hyperref[thm: FLT]{Fermat's little theorem}, $n^3 \equiv n \pmod{3}$, so
+    \[ n^7 \equiv n(n^2)^3 \equiv n^3 \equiv n \pmod{3} \Longrightarrow n^7 - n
+    \equiv 0 \pmod{3}\]
+    Finally, by \hyperref[thm: FLT]{Fermat's little theorem} again, $n^7 - n
+    \equiv 0 \pmod{7}$, so we are done.
+\end{solution}
+
+\begin{question}
+    If $\alpha$, $\beta$ and $\gamma$ are roots of the equation $x^3 + px^2 +
+    qx + k = 0$, show that $\alpha^2 + \beta^2 + \gamma^2 = p^2 - 2q$.
+\end{question}
+\begin{solution}
+    By \hyperref[thm: vieta]{Vieta's Formulas}, $\alpha + \beta + \gamma = -p$
+    and $\alpha \beta + \beta \gamma + \gamma \alpha = q$. Therefore,
+    \[ \alpha^2 + \beta^2 + \gamma^2 = (\alpha + \beta + \gamma)^2 - 2(\alpha
+    \beta + \beta \gamma + \gamma \alpha) = p^2 - 2q. \qedhere\]
+\end{solution}

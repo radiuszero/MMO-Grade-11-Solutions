@@ -1,0 +1,526 @@
+\solutionheader{2016 Regional Round}
+\begin{question}
+    In the sequence $u_{1}$, $u_{2}$, $\ldots$, $u_{n}$, $\ldots$, the $n$th
+    term is defined by $u_{n} = 1 - \frac{1}{u_{n - 1}}$ for $n \geq 2$. If
+    $u_{1} = 3$, compute $u_{2}$, $u_{3}$ and $u_{4}$. Write down $u_{2016}$.
+\end{question}
+\begin{solution} 
+    If $u_1 = 3$,
+    \begin{align*}
+        u_2 &= 1 - \frac{1}{3} = \frac{2}{3}\\
+        u_3 &= 1 - \frac{3}{2} = -\frac{1}{2}\\
+        u_4 &= 1 - (-2) = 3.
+    \end{align*}
+    Here we see that $u_1 = u_4$. Moreover, since each term depends entirely
+    upon the previous one, it must be the case that if $u_a = u_b$, $u_{a + 1}
+    = u_{b + 1}$ as well. Therefore, $u_5 = u_2 = \frac{2}{3}$, $u_6 = u_3 =
+    -\frac{1}{2}$, and so on. In general, the value of $u_n$ is 
+    \[ u_n =
+    \begin{cases}
+        3 & \text{if $n = 3k + 1$,}\\
+        \frac{2}{3} & \text{if $n = 3k + 2$,}\\
+        -\frac{1}{2} & \text{if $n = 3k$.}
+    \end{cases}
+    \]
+    for any positive integer $k$. In particular, since 2016 is divisible by 3,
+    $u_{2016} = -\frac{1}{2}$.
+\end{solution}
+
+\begin{question}
+    If $x$ and $y$ are positive integers such that $56 \leq x + y \leq 59$ and
+    $0.9 \leq \frac{x}{y} \leq 0.91$, find the value of $y^2 - x^2$.
+\end{question}
+\begin{solution}
+    This is pretty straightforward inequality manipulation. From the problem,
+    we have the following two relations. 
+    \[ 56 \leq x + y \leq 59 \quad \text{and} \quad 0.9y \leq x \leq 0.91y. \]
+    This allows us to bound $y$.
+    \[ 56 \leq x + y \leq 0.91y + y = 1.91y \Longrightarrow y \geq 29.31, \]
+    and 
+    \[ 59 \geq x + y \geq 0.9y + y = 1.9y \Longrightarrow y \leq 31.06. \]
+    Since $y$ is a positive integer, the only possible values are 30 and 31. So
+    we will consider two cases.
+    \begin{case}{$y = 30$.}
+        In this case, $27 \leq x \leq 27.3$, so it follows that $x = 27$. This
+        satifies the first relation, and thus $(x, y) = (27, 30)$ is a solution
+        pair.
+    \end{case}
+    \begin{case}{$y = 31$.}
+        In this case, $27.9 \leq x \leq 28.21$ and so $x = 28$. This also
+        satisifies the first relation, and so $(x, y) = (28, 31)$ is also a
+        solution pair.
+    \end{case}
+    Finally, the possible values of $y^2 - x^2$ are 171 and 177.
+\end{solution}
+
+\begin{question}
+    When 15 is added to a number $x$, it becomes the square of an integer. When
+    74 is subtracted from $x$, the result is a square of another integer. Find
+    the number $x$. 
+\end{question}
+\begin{solution}
+    From the problem statement, there exist positive integers $y$ and $z$ such
+    that
+    \[ x + 15 = y^2 \quad \text{and} \quad x - 74 = z^2. \]
+    Subtracting the two equations gives
+    \[ y^2 - z^2 = (y + z)(y - z) = 89. \]
+    But since 89 is a prime, the smaller one of the divisors on the left, i.e.
+    $y - z$, must be equal to 1. Therefore, $y - z = 1$ and $y + z = 89$.
+    Solving those two equations give $y = 45$ and $z = 44$. Substituting these
+    into the first equation shows that $x = 2010$.
+\end{solution}
+
+\begin{question}
+    In a rectangle $ABCD$, the points $M$, $N$, $P$, $Q$ lie on $AB$, $BC$,
+    $CD$ and $DA$ respectively, such that the areas of $\triangle AQM$,
+    $\triangle BMN$, $\triangle CNP$ and $\triangle DPQ$ are equal. Prove that
+    $MNPQ$ is a parallelogram.
+\end{question}
+\begin{solution}
+    Let $[\triangle AQM] = [\triangle BMN] = [\triangle CNP] = [\triangle DPQ]
+    = A$. Let $AQ = a_1$, $BN = b_1$, $CN = c_1$, $DQ = d_1$, and $AM = a_2$,
+    $BM = b_2$, $CP = c_2$, $DP = d_2$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real p = .3;
+            real q = .6;
+            pair A = (1, 2);
+            pair B = (4, 2);
+            pair C = (3, 0);
+            pair D = A + C - B;
+            pair M = (1-p)*A + p*B;
+            pair Q = (1-q)*A + p*D;
+            pair N = B + D - Q;
+            pair P = A + C - M;
+            draw(A--B--C--D--cycle, black+1);
+            draw(M--N--P--Q--cycle);
+            dot("$A$", A, dir(135));
+            dot("$B$", B, dir(45));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(225));
+            dot("$M$", M, dir(90));
+            dot("$N$", N, dir(0));
+            dot("$P$", P, dir(270));
+            dot("$Q$", Q, dir(180));
+            label("$a_1$", midpoint(A--Q), dir(180));
+            label("$a_2$", midpoint(A--M), dir(90));
+            label("$b_1$", midpoint(B--N), dir(0));
+            label("$b_2$", midpoint(B--M), dir(90));
+            label("$c_1$", midpoint(C--N), dir(0));
+            label("$c_2$", midpoint(C--P), dir(270));
+            label("$d_1$", midpoint(D--Q), dir(180));
+            label("$d_2$", midpoint(D--P), dir(270));
+        \end{asy}
+    \end{center}
+    Then we can rewrite the area equality as
+    \[ a_1a_2 = b_1b_2 = c_1c_2 = d_1d_2 = 2A. \]
+    Since the opposide sides of a rectangle are equal, we also have
+    \[ a_1 + d_1 = b_1 + c_1 \quad \text{and} \quad a_2 + b_2 = c_2 + d_2. \]
+    We can transform the second equation as follows:
+    \begin{align*}
+        \frac{2A}{a_1} + \frac{2A}{b_1} &= \frac{2A}{c_1} + \frac{2A}{d_1}\\
+        \frac{1}{a_1} + \frac{1}{b_1} &= \frac{1}{c_1} + \frac{1}{d_1}\\
+        \frac{1}{a_1} - \frac{1}{c_1} &= \frac{1}{d_1} - \frac{1}{b_1}\\
+        \frac{c_1 - a_1}{a_1c_1} &= \frac{b_1 - d_1}{b_1d_1}
+    \intertext{From the first equation, we have $a_1 - c_1 = b_1 - d_1$. Therefore,}
+        \frac{c_1 - a_1}{a_1c_1} &= -\frac{c_1 - a_1}{b_1d_1}\\
+        (c_1 - a_1)\left( \frac{1}{a_1c_1} + \frac{1}{b_1d_1} \right) &= 0.
+    \end{align*}
+    Since the latter bracket is positive, it follows that $a_1 = c_1$.
+    Similarly, we also have $b_1 = d_1$, $a_2 = c_2$ and $b_2 = d_2$.
+    Therefore, $\triangle AQM \cong \triangle CNP$ and $\triangle BNM \cong
+    \triangle DQP$. Thus $QM = NP$ and $NM = QP$ implying that $MNPQ$ is a
+    parallelogram as desired.
+\end{solution}
+
+\begin{question}
+    Draw 6 circles in the plane such that every circle passes through exactly 3
+    centres of other circles. 
+\end{question}
+\begin{solution}
+    Consider two unit equilateral triangles, separated unit distance apart.
+    Next, we draw 6 circles with unit radius centered at each of the vertices.
+    It is obvious that each circle passes through exactly three other vertices.
+    % Insert figure
+\end{solution}
+
+\begin{question}
+    There are 2016 students in a secondary school. Every student writes a new
+    year card. The cards are mixed up and randomly distributed to students.
+    Suppose each student gets one and only one card. Find the expected number
+    of students who get back their own cards. 
+\end{question}
+\begin{solution}
+    Label each of the students and their corresponding cards from 1 to 2016,
+    and call a student \emph{fixed point} if they receive their own card. By
+    the definition of expected value,
+    \begin{align*}
+        \Ex[\text{number of fixed points}] &= \sum_{i = 1}^{2016} i \cdot \Pr(\text{number of fixed points is $i$})\\
+        &= \sum_{i = 1}^{2016} \frac{i \cdot \text{number of distributions with $i$ fixed points}}{\text{total number of distributions}}\\
+        &= \frac{\text{total number of fixed points over all distributions}}{\text{total number of distributions}}.
+    \end{align*}
+    Consider a table, consisting of a row for each distribution of cards (An
+    example for 3 students is provided below.) The total number of fixed points
+    in this whole table can be found by finding the number of fixed points in
+    each column, and then summing them. For each student $i$, there are 2015!
+    ways to permute the other 2015 students. Therefore, the number of
+    distributions where student $i$ is a fixed point is $2015!$. Since there
+    are 2016 columns, the total number of fixed points in the whole table is
+    $2016!$. 
+    \begin{center}
+        \begin{tabular}{ |c|c c c| }
+            \hline
+            \text{Students} & \textbf{1} & \textbf{2} & \textbf{3}\\
+            \hline
+            & \HL{1} & \HL{2} & \HL{3} \\
+            & \HL{1} & 3 & 2 \\
+            & 2 & 1 & \HL{3} \\
+            & 2 & 3 & 1 \\
+            & 3 & 1 & 2 \\
+            & 3 & \HL{2} & 1 \\
+            \hline
+            \text{Number of fixed points} & 2 & 2 & 2 \\
+            \hline
+        \end{tabular} \\
+        \vspace*{\baselineskip}
+    \end{center}
+    Finally, since the total number of distributions is also $2016!$, it
+    follows that the expected value is 1.
+\end{solution}
+
+\begin{question}
+    The points $P$, $A$, $B$ lie in that order on a circle with center $O$ such
+    that $\angle POB < 180^\circ$. The point $Q$ lies inside the circle such
+    that $\angle PAQ = 90^\circ$ and $PQ = BQ$. If $\angle AQB > \angle AQP$,
+    prove that $\angle AQB - \angle AQP = \angle AOB$. 
+\end{question}
+\begin{solution}
+    Let $M$ be the midpoint of $BP$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair P = dir(140);
+            pair A = dir(90);
+            pair B = dir(0);
+            pair O = (0, 0);
+            pair M = midpoint(B--P);
+            pair Q = extension(A, rotate(90, A)*P, O, M);
+            draw(circle(O, 1));
+            draw(P--A--Q);
+            draw(P--B);
+            draw(O--Q, mydash);
+            draw(P--Q--B);
+            draw(A--O--B);
+            draw(rightanglemark(P, A, Q, 2.5));
+            draw(rightanglemark(Q, M, P, 2.5));
+            dot("$P$", P, dir(P));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$Q$", Q, dir(45));
+            dot("$M$", M, 1.5*dir(285));
+            dot("$O$", O, dir(270));
+        \end{asy}
+    \end{center}
+    Since $\triangle PQB$ is an isosceles triangle, $\angle QMP = 90^\circ =
+    \angle QAP$ so $QAPM$ is cyclic. Moreover, $\angle PQM = \angle MQB$.
+    Therefore,
+    \[ \angle AQB - \angle AQP = 360^\circ - 2\angle PQM - 2\angle AQP =
+    2(180^\circ - \angle AQM) = 2\angle APB = \angle AOB. \qedhere \]
+\end{solution}
+\begin{remark}
+    There are configuration issues depending on $Q$ being inside or outside of
+    $\triangle OPB$, but the proof is more or less the same so we will not
+    mention them here. 
+\end{remark}
+
+\begin{question}
+    A fair die is thrown three times. The results of the first, second and
+    third throw are recorded as $x$, $y$ and $z$ respectively. Suppose that $x
+    + y = z$. What is the probability that at least one of $x$, $y$ and $z$ is
+    2. 
+\end{question}
+\begin{solution}
+    Since the value of $z$ is automatically determined by those of $x$ and $y$,
+    we only need to consider the possible outcomes of $x$ and $y$. The
+    following table summarizes the possible triples of $(x,y,z)$ satisfying
+    $x+y=z$. In addition, those that doesn't satisfy $x,y,z\leq 6$ are greyed
+    out.
+    \begin{center}
+        \begin{tabular}{ |c|c|c|c|c|c|c| }
+            \hline
+            \diagbox[height=0.45cm]{\raisebox{-2pt}{$x$}}{\raisebox{4pt}{$y$}} & 1 & 2 & 3 & 4 & 5 & 6 \\
+            \hline
+            1 & (1, 1, 2) & (1, 2, 3) & (1, 3, 4) & (1, 4, 5) & (1, 5, 6) & \textcolor{mygray}{(1, 6, 7)} \\
+            \hline
+            2 & (2, 1, 3) & (2, 2, 4) & (2, 3, 5) & (2, 4, 6) & \textcolor{mygray}{(2, 5, 7)} & \textcolor{mygray}{(2, 6, 8)} \\
+            \hline
+            3 & (3, 1, 4) & (3, 2, 5) & (3, 3, 6) & \textcolor{mygray}{(3, 4, 7)} & \textcolor{mygray}{(3, 5, 8)} & \textcolor{mygray}{(3, 6, 9)} \\
+            \hline
+            4 & (4, 1 ,5) & (4, 2, 6) & \textcolor{mygray}{(4, 3, 7)} & \textcolor{mygray}{(4, 4, 8)} & \textcolor{mygray}{(4, 5, 9)} & \textcolor{mygray}{(4, 6, 10)} \\
+            \hline 
+            5 & (5, 1, 6) & \textcolor{mygray}{(5, 2, 7)} & \textcolor{mygray}{(5, 3, 8)} & \textcolor{mygray}{(5, 4, 9)} & \textcolor{mygray}{(5, 5, 10)} & \textcolor{mygray}{(5, 6, 11)} \\
+            \hline
+            6 & \textcolor{mygray}{(6, 1, 7)} & \textcolor{mygray}{(6, 2, 8)} & \textcolor{mygray}{(6, 3, 9)} & \textcolor{mygray}{(6, 4, 10)} & \textcolor{mygray}{(6, 5, 11)} & \textcolor{mygray}{(6, 6, 12)} \\
+            \hline
+        \end{tabular}
+    \end{center}
+    It is easy to see that the number of desired triples is 8 and the total is
+    15. Thus the probability is $\frac{8}{15}$.
+\end{solution}
+\begin{remark}
+    This problem asks for the probability that at least one of $x$, $y$, $z$ is
+    2, \emph{given that} $x + y = z$. This is not the same with the probability
+    that $x + y = z$ \emph{and} at least one of $x$, $y$, $z$ is 2, which would
+    be $\frac{8}{6^3}$.
+\end{remark}
+
+\begin{question}
+    An arithmetic progression and a harmonic progression have $a$ and $b$ for
+    the first two terms. If their $n$th terms are $x$ and $y$ respectively,
+    show that $(x - a) : (y - a) = b : y$. 
+\end{question}
+\begin{solution}
+    Since $a$, $b$ are the first two terms of a HP, $\frac{1}{a}$,
+    $\frac{1}{b}$ are the first two terms of an AP. The first term of this AP
+    is $\frac{1}{a}$, and the common difference is $\frac{1}{b} - \frac{1}{a}$,
+    so the $n$th term of this AP is
+    \[ u_n = \frac{1}{a} + (n - 1)\left( \frac{1}{b} - \frac{1}{a} \right) =
+    \frac{b + (n - 1)(a - b)}{ab}, \]
+    which means that the $n$th term of the HP is 
+    \[ y = \frac{ab}{b + (n - 1)(a - b)}. \]
+    Meanwhile, the $n$th term of the AP is $x = a + (n - 1)(b - a)$. Therefore, 
+    \begin{align*}
+        \frac{x - a}{y - a} &= (n - 1)(b - a) \div \left( \frac{ab}{b + (n - 1)(a - b)} - a \right)\\
+        &= (n - 1)(b - a) \cdot \frac{b + (n - 1)(a - b)}{a(n - 1)(b - a)}\\
+        &= \frac{b + (n - 1)(a - b)}{a}\\
+        &= \frac{b}{y}. \qedhere
+    \end{align*}
+\end{solution}
+
+\begin{question}
+    Mr. Game owns 200 custom-made dice. Each die has four sides showing the
+    number 2 and two sides showing the number 5. Mr. Game is about to throw all
+    200 dice together and find out the sum of all 200 results. How many
+    possible values of this sum are there?
+\end{question}
+\begin{solution}
+    Suppose that in a throw, there are $n$ dice that show 2, and $200 - n$ dice
+    that show 5. Then the sum of their values is $2n + (200 - n)5 = 1000 - 3n$.
+    Obviously, for different values of $n$, the sum is also different. Since
+    $n$ can range from 0 to 200, this means that the sum can also have 201
+    different values. 
+\end{solution}
+
+\begin{question}
+    U Tet Toe wants to repair all 4 walls of his room. He has red paint, yellow
+    paint and blue paint (which he cannot mix), and wants to paint his room so
+    that adjacent walls are never of the same colour. In how many ways can U
+    Tet Toe paint his room?
+\end{question}
+\begin{solution}
+    We just need to find the \hyperref[def: chromaticpoly]{chromatic
+    polynomial} of $C_4$. By \hyperref[teq: DC]{deletion-contraction},
+    \[ P(C_4, 3) = P(P_4, 3) - P(C_3, 3). \]
+    We will first find $P(P_4, 3)$. There are 3 choices for the first vertex
+    and 2 choices each for the remaining vertices. Therefore, $P(P_3, 3) = 3
+    \cdot 2 \cdot 2 \cdot 2 = 24$. Next, let's find the value of $P(C_3, 3)$.
+    There are 3 choices for the first vertex, 2 choices for the second vertex,
+    and only 1 choice for the final vertex. Therefore, $P(C_3, 3) = 3 \cdot 2
+    \cdot 1 = 6$. Hence there are $24 - 6 = 18$ ways in which U Tet Toe can
+    paint his room. 
+\end{solution}
+
+\begin{question}
+    Given an equilateral triangle, what is the ratio of the area of its
+    circumscribed circle to the area of the inscribed circle?
+\end{question}
+\begin{solution}
+    Let $O$ be the circumcenter of the equilateral triangle $ABC$ and let the
+    incircle touch side $BC$ at $D$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(90);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair O = (0, 0);
+            pair D = foot(O, B, C);
+            draw(A--B--C--cycle, black+1);
+            draw(B--O--D);
+            draw(incircle(A, B, C));
+            draw(circle(O, 1));
+            draw(rightanglemark(O, D, B, 2.5));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$O$", O, dir(0));
+            dot("$D$", D, dir(270));
+        \end{asy}
+    \end{center}
+    Due to the symmetry, $O$ is also the incenter of $\triangle ABC$. Since
+    $\angle OBD = 30^\circ$, $\triangle OBD$ is a 30-60 right triangle, and $OB
+    : OD = 2 : 1$. Therefore, if we let the area of the circumcircle by $A_1$
+    and that of the incircle by $A_2$,
+    \[ \frac{A_1}{A_2} = \frac{\pi OB^2}{\pi OD^2} = 4. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Solve the equation $\sqrt{3x^2 - 8x + 1} + \sqrt{9x^2 - 24x - 8} = 3$.
+\end{question}
+\begin{solution}
+    Let $u = 3x^2 - 8x + 1$. Then we can rewrite the equation as
+    \begin{align*}
+        \sqrt{u} + \sqrt{3u - 11} &= 3 \\
+    \intertext{Squaring both sides to remove the square roots gives}
+        u + 3u - 11 + 2u\sqrt{3u - 11} &= 9 \\
+        2u - 10 &= -\sqrt{u(3u - 11)}\\
+    \intertext{Squaring again, we have}
+        4u^2 - 4u + 100 &= 3u^2 - 11u\\
+        u^2 - 29u + 100 &= 0\\
+        (u - 25)(u - 4) &= 0\\
+    \end{align*}
+    which shows that $u = 4$ or $u = 25$. It is easy to check that $u = 25$
+    does not satisfy the equation, so $u = 4$ must be the only solution.
+    Finally,
+    \[ 3x^2 - 8x + 1 = 4 \Longrightarrow (x - 3)(3x + 1) = 0. \]
+    and hence $x = 3$ or $-\frac{1}{3}$.
+\end{solution}
+
+\begin{question}
+    Prove by mathematical induction that 
+    \[1^2 + 3^2 + 5^2 + 7^2 + \cdots + (2n - 1)^2 = \frac{1}{3}n(4n^2 - 1).\] 
+\end{question}
+\begin{solution}
+    We will show this by induction. For the base case, when $n = 1$, both the
+    left hand side and the right hand side are equal to 1, so the identity is
+    true. Now suppose that for $n = k$,
+    \[ 1^2 + 3^2 + \cdots + (2k - 1)^2 = \frac{k(4k^2 - 1)}{3}. \]
+    Then when $n = k + 1$,
+    \begin{align*}
+        1^2 + 3^2 + \cdots + (2k + 1)^2 &= \frac{1}{3}k(4k^2 - 1) + (2k + 1)^2\\
+        &= \frac{1}{3}(k(2k + 1)(2k - 1) + 3(2k + 1)^2)\\
+        &= \frac{1}{3}(2k + 1)(2k^2 - k + 6k + 3)\\
+        &= \frac{1}{3}(2k + 1)(2k + 3)(k + 1)\\
+        &= \frac{1}{3}(k + 1)(4(k + 1)^2 - 1)
+    \end{align*}
+    and so the identity is true for $n = k + 1$. Hence by mathematical
+    induction it follows that the identity is true for all $n \in \mathbb{N}$.
+\end{solution}
+
+\begin{question}
+    In how many ways can 7 identical T-shirts be divided among 4 students,
+    subject to the condition that each is to get at least 1 T-shirt. 
+\end{question}
+\begin{solution}
+    This is a classic example of \hyperref[teq: starsandbars]{stars and bars}. 
+
+    Label the students from 1 to 4. Suppose that we have all 7 T-shirts lying
+    in a line, and we want to divide them up into 4 sections corresponding to
+    each student. One way to do this would be to use 3 dividers, and insert
+    them in the gaps between the shirts, so that the first section corresponds
+    to student 1, the second section corresponds to student 2, and so on. Since
+    each student gets at least one T-shirt, this means that there can only be
+    at least one divider in each gap. The number of ways to insert 3 dividers
+    in 6 gaps is $\binom{6}{3} = 20$. Therefore, there are 20 ways to
+    distribute the T-shirts.
+\end{solution}
+
+\begin{question}
+    $\triangle ABC$ has $AB > AC$. A line $DEF$, equally inclined to $AB$ and
+    $AC$, is drawn, meeting $AB$ at $F$, $AC$ at $E$ and $BC$ produced at $D$.
+    Prove that $BD : DC = BF : CE$.
+
+    (\hint Draw $BG \parallel CE$ meeting $DF$ produced at $G$.) 
+\end{question}
+\begin{solution}
+    Some angle chasing gives us
+    \[ \angle BFG = \angle AFE = \angle AEF = \angle BGF, \]
+    from which we get that $BF = BG$. Since $CE \parallel BG$, we see that
+    \[ \frac{DB}{DC} = \frac{BG}{CE} = \frac{BF}{CE}. \qedhere \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(50);
+            pair B = dir(210);
+            pair C = dir(330);
+            real s = .4;
+            pair F = (1-s)*A + s*B;
+            pair E = A + abs(F-A)*unit(C-A);
+            pair D = extension(E, F, B, C);
+            pair G = extension(B, B + E - C, D, F);
+            draw(A--B--C--cycle, black+1);
+            draw(D--C);
+            draw(D--G);
+            draw(B--G);
+            add(pathticks(A--F, 1, .5, 6, 4));
+            add(pathticks(A--E, 1, .5, 6, 4));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(315));
+            dot("$E$", E, dir(45));
+            dot("$F$", F, dir(90));
+            dot("$G$", G, dir(90));
+        \end{asy}
+    \end{center}
+\end{solution}
+
+\begin{question}
+    The sum of the two smallest positive divisors of a positive integer $N$ is
+    6, while the sum of the largest positive divisors of $N$ is 1122. Find $N$.
+\end{question}
+\begin{solution}
+    Let the two smallest and largest positive divisors be $d_1$, $d_2$, $d_3$,
+    $d_4$, with $d_1 < d_2 < d_3 < d_4$. Then since $d_1$ is the smallest
+    divisor of $N$, it must be 1. Similarly, since $d_4$ is the larget divisor
+    of $N$, it must be $N$ itself. Now the problem gives us $d_1 + d_2 = 6$ and
+    $d_3 + d_4 = 1122$, which shows that 
+    \[ d_2 = 5 \quad \text{and} \quad d_3 = 1122 - N. \]
+    But since $d_2$ is the second smallest divisor and $d_3$ is the second
+    biggest divisor, $d_2 d_3 = N$. Hence
+    \[ 5(1122 - N) = N \Longrightarrow N = 935. \qedhere \]
+\end{solution}
+
+\begin{question}
+    If $p$, $q$ and $r$ are prime numbers such that $p < q < r$ and their
+    product is 19 times their sum, find $p(q + r)$.
+\end{question}
+\begin{solution}
+    Let $x$, $y$ and $z$ be primes such that $xyz = 19(x + y + z)$. Then since
+    $19 \mid xyz$ and $x$, $y$, $z$ are primes, one of them must be 19. WLOG,
+    suppose that $x = 19$. Then \hyperref[teq: SFFT]{SFFT} gives us 
+    \[ yz = 19 + y + z \Longrightarrow (y - 1)(z - 1) = 20. \]
+    Remember that $y$ and $z$ are both positive integers. Theis means that $y -
+    1$ and $z - 1$ are both positive divisors of 20. Hence
+    \begin{center}
+        \begin{tabular}{ |c|c| }
+            \hline
+            $y - 1$ & $z - 1$ \\
+            \hline
+            1 & 20 \\
+            2 & 10 \\
+            4 & 5 \\
+            5 & 4 \\
+            10 & 2 \\
+            20 & 1 \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Checking these cases, we see that $(y, z) = (11, 3)$ or $(3, 11)$. Hence
+    $(x, y, z)$ can be any permutation of $(19, 11, 3)$. Adding the size
+    condition, we see that $(p, q, r) = (3, 11, 19)$. Consequently, $p(q + r) =
+    90$.
+\end{solution}

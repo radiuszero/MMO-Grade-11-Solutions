@@ -1,0 +1,73 @@
+\field{Algebra}
+\begin{theorem}[RMS - AM - GM - HM Inequality]
+    \label{thm: amgm}
+    For any positive real numbers $a_1, a_2, \ldots, a_n$,
+    \[\sqrt{\frac{x_1^2 + x_2^2 + \cdots + x_n^2}{n}} \geq \frac{x_1 + x_2 + \cdots + x_n}{n} \geq \sqrt[n]{x_1 x_2 \cdots x_n} \geq \frac{n}{1/x_1 + 1/x_2 + \cdots + 1/x_n}\]
+    with equality if and only if $a_1 = a_2 = \cdots = a_n$.
+\end{theorem}
+
+\begin{theorem}[Cauchy - Schwarz Inequality]
+    \label{thm: cs}
+    For any two sequences of real numbers\\ $a_1, a_2, \ldots, a_n$ and $b_1, b_2, \ldots, b_n$, the following inequality holds:
+    \[ (a_1 b_1 + a_2 b_2 + \cdots + a_n b_n)^2 \leq (a_1^2 + a_2^2 + \cdots + a_n^2)(b_1^2 + b_2^2 + \cdots +b_n^2) \]
+    with equality if and only if $a_i = kb_i$ for some real constant $k$.
+\end{theorem}
+
+\begin{theorem}[Vieta's Formulas]
+    \label{thm: vieta}
+    Let $a_{n}x^{n}+a_{n-1}x^{n-1}+\cdots + a_{0}$ be a polynomial with roots $r_{1},r_{2},\ldots,r_{n}$. Then the roots and coefficients are related as follows:
+    \begin{align*}
+        r_{1}+r_{2}+\cdots+r_{n}&=-\frac{a_{n-1}}{a_{n}}\\
+        (r_{1}r_{2}+r_{1}r_{3}+\cdots+r_{1}r_{n})+(r_{2}r_{3}+\cdots+r_{2}r_{n})+\cdots+r_{n-1}r_{n}&=\frac{a_{n-2}}{a_{n}}\\
+        &\vdotswithin{=}\\
+        r_{1}r_{2}\cdot \ldots \cdot r_{n}&=(-1)^{n}\frac{a_{0}}{a_{n}}.
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}[Descartes' Rule of Signs]
+    \label{thm: ruleofsigns}
+\end{theorem}
+
+\begin{theorem}[Fundamental Theorem of Algebra]
+    \label{thm: fundamentalthmofalg}
+\end{theorem}
+
+\newpage
+\begin{technique}[Some Useful Identities]
+    \label{teq: algidentities}
+    For any real numbers $a$, $b$ and $c$, the following identities hold.
+    \begin{enumerate}
+        \item $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca$.
+        \item $(a + 1)(b + 1)(c + 1) = abc + ab + bc + ca + a + b + c + 1$.
+        \item $a^3 + b^3 + c^3 - 3abc = (a + b + c)(a^2 + b^2 + c^2 - ab - bc - ca)$. 
+    \end{enumerate}
+\end{technique}
+
+\begin{technique}[Mathematical Induction]
+    \label{teq: induction}
+    % Insert falling dominoes
+    Sometimes, while proving something, we may notice that a problem can be reduced to a smaller version of the same problem. In those cases, we can use mathematical induction. A proof using induction generally consists of two parts. Suppose that we are trying to prove a statement $P$.
+    \begin{enumerate}
+        \item We first show that $P(i)$ is true for some natural number $i$, usually 0 or 1. This is called the base case. 
+        \item We then show that if $P(n)$ is true, than $P(n + 1)$ must also be true. This is called the inductive step.
+    \end{enumerate}
+    If we can do both of these steps, then we can conclude that the statement $P$ is true for all natural numbers $n \geq i$. It is easy to see why this holds: from step 1, $P(i)$ is true, and from step 2, $P(i + 1)$ must be true. Since $P(i + 1)$ is true, by step 2 again, $P(i + 2)$ is also true, and so on. This is often illustrated by the classic example of falling dominoes. Usually, the second step is a lot more important and difficult to prove than the first one. 
+
+    There are also many other variants of induction. One important and generally more useful version is `strong induction', where we assume in step 2 that $P(k)$ is true for all $i \leq k \leq n$, rather than just $P(n)$. Another version which is used less often is `forward - backward induction' which is described below as technique \ref{teq: f.b.induction}.
+\end{technique}
+
+\begin{technique}[Forward - Backward Induction]
+    \label{teq: f.b.induction}
+    This is a rarely used variant of induction, but it can handle some problems where normal induction fails. The procedure is generally like this:
+    \begin{enumerate}
+        \item Similarly to usual induction, we first show that $P(i)$ is true for some natural number $i$, usually 0 or 1.
+
+        \item We then show that if $P(n)$ is true, $P(2n)$ must also be true.
+
+        \item Finally we show that if $P(n)$ is true, $P(n - 1)$ must also be true.
+    \end{enumerate}
+    You can see why this technique is called forward - backward induction. We use step 2 to skip over a chunk of numbers, and then use step 3 to show that $P$ is also true for the numbers that we skipped. You can read more about this technique \href{https://brilliant.org/wiki/forward-backwards-induction/}{here}. 
+\end{technique}
+\begin{technique}[Simon's Favorite Factoring Trick]
+    \label{teq: SFFT}
+\end{technique}

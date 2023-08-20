@@ -1,0 +1,527 @@
+\solutionheader{2019 Regional Round}
+\begin{question}
+    \begin{enumerate}
+        \item Show that $x^2 + y^2 \geq 2xy$ for any two real numbers $x$ and
+            $y$, and that the sign of the equality holds if and only if $x=y$. 
+        
+        \item By using similar triangles, prove that $h = \frac{ab}{c}$ for the
+            given figure.
+            \begin{center}
+                \begin{asy}
+                    import olympiad;
+                    size(7cm);
+                    defaultpen(fontsize(11pt));
+                    pen mydash = linetype(new real[] {5,5});
+                    real s = -.16;
+                    pair A = dir(180);
+                    pair B = dir(0);
+                    pair A1 = (xpart(A), ypart(A)+s);
+                    pair B1 = (xpart(B), ypart(B)+s);
+                    pair M = midpoint(A1--B1);
+                    real k = .1;
+                    pair MA = M + k*unit((-1, 0));
+                    pair MB = M + k*unit((1, 0));
+                    pair C = dir(110);
+                    pair D = foot(C, A, B);
+                    draw(A--B--C--cycle, black+1);
+                    draw(C--D);
+                    draw(MA--A1, arrow=Arrow(size=5));
+                    draw(MB--B1, arrow=Arrow(size=5));
+                    draw(rightanglemark(A, C, B, 3));
+                    draw(rightanglemark(B, D, C, 3));
+                    dot("$A$", A, dir(225));
+                    dot("$B$", B, dir(315));
+                    dot("$C$", C, dir(90));
+                    dot("$D$", D, dir(270));
+                    label("$b$", midpoint(C--A), dir(135));
+                    label("$a$", midpoint(C--B), dir(45));
+                    label("$h$", midpoint(C--D), dir(0));
+                    label("$c$", M);
+                \end{asy}
+            \end{center}
+        \item By using a) and b), show that $h \leq \frac{c}{2}$, and that the
+            sign of equality only holds if and only if $a = b$. 
+        
+        \item Show that of all right triangles having the same length of
+            hypotenuse, the isosceles right triangle maximizes the area. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Since the square of a real number is always non-negative,
+    \[ (x - y)^2 \geq 0 \Longrightarrow x^2 + y^2 \geq 2xy, \]
+    and the equality holds if and only if $x - y = 0 \Rightarrow x = y$.
+
+    In $\triangle BDC$ and $\triangle BCA$, we have $\angle BDC = \angle BCA =
+    90^\circ$ and $\angle B$ as a common angle, so these two triangles are
+    similar. Therefore, 
+    \[ \frac{BC}{CD} = \frac{BA}{AC} \Longrightarrow \frac{a}{h} = \frac{c}{d}
+    \Longrightarrow h = \frac{ab}{c}. \]
+    Now by the first part and the Pythagoras's theorem,
+    \[ h = \frac{1}{c} \cdot ab \leq \frac{1}{c} \cdot \frac{a^2 + b^2}{2} =
+    \frac{c^2}{2c} = \frac{c}{2}. \]
+    Finally, as the equality holds if and only if $a = b$, we see that the $h$
+    is maximum when the right triangle is isosceles. Since the length of
+    hypotenuse is the same, this means that the area of the right triangle is
+    maximum when it is isosceles.
+\end{solution}
+
+\begin{question}
+    Find all functions over the reals such that $f(x) + 2f(1 - x) = x(1 - x)$.
+\end{question}
+\begin{solution}
+    Letting $x \mapsto 1 - x$ in the equation, we have
+    \[ f(1 - x) + 2f(x) = (1 - x)x. \]
+    Multiplying this equation by 2 and subtracting the original equation gives
+    us
+    \[ 3f(x) = x(1 - x) \Longrightarrow f(x) = \frac{x(1 - x)}{3}. \]
+    It is easy to check that this function satisfies the given equation, so
+    $f(x) = \frac{x(1 - x)}{3}$ is the only solution to the given equation.
+\end{solution}
+
+\begin{question}
+    In the given figure, $ABCD$ is a rectangle. $P$ and $Q$ are points on $BC$
+    such that $AB = BP = PQ = QC$. Find two similar but not congruent triangles
+    and prove their similarity. 
+\end{question}
+\begin{solution}
+    Let $x = AB = BP = PQ = QC$. We claim that $\triangle PAQ \sim \triangle
+    PCA$. First by Pythagoras's theorem, we have 
+    \[ PA^2 = 2x^2 = x(2x) = PQ \cdot PC \Longrightarrow \frac{PA}{PQ} =
+    \frac{PC}{PA}. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (0, 1);
+            pair B = (0, 0);
+            pair P = (1, 0);
+            pair Q = (2, 0);
+            pair C = (3, 0);
+            pair D = (3, 1);
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--P);
+            draw(A--Q);
+            draw(A--C);
+            add(pathticks(A--B, s=4));
+            add(pathticks(B--P, s=4));
+            add(pathticks(P--Q, s=4));
+            add(pathticks(Q--C, s=4));
+            dot("$A$", A, dir(135));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(45));
+            dot("$P$", P, dir(270));
+            dot("$Q$", Q, dir(270));
+        \end{asy}
+    \end{center}
+    We also have $\angle APQ = \angle CPA$, so $\triangle PAQ \sim \triangle
+    PCA$ by SAS.
+\end{solution}
+
+\begin{question}
+    Let $f(x) = ax^2 + bx + c$, $a \ne 0$. 
+    \begin{enumerate}
+        \item Fill in the following steps ($\square$) to show that $f(x) = a(x
+            + \frac{b}{2a})^2 - \frac{b^2 - 4ac}{2a}$. 
+            \begin{align*}
+                f(x) &= a(x^2 + \square x) + c\\
+                &= a\left(x^2 + \square x + \square - \left(\frac{b}{2a}\right)^2\right) + c\\
+                &= a(x^2 + \square x + \square)- \frac{b^2}{\square} + c\\
+                &= a(x + \square)^2 - \frac{b^2}{\square} + c\\
+                &= a\left(x + \frac{b}{2a}\right)^2 - \frac{b^2 - 4ac}{4a}
+            \end{align*}
+        
+        \item Hence show that if $a > 0$ and $b^2 - 4ac < 0$, then $f(x) > 0$
+            for all $x \in \mathbb{R}$. 
+        
+        \item Show that if $a < 0$ and $b^2 - 4ac < 0$, then $f(x) < 0$ for all
+            $x \in \mathbb{R}$.
+        
+        \item If $b^2 - 4ac > 0$, find the roots of the equation $f(x) = 0$ in
+            terms of $a$, $b$ and $c$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    This is just completing the square.
+    \begin{align*}
+        f(x) &= a \left( x^2 + \frac{b}{a} \cdot x \right) + c\\
+        &= a \left( x^2 + \frac{b}{a} \cdot x + \left( \frac{b}{2a} \right)^2 - \left( \frac{b}{2a} \right)^2 \right) + c\\
+        &= a \left( x^2 + \frac{b}{a} \cdot x + \left( \frac{b}{2a} \right)^2 \right) - \frac{b^2}{4a} + c\\
+        &= a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2}{4a} + c\\
+        &= a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a}.
+    \end{align*}
+    If $a > 0$ and $b^2 - 4ac < 0$, we must have $\frac{b^2 - 4ac}{4a} < 0$.
+    Since squares are non-negative,
+    \[ f(x) = a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a} \geq
+    -\frac{b^2 - 4ac}{4a} > 0. \]
+    Now if $a < 0$ and $b^2 - 4ac < 0$, we must have $\frac{b^2 - 4ac}{4a} >
+    0$. Therefore,
+    \[ f(x) = a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a} \leq
+    -\frac{b^2 - 4ac}{4a} < 0. \]
+    Finally, let's find the roots of $f(x) = 0$.
+    \begin{align*}
+        f(x) &= 0\\
+        a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a} &= 0\\
+        \left( x + \frac{b}{2a} \right)^2 &= \frac{b^2 - 4ac}{4a^2}\\
+        x + \frac{b}{2a} &= \pm \frac{\sqrt{b^2 - 4ac}}{2a}\\
+        x = &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}. 
+    \end{align*}
+    Since $b^2 - 4ac > 0$, the square root will evaluate to a positive real
+    number, and we will have two distinct real roots.
+\end{solution}
+
+\begin{question}
+    In the given figure, $DC = PB$ and $DC \parallel PB$. $M$ and $N$ are
+    midpoints of $AC$ and $BD$ respectively. 
+    \begin{enumerate}
+        \item Prove that the points $P$, $N$, $C$ are collinear. 
+        
+        \item Prove that $AP \parallel MN$ and $AP = 2MN$. 
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    As $DC = PB$ and $DC \parallel PB$, it follows that $DCBP$ is a
+    parallelogram. Therefore, the diagonals bisect each other, and hence the
+    midpoint $N$ of segment $BD$ must also be the midpoint of segment $PC$,
+    which means that $P$, $N$, $C$ are collinear. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair B = (2, -.5);
+            pair D = -B;
+            pair C = (.5, 1.5);
+            pair P = -C;
+            pair N = (0, 0);
+            pair A = (-2.5, -.7);
+            pair M = midpoint(A--C);
+            draw(D--C--B--P--cycle, black+1);
+            draw(D--A);
+            draw(A--P, black+1);
+            draw(A--C);
+            draw(D--B--A);
+            draw(P--C);
+            draw(N--M, black+1);
+            dot("$A$", A, dir(180));
+            dot("$B$", B, dir(0));
+            dot("$C$", C, dir(90));
+            dot("$D$", D, dir(135));
+            dot("$P$", P, dir(270));
+            dot("$M$", M, dir(135));
+            dot("$N$", N, dir(45));
+        \end{asy}
+    \end{center}
+    Now $M$ is also the midpoint of $AC$, so $MN \parallel AP$ and 
+    \[ \frac{MN}{AP} = \frac{CN}{CP} = \frac{1}{2} \Longrightarrow AP = 2MN.
+    \qedhere \]
+\end{solution}
+
+\begin{question}
+    In the given figure, $\angle BAC = 60^\circ$, $AB = 24$ cm, $BD \perp AC$
+    and $DC = 3$ cm. Find the diameter of the circle. 
+\end{question}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        size(7cm);
+        defaultpen(fontsize(11pt));
+        pen mydash = linetype(new real[] {5,5});
+        real s = 30;
+        pair A = dir(170);
+        pair B = dir(s);
+        pair C = dir(s-120);
+        pair D = foot(B, C, A);
+        pair O = (0, 0);
+        pair E = -C;
+        draw(A--B--C--cycle, black+1);
+        draw(B--D);
+        draw(C--E);
+        draw(E--B);
+        draw(circumcircle(A, B, C));
+        draw(rightanglemark(B, D, A, 2.5));
+        draw(rightanglemark(C, B, E, 2.5));
+        dot("$A$", A, dir(A));
+        dot("$B$", B, dir(B));
+        dot("$C$", C, dir(C));
+        dot("$D$", D, dir(225));
+        dot("$E$", E, dir(E));
+        dot("$O$", O, dir(180));
+        label("24", midpoint(A--B), dir(100));
+        label("3", midpoint(D--C), dir(225));
+    \end{asy}
+\end{center}
+\begin{solution}
+    Let $O$ be the center of the circle and let line $CO$ meet the circle again
+    at $E$. Since $\triangle BAD$ is a 30-60 right triangle, we have $AD = 12$.
+    Therefore, $AC = AD + DC = 15$. Now by law of cosines in $\triangle ABC$,
+    \[ BC^2 = AC^2 + AB^2 - 2AB \cdot AC \cdot \cos 60^\circ = 15^2 + 24^2 - 15
+    \cdot 24 = 441 \Longrightarrow BC = 21. \]
+    Now notice that $\angle CEB = \angle CAB = 60^\circ$ and $\angle CBE =
+    90^\circ$. Therefore,
+    \[ CE = \frac{BC}{\sin 60^\circ} = \frac{42}{\sqrt{3}} = 14\sqrt{3}, \]
+    and hence the diameter of the circle is $14 \sqrt{3} \text{ cm}$.
+\end{solution}
+
+\begin{question}
+    In an AP, the $k$th term is 11. The sum of the first $k$ terms is 26. The
+    sum of the next $k$ terms is 74. Find the first term and the common
+    difference. 
+\end{question}
+\begin{solution}
+    Let $u_1$ and $d$ be the first term and common difference of the sequence.
+    It is easy to see that the sum to $2k$ terms is $26 + 74 = 100$. Therefore,
+    we have the following three equations:
+    \begin{align*}
+        26 &= \frac{k(u_1 + u_k)}{2},\\
+        100 &= k(u_1 + u_{2k}),\\
+        11 &= u_k.
+    \end{align*}
+    Since $u_{2k}$ is obtained by adding $d$ to $u_k$ for $k$ more times,
+    $u_{2k} = u_k + kd$. From the first equation, we also have $k(u_1 + u_k) =
+    52$. Substituting all of this into the second equation gives
+    \[ 100 = k(u_1 + u_{2k}) = k(u_1 + u_k) + k^2d = 52 + k^2d \Longrightarrow
+    k^2d = 48. \]
+    Now from the second equation, $u_k = u_1 + (k - 1)d$, so $u_1 = u_k - (k -
+    1)d$. Substituting again into the second equation,
+    \begin{align*}
+        100 &= k(u_k - (k - 1)d + u_k + kd)\\
+        &= k(2u_k + d)\\
+        &= 22k + kd\\
+        100k &= 22k^2 + k^2d\\
+        100k &= 22k^2 + 48\\
+        22k^2 - 100k + 48 &= 0\\
+        11k^2 - 50k + 24 &= 0\\
+        (11k - 6)(k - 4) &= 0
+    \end{align*}
+    Since $k$ is a positive integer, $k$ must be 4 and so $d = 3$. Finally, 
+    \[ u_1 = u_k - (k - 1)d = 11 - 3 \cdot 3 = 2. \qedhere \]
+\end{solution}
+\begin{remark}
+    This problem is basically the same as \hyperref[sol: 2018 Regional Round
+    P7]{2018 Regional Round Problem 7}. 
+\end{remark}
+
+\begin{question}
+    What is the radius of the inscribed circle of a 3-4-5 right triangle? 
+\end{question}
+\begin{solution}
+    We will first derive a formula to find the inradius of a general triangle.
+    Suppose that we have $\triangle ABC$ with incenter $I$. Let its inradius be
+    $r$, then the area of $\triangle IBC$ is 
+    \[ [\triangle IBC] = \frac{r \cdot BC}{2}. \]
+    Similarly, we can also compute the areas of $\triangle ICA$ and $\triangle
+    IAB$. Therefore summing all of them gives
+    \[ [\triangle ABC] = [\triangle IBC] + [\triangle ICA] + [\triangle IAB] =
+    \frac{r(AB + BC + CA)}{2} \Longrightarrow r = \frac{2[\triangle ABC]}{AB +
+    BC + CA}. \]
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair I = incenter(A, B, C);
+            pair D = foot(I, B, C);
+            pair E = foot(I, C, A);
+            pair F = foot(I, A, B);
+            draw(A--B--C--cycle, black+1);
+            draw(I--D, mydash);
+            draw(I--E, mydash);
+            draw(I--F, mydash);
+            draw(I--A);
+            draw(I--B);
+            draw(I--C);
+            draw(circle(I, abs(I-D)));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(45));
+            dot("$F$", F, dir(135));
+            dot("$I$", I, dir(70));
+            label("$r$", midpoint(I--D), dir(0));
+        \end{asy}
+    \end{center}
+    Now let's applying this formula to our 3-4-5 right triangle. Its area is
+    10, so its inradius is
+    \[ r = \frac{20}{3 + 4 + 5} = \frac{20}{12} = \frac{5}{3}. \qedhere \]
+\end{solution}
+
+\begin{question}
+    A bag contains 3 red balls and 2 green balls. Balls are drawn at random,
+    one at a time but not replaced, until all 3 of red balls are drawn or until
+    both green balls are drawn. What is the probability that the 3 reds are
+    drawn? 
+\end{question}
+\begin{solution}
+    For simplicity, suppose that we continue drawing after we are supposed to
+    stop, but we don't care about those extra balls. Let an \emph{arrangement}
+    be an array of 5 balls, and call an arrangement \emph{favourable} if it
+    satisfies the problem conditions. First, since there are a total of 5
+    balls, there are $\binom{5}{3} = 10$ ways to choose 3 positions for the 3
+    red balls. Then the 2 green balls can be filled in the remaining spots.
+    Therefore, the total number of arrangements is $10$. Now we will calculate
+    the number of favourable arrangments. Suppose that the last ball in an
+    arrangement is a red ball. That would mean that the 2 green balls came
+    before it, and hence it would have stopped without all 3 red balls being
+    drawn. This means that an arrangement is favourable if and only if its last
+    ball is green. The number of such arrangements is $\binom{4}{3} = 4$.
+    Therefore, the probability is
+    \[ \mathbb{P}(\text{3 reds are drawn}) = \frac{4}{10} = \frac{2}{5}. \qedhere \]
+\end{solution}
+% There has to be a better solution here. The probability is the same as the probability to draw a green ball.
+
+\begin{question}
+    If 75! is divisible by $5^n$, find the maximum value of $n$. 
+\end{question}
+\begin{solution}
+    Since $75 = 5 \cdot 15$, there are 15 numbers less than or equal to $75$
+    which are divisible by 5. Out of those 15 numbers, there are 3 numbers
+    which are divisible by $5^2 = 25$. Therefore, the total power of 5 in the
+    prime factorization of $75!$ is $15 + 3 = 18$. Hence $n = 18$.
+\end{solution}
+\begin{remark}
+    This problem uses the same idea as \hyperref[sol: 2018 Regional Round P10]{2018 Regional Round Problem 10}. 
+\end{remark}
+
+\begin{question}
+    If $L$, $M$, $N$ are the midpoints of the sides of $\triangle ABC$, and $P$
+    is the foot of perpendicular from $A$ to $BC$, prove that $L$, $P$, $M$,
+    $N$ are concyclic.
+\end{question}
+\begin{solution}
+    First observe that $ML \parallel AC$ and $MN \parallel AB$ due to the
+    midpoints. Therefore, $ALMN$ is a parallelogram, and so $\angle LMN =
+    \angle LAN$. Now since $L$ is the midpoint of the hypotenuse in right
+    triangle $ABP$, we see that $LA = LP$. Similarly, $NA = NP$. Therefore,
+    $\triangle LAN \cong \triangle LPN$ by SSS. This implies that $\angle LMN =
+    \angle LAN = \angle LPN$ so $L$, $M$, $N$, $P$ are concyclic as desired.
+\end{solution}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        size(7cm);
+        defaultpen(fontsize(11pt));
+        pen mydash = linetype(new real[] {5,5});
+        pair A = dir(120);
+        pair B = dir(210);
+        pair C = dir(330);
+        pair M = midpoint(B--C);
+        pair N = midpoint(C--A);
+        pair L = midpoint(A--B);
+        pair P = foot(A, B, C);
+        draw(A--B--C--cycle, black+1);
+        draw(A--P);
+        draw(L--P--N);
+        draw(L--M--N);
+        draw(L--N);
+        draw(circumcircle(L, M, N), mydash);
+        draw(rightanglemark(A, P, C, 2.5));
+        dot("$A$", A, dir(A));
+        dot("$B$", B, dir(225));
+        dot("$C$", C, dir(315));
+        dot("$M$", M, dir(270));
+        dot("$N$", N, dir(45));
+        dot("$L$", L, dir(135));
+        dot("$P$", P, dir(270));
+    \end{asy}
+\end{center}
+
+\begin{question}
+    In a GP, the $k$th term is 864. The sum of the first $k$ terms is 2080. The
+    sum of the first $2k$ terms is 12610. Find the first term and the common
+    ratio.
+\end{question}
+\begin{solution}
+    Let the first term of the GP be $a$ and common ratio be $r$. We can view
+    $S_{2k}$ in the following way.
+    \begin{align*}
+        S_{2k} &= a + ar + ar^2 + \cdots + ar^{k - 1} + ar^{k} + \cdots + ar^{2k - 1}\\
+        &= (a + ar + ar^2 + \cdots + ar^{k - 1}) + r^k(a + ar + ar^2 + \cdots + ar^{k - 1})\\
+        &= S_k + r^k S_k\\
+        &= S_k (1 + r^k)\\
+        1 + r^k &= \frac{97}{16}\\
+        r^k &= \frac{81}{16}.
+    \end{align*} 
+    We will now use the condition $u_k = ar^{k - 1} = 864$.
+    \begin{align*}
+        S_k &= \frac{a - ar^k}{1 - r}\\
+        (1 - r)2080 &= r \left( \frac{a}{r} - ar^{k - 1} \right)\\
+        &= r \left( \frac{ar^{k - 1}}{r^k} - ar^{k - 1} \right)\\
+        &= r \left( \frac{864 \cdot 16}{81} - 864 \right)\\
+        (r - 1)2080 &= \frac{56160r}{81}\\
+        r - 1 &= \frac{r}{3}\\
+        r &= \frac{3}{2}.
+    \end{align*}
+    Therefore, $k = 4$. Finally,
+    \[ a \left( \frac{3}{2} \right)^3 = 864 \Longrightarrow a = 256. \qedhere \]
+\end{solution}
+
+\begin{question}
+    Prove that $\binom{n}{m}\binom{m}{k} = \binom{n}{k}\binom{n - k}{m - k}$ if all variables are integers and $n \geq m \geq k \geq 0$.
+\end{question}
+\begin{solution}
+    Suppose that there are $n - m$ blue balls, $m - k$ green balls, and $k$ red
+    balls. The total number balls is $n - m + m - k + k = n$. We will count the
+    number of ways to arrange these balls in two different ways. First suppose
+    that we place the blue balls first. There are $\binom{n}{n - m}$ ways to
+    choose $n - m$ positions out of $n$ positions. After this, there will be
+    $m$ places left for red and green balls. The number of ways to choose $k$
+    places from these $m$ places for red balls is $\binom{m}{k}$. Therefore,
+    the total number of arrangements is
+    \[ \binom{n}{n - m}\binom{m}{k} = \binom{n}{m}\binom{m}{k}. \]
+    Now suppose that we place the red balls first. There are $\binom{n}{k}$
+    ways to choose $k$ positions out of $n$ positions. Then there will be $n -
+    k$ positions remaining for blue and green balls. Out of those $n - k$
+    positions, there are $\binom{n - k}{m - k}$ ways to choose $m - k$
+    positions for the green balls. Therefore, the total number of arrangements
+    counted this way is
+    \[ \binom{n}{k}\binom{n - k}{m - k}. \]
+    Since the total number of arrangements is the same, we have our desired
+    identity.
+\end{solution}
+
+\begin{question}
+    \begin{enumerate}
+        \item Prove that $n \leq -k^2 + nk + k \leq \frac{(n + 1)^2}{4}$ for $1
+            \leq k \leq n$. 
+        
+        \item Consider $k(n + 1 - k) = -k^2 + nk + k$ and by using the
+            inequalities in (1), prove that 
+            \[n^n \leq (n!)^2 \leq \frac{(n + 1)^{2n}}{4^n}.\]
+        
+        \item Hence prove that 
+            \[n^{\frac{n}{2}} \leq n! \leq \frac{(n + 1)^n}{2^n}.\]
+    \end{enumerate}
+\end{question}
+\begin{solution}
+    Let's show the first inequality.
+    \begin{align*}
+        k &\leq n\\
+        k(k - 1) &\leq n(k - 1)\\
+        k^2 - k &\leq nk - n\\
+        n &\leq -k^2 + nk + k.
+    \end{align*}
+    The second inequality follows from the \hyperref[thm: amgm]{AM-GM inequality}. 
+    \[ \frac{(n + 1)^2}{4} = \left( \frac{(n + 1 - k) + k}{2} \right)^2 \geq
+    k(n + 1 - k) = -k^2 + nk + k. \]
+    Now consider the following $n$ inequalities, obtained when $k$ ranges from
+    1 to $n$.
+    \begin{align*}
+        n &\leq 1 \cdot n \leq \frac{(n + 1)^2}{4}\\
+        n &\leq 2 \cdot (n - 1) \leq \frac{(n + 1)^2}{4}\\
+        &\vdotswithin{\leq}\\
+        n &\leq n \cdot 1 \leq \frac{(n + 1)^2}{4}.
+    \end{align*}
+    Multiplying all of them gives
+    \[ n^n \leq (n!)^2 \leq \frac{(n + 1)^{2n}}{4^n}. \]
+    Taking the square roots of every term, we finally have
+    \[ n^{\frac{n}{2}} \leq n! \leq \frac{(n + 1)^n}{2^n}. \qedhere \]
+\end{solution}
