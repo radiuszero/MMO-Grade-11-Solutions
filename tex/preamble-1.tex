@@ -3,7 +3,6 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage[inline]{enumitem}
-\usepackage[hidelinks]{hyperref}
 \usepackage{mathtools}
 \usepackage{chngcntr}
 \usepackage[most]{tcolorbox}
@@ -13,7 +12,17 @@
 \def\asydir{./build}
 
 \KOMAoptions{toc=chapterentrydotfill}
-\setkomafont{chapterentry}{\sffamily}
+\setkomafont{chapterentry}{\normalfont}
+\setkomafont{title}{\scshape}
+\setkomafont{subtitle}{\large\scshape}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    urlcolor=Blue
+}
 
 % Custom sectioning for `Theorems and Techniques' part
 \newcounter{field}
@@ -24,22 +33,28 @@
 }
 
 % Theorems
-\declaretheoremstyle[%
-    headfont=\color{Brown}\fontfamily{ppl}\selectfont\bfseries
-]{theorem}
-\declaretheorem[style=theorem, numberwithin=field]{theorem}
-\declaretheorem[style=theorem, sibling=theorem]{lemma}
-\declaretheorem[style=theorem, parent=theorem]{corollary}
-\declaretheorem[style=theorem, numberwithin=field]{technique}
-\declaretheorem[style=theorem, numberwithin=field]{definition}
+\newtheoremstyle{thm}%
+    {3pt}%
+    {10pt}%
+    {}%
+    {}%
+    {\sffamily\bfseries}%
+    {.}%
+    {.5em}%
+    {}%
+\theoremstyle{thm}
+\newtheorem{theorem}{Theorem}[field]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{technique}{Technique}[field]
+\newtheorem{definition}{Definition}[field]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{claim}{Claim}
 
 % Headers and footers
 \usepackage[headsepline, automark]{scrlayer-scrpage}
-\ihead{Kyaw Shin Thant}
-\ohead{\leftmark}
+\ihead{\normalfont {\sffamily\bfseries Solutions} by {\itshape Kyaw Shin Thant}}
+\ohead{\normalfont \leftmark}
 
 % Contests and problems
 \newcounter{problem}[chapter] 
@@ -51,10 +66,11 @@
     \label{con: #1} \renewcommand{\currentcontest}{#1}
 }
 \colorlet{error}{red!50!white}
+\colorlet{fixed}{Dandelion!70!white}
 \newcommand{\problem}[1][white]{
     \refstepcounter{problem}%
     \label{con: \currentcontest\space P\theproblem}%
-    \item[\fcolorbox{black}{#1}{\makebox[0.45cm]{\normalfont\large\theproblem}}]%
+    \item[\fcolorbox{black}{#1}{\makebox[0.45cm]{\hyperref[sol: \currentcontest\space P\theproblem]{\color{black}\normalfont\large\theproblem}}}]%
 }
 \newenvironment{problems}{
     \begin{description}[leftmargin=1cm, labelwidth=0.7cm, labelsep=0.3cm, itemsep=0.7cm]
@@ -80,12 +96,13 @@
         colback=Cyan!12!white,
         colframe=NavyBlue,
         boxrule=0.8pt]
-        {\sffamily\bfseries\textcolor{NavyBlue}{Problem \thequestion.}}% 
+    {\sffamily\bfseries\hyperref[con: \currentcontest]{\textcolor{NavyBlue}{Problem \thequestion.}}}%
 }{
     \end{tcolorbox}
 }
 
 \newenvironment{solution}[1][\unskip]{
+    \setcounter{case}{0}
     \begin{proof}[Solution #1]
 }{
     \end{proof}
@@ -100,7 +117,17 @@
 }{}
 
 % Useful environements
-\renewenvironment{quote}{\begin{tcolorbox}[colback=white]}{\end{tcolorbox}}
+\renewenvironment{quote}{
+    \begin{tcolorbox}[
+        enhanced,
+        sharp corners=all,
+        colback=Green!16!white,
+        boxrule=0pt,
+        frame hidden,
+        borderline west={1mm}{0mm}{Green}]
+    {\sffamily\bfseries\textcolor{ForestGreen}{Reformulation.}}%
+}{
+    \end{tcolorbox}}
 % Macros
 \newcommand{\matr}[1]{\mathbf{#1}}
 \newcommand{\hint}{{\color{Brown}Hint}:\space}
@@ -118,5 +145,24 @@
 \definecolor{graey}{RGB}{180,180,180}
 \counterwithout{equation}{chapter}
 \definecolor{mygray}{gray}{0.8}
+\setcounter{tocdepth}{0}
 \hfuzz=2pt
 \graphicspath{ {./images/} }
+
+% Watermark
+% Code copied from
+% https://tex.stackexchange.com/questions/18943/how-to-add-an-invisible-watermark-to-pdf-documents
+\newcommand\watermark[1]{%
+    #1%
+    \sbox0{#1}%
+    \llap{%
+    \makebox[\wd0][c]{%  hor. centering
+    \raisebox{.47\ht0}{%  approx. vert. centering
+    \csname Gin@isotrue\endcsname% = "keepaspectratio"
+    \resizebox*{1\ht0}{1\ht0}{% Scale down (the height is also used for the width to avoid the surrounding spaces)
+    \parbox{10em}{% Allow line breaks
+            \color{black!60}%  
+            \centering Original Author:\\ Kyaw Shin Thant
+        }%
+    }}}}%
+}
