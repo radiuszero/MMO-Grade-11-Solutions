@@ -1,35 +1,67 @@
 \field{Number Theory}
+\begin{technique}[Modular Arithmetic Basics]
+    \label{teq: modulo}
+    Fix a positive integer $n$. For any
+    two integers $a$ and $b$, we say that ``$a$ and $b$ are equivalent
+    \emph{modulo} $n$'' if and only if $a - b$ is divisible by $n$. In other
+    words, $a$ and $b$ are equivalent mod $n$ if and only if they leave the
+    same remainder when divided by $n$. We write
+    \[ a \equiv b \pmod{n} \]
+    to symbolize this equivalence. For example,
+    \[ a \equiv 0 \pmod{n} \]
+    means that $a$ is divisible by $n$.
+
+    This equivalence symbol $\equiv$ really behaves like the equality symbol $=$
+    that we use all the time. In particular, it respects all of the arithmetic
+    operations except for division. The latter requires special care; we can
+    only divide both sides of the equivalence by an integer $k$ if and only if
+    $k$ is relatively prime to $n$. (Think about why this is true!) If $a \equiv
+    b \pmod{n}$ and $c \equiv d \pmod{n}$, then we have
+    \[ a + b \equiv c + d \pmod{n}, \quad ab \equiv cd \pmod{n},
+    \quad\text{and}\quad a^k \equiv b^k \pmod{n}\,\text{ for all $k\in\mathbb{N}$}. \]
+    This is a very useful notation for dealing with divisibility problems, and
+    it will be used freely in the solutions.
+\end{technique}
+
 \begin{theorem}[Fermat's Little Theorem]
     \label{thm: FLT}
     For any prime $p$ and positive integer $a$,
     \[ a^p \equiv a \pmod{p}.\] 
-    If we also have $\gcd(a, p) = 1$ in addition,
+    If $a$ and $p$ are relatively prime in addition,
     \[ a^{p - 1} \equiv 1 \pmod{p}.\]
+    This is because we can divide both sides of the equivalence by $a$.
 \end{theorem}
 
 \begin{lemma}
-    \label{lem: weakCRT}
-    Let $a$ and $b$ be positive integers, and let the prime factorization of $b$ be
-    \[ b = p_1^{e_1} p_2^{e_2} \cdots p_n^{e_n}.\]
-    Then $b$ divides $a$ if and only if $p_i^{e_i}$ divides $a$ for all $1 \leq i \leq n$.
+    \label{lem: weakCRT} 
+    Let $a$, $b$ and $n$ be integers. Then
+    $a$ and $b$ both divide $n$ if and only if their least common multiple also
+    divides $n$. A useful case of this is when $a$ and $b$ are relatively prime.
+    In this case, their least common multiple is $ab$, so $a$ and $b$ both
+    divide $n$ if and only if $ab$ divides $n$.
+
+    More generally, if we have $k$ integers $a_1, a_2, \ldots,
+    a_n$, then they all divide $n$ if and only if their least common multiple
+    also divides $n$.
 \end{lemma}
 
 \begin{lemma}
     \label{lem: divisibilityGP}
     Let $a$ and $b$ be integers, and $n$ be a positive integer. Then 
     \[ \frac{a^n - b^n}{a - b} = a^{n - 1} + a^{n - 2}b + a^{n - 3}b^2 + \cdots + b^{n - 1}. \]
-    In particular, $a^n - b^n$ is divisible by $a - b$.
+    In particular, $a^n - b^n$ is divisible by $a - b$. Think about how this is
+    related to the last identity in the equation in Technique~\ref{teq: modulo}.
 \end{lemma}
 
-\begin{theorem}[Legendre's formula]
-    \label{thm: legendre}
+% \begin{theorem}[Legendre's formula]
+    % \label{thm: legendre}
     % Proof: Consider a table with a column for each number containing a $\nu_p(n)$ amount of dots vertically. Then count the number of dots in each layer and sum up. 
-\end{theorem}
+% \end{theorem}
 
 \begin{lemma}[Euclid]
     \label{lem: euclid}
+    Let $a$, $b$ and $c$ be positive integers and suppose that $a$ divides $bc$.
+    If $a$ and $b$ are relatively prime, then $a$ divides $c$. This innocent
+    looking lemma is surprisingly hard to prove without being circular!
 \end{lemma}
 
-\begin{technique}[Euclidean Algorithm]
-    \label{teq: euclideanalg}
-\end{technique}

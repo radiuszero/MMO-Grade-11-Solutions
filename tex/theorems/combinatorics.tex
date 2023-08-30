@@ -1,23 +1,179 @@
 \field{Combinatorics}
-\begin{theorem}[Inclusion - exclusion principle]
-    \label{thm: incluexclu} 
+\begin{theorem}[Inclusion-Exclusion Principle]
+    \label{thm: incluexclu}
+    The inclusion-exclusion principle is a useful technique to count the number
+    of elements in a union of sets, which may not be disjoint. In its
+    simplest form, it states that given two sets $A$ and $B$, the number of
+    elements in the set $A \cup B$ is
+    \[ |A \cup B| = |A| + |B| - |A \cap B|. \]
+    This can be proven easily by using a Venn diagram. More generally,
+    suppose that $A_1$, $A_2$, $\ldots$, $A_n$ are $n$ sets. Then the number of
+    elements in the union $A_1 \cup A_2 \cup \cdots \cup A_n$ is the alternating
+    sum
+    \[ |A_1 \cup A_2 \cup \cdots \cup A_n| = \sum_{i = 1}^n |A_i| - \sum_{1 \leq
+        i < j \leq n} |A_i \cap A_j| + \cdots + (-1)^{n + 1} |A_1 \cap A_2 \cap
+    \cdots \cap A_n|. \]
+    For example, the above formula for $n = 3$ would be
+    \[ |A_1 \cup A_2 \cup A_3| = |A_1| + |A_2| + |A_3| - |A_1 \cap A_2| - |A_2
+    \cap A_3| - |A_1 \cap A_3| + |A_1 \cap A_2 \cap A_3|. \]
 \end{theorem}
-\begin{theorem}[Pigeonhole principle]
+\begin{theorem}[Pigeonhole Principle]
     \label{thm: pigeonhole}
-\end{theorem}
-\begin{theorem}[Lineariy of Expectation]
-    \label{thm: linofe}
+    Suppose that you have $n$ objects and $k$ buckets, where $k < n$. The
+    pigeonhole principle states that no matter how you distribute the objects
+    into the buckets, there will at least be one bucket with more than one
+    object in it. This is quite a trivial statement but it can be used to prove
+    pretty counterintuitive stuff.
 \end{theorem}
 \begin{technique}[Stars and Bars]
     \label{teq: starsandbars}
+    Suppose that we have $n$ identical stars and $k$ buckets, and we want to
+    count the number of ways to distribute the stars into buckets such that
+    \emph{each bucket contains at least one star}. One way to decide how to
+    distribute the stars is by laying all the stars in a line, and dividing them
+    into $k$ parts by inserting $k - 1$ bars in the gaps between them. Note that
+    there must be at least one star between consecutive bars; this means that
+    only one bar can be inserted into one gap. There are $n - 1$ gaps, and the
+    number of ways to insert $k - 1$ bars in $n - 1$ gaps is
+    \[ \binom{n - 1}{k - 1}. \]
+
+    Now suppose that we allow the buckets to be empty. i.e., we no longer need
+    the each bucket to contain at least one star. In this case, there can be
+    multiple bars in each gap, and it is no longer easy to count the number of
+    ways to insert the bars. Instead, we can view each configuration as a
+    permutation of stars and bars \emph{combined}. Since there are $n$ identical
+    stars and $k - 1$ identical bars, the number of ways to permute them is
+    \[ \binom{n + k - 1}{k - 1}. \]
 \end{technique}
 \begin{definition}[Graph]
     \label{def: graph}
-    % Also add some different types and names of well-known graphs. 
+    A graph is a structure consisting of a set of \emph{vertices}, and a set of
+    \emph{edges} connecting those vertices. Usually, the vertices represent
+    objects that we are interested in a problem (e.g., people), and the edges represent the
+    relations between the objects (e.g., two people are adjacent). Below is an
+    example of a graph. The dots are vertices and the line segments are edges.
+    \begin{center}
+        \begin{asy}
+            size(6cm);
+            draw((0, 0)--(1, 2)--(4, 4)--(7, 2)--(8, 0));
+            draw((1, 2)--(2, 0)--(2.5, -2));
+            draw((2, 0)--(1.5, -2));
+            draw((6, 0)--(7, 2));
+            dot((0, 0));
+            dot((1, 2));
+            dot((4, 4));
+            dot((7, 2));
+            dot((8, 0));
+            dot((2, 0));
+            dot((6, 0));
+            dot((1.5, -2));
+            dot((2.5, -2));
+        \end{asy}
+    \end{center}
+
+    For example,
+    there is the path graph with $n$ vertices, denoted as $P_n$, which is just a
+    chain. Here is a (boring) diagram of $P_1$ (which is just a point), $P_2$,
+    $P_3$ and $P_4$.
+    \begin{center}
+        \begin{asy}
+            size(8cm);
+            pair P11 = (0, 0);
+            pair P21 = (1, 0);
+            pair P22 = (2, 0);
+            pair P31 = (3, 0);
+            pair P32 = (4, 0);
+            pair P33 = (5, 0);
+            pair P41 = (6, 0);
+            pair P42 = (7, 0);
+            pair P43 = (8, 0);
+            pair P44 = (9, 0);
+            draw(P21--P22);
+            draw(P31--P33);
+            draw(P41--P44);
+            dot(P11);
+            dot(P21);
+            dot(P22);
+            dot(P31);
+            dot(P32);
+            dot(P33);
+            dot(P41);
+            dot(P42);
+            dot(P43);
+            dot(P44);
+        \end{asy}
+    \end{center}
+    There's also the cycle graph with $n$ vertices, denoted as $C_n$, which as
+    the name suggests is a cycle with $n$ vertices. Here are the diagrams of
+    $C_3$, $C_4$ and $C_5$ respectively.
+    \begin{center}
+        \begin{asy}
+            size(8cm);
+            path t = dir(90)--dir(210)--dir(330)--cycle;
+            path s = dir(45)--dir(135)--dir(225)--dir(315)--cycle;
+            path p = dir(72)--dir(144)--dir(216)--dir(288)--dir(360)--cycle;
+            draw(t);
+            draw(shift((3, 0))*s);
+            draw(shift((6, 0))*p);
+            dot(dir(90));
+            dot(dir(210));
+            dot(dir(330));
+            dot(dir(45) + (3, 0));
+            dot(dir(135) + (3, 0));
+            dot(dir(225) + (3, 0));
+            dot(dir(315) + (3, 0));
+            dot(dir(72) + (6, 0));
+            dot(dir(144) + (6, 0));
+            dot(dir(216) + (6, 0));
+            dot(dir(288) + (6, 0));
+            dot(dir(360) + (6, 0));
+        \end{asy}
+    \end{center}
 \end{definition}
 \begin{definition}[Chromatic Polynomial]
     \label{def: chromaticpoly}
+    Let $G$ be a graph and $k$ be any positive integer. A $k$-colouring of $G$
+    is a colouring of the vertices of $G$, such that any two vertices which are
+    connected by an edge have different colours. The \emph{chromatic polynomial}
+    of $G$, often denoted as $P(G, k)$, is the number of $k$-colourings of
+    $G$. (The fact that this function is a polynomial in $k$ is
+    not obvious; however, it can be proven using the next technique.)
 \end{definition}
-\begin{technique}[Deletion Contraction]
+\begin{technique}[Deletion-Contraction]
     \label{teq: DC}
+    Suppose that we have a set of objects in a specific configuration (e.g., in a
+    circle) and we want to count the number of ways to colour them such that no
+    two adjacent objects have the same colour. Such a problem can be
+    quite annoying to tackle as you can miss a case or two and get the wrong
+    answer, but it becomes a lot easier once you translate it into a graph
+    colouring problem. First, start by drawing a vertex for each object, and
+    then draw an edge between any two objects that are adjacent to each other.
+    Then the task of finding the number of colourings merely becomes the task of
+    finding the chromatic polynomial of the resulting graph.
+
+    Deletion-contraction gives a way to recursively find the chromatic
+    polynomial of any graph. Let $G$ be a graph and $k$ be a positive integer.
+    Pick any edge $e$ with endpoints $u$ and $v$. Let $G - e$ be the graph
+    obtained by removing the edge $e$. Then the set of $k$-colourings of $G'$
+    can be divided as follows:
+    \begin{multline*}
+        \{\text{$k$-colourings of $G-e$}\}
+        = \{\text{$k$-colourings of $G-e$ where $u$ and $v$ have the same
+        colour}\}\\
+        \cup \{\text{$k$-colourings of $G-e$ where $u$ and $v$ have different
+        colours}\}
+    \end{multline*}
+
+    Note that the number of elements in the first set is just the number of
+    $k$-colourings of $G/e$, which is the graph obtained by deleting the edge
+    $e$ of $G$ and merging $u$ and $v$ together. Also, the number of elements in the
+    second set is the number of $k$-colourings of the original graph $G$. In
+    other words, we have the following equality:
+    \[ P(G - e, k) = P(G/e, k) + P(G, k), \]
+    which can be rearranged to form
+    \[ P(G, k) = P(G - e, k) - P(G/e, k). \]
+    In this way, we can recursively find $P(G, k)$ for any $k$.
+
+    For an example, see the second solution of \hyperref[sol: 2016 Regional
+    Round P11]{2016 Regional Round problem 11}.
 \end{technique}

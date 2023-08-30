@@ -1,12 +1,20 @@
 \field{Algebra}
-\begin{theorem}[RMS - AM - GM - HM Inequality]
+\begin{theorem}[Remainder Theorem]
+    \label{thm: remainder}
+    Let $f(x)$ be a polynomial. Then the remainder of $f$ when divided by $x -
+    r$ is $f(r)$.
+
+    A special case of this theorem when the remainder is 0 is called the factor
+    theorem. It says that $x - r$ is a factor of $f$ if and only if $f(r) = 0$.
+\end{theorem}
+\begin{theorem}[RMS-AM-GM-HM Inequality]
     \label{thm: amgm}
     For any positive real numbers $a_1, a_2, \ldots, a_n$,
     \[\sqrt{\frac{x_1^2 + x_2^2 + \cdots + x_n^2}{n}} \geq \frac{x_1 + x_2 + \cdots + x_n}{n} \geq \sqrt[n]{x_1 x_2 \cdots x_n} \geq \frac{n}{1/x_1 + 1/x_2 + \cdots + 1/x_n}\]
     with equality if and only if $a_1 = a_2 = \cdots = a_n$.
 \end{theorem}
 
-\begin{theorem}[Cauchy - Schwarz Inequality]
+\begin{theorem}[Cauchy-Schwarz Inequality]
     \label{thm: cs}
     For any two sequences of real numbers\\ $a_1, a_2, \ldots, a_n$ and $b_1, b_2, \ldots, b_n$, the following inequality holds:
     \[ (a_1 b_1 + a_2 b_2 + \cdots + a_n b_n)^2 \leq (a_1^2 + a_2^2 + \cdots + a_n^2)(b_1^2 + b_2^2 + \cdots +b_n^2) \]
@@ -26,13 +34,39 @@
 
 \begin{theorem}[Descartes' Rule of Signs]
     \label{thm: ruleofsigns}
+    Let $f(x)$ be a polynomial with real coefficients, and let $k$ be the number
+    of sign changes in the sequence of coefficients. Then the number of positive
+    real roots of $f$ is either equal to $k$, or less than it by an even number.
+
+    For example, the polynomial $x^2 + 1$ has no sign changes since its sequence
+    of coefficients is $1, 1$, so it has no positive real roots. On the other
+    hand, the polynomial $x^3 + 4x^2 - 5x - 6$ has exactly one sign change (its
+    sequence of coefficients is $1, 4, -5, -6$ so the sign changes from $+$ to
+    $-$ between $4$ and $-5$), and so it has exactly one positive real root.
+
+    As a corollary, if we let $\ell$ be the number of sign changes in the
+    coefficients of $f(-x)$, then the number of negative real roots of $f$ is
+    either equal to $\ell$, or less than it by an even number.
 \end{theorem}
 
 \begin{theorem}[Fundamental Theorem of Algebra]
     \label{thm: fundamentalthmofalg}
+    Let $f(x)$ be a polynomial of degree $n$ with complex coefficients. Then
+    $f$ splits into $n$ linear factors with complex coefficients. i.e., there
+    exist complex numbers $\alpha_1, \alpha_2, \ldots, \alpha_n$ (not
+    necessarily distinct) such that
+    \[ f(x) = (x - \alpha_1)(x - \alpha_2)\cdot\ldots\cdot(x - \alpha_n). \]
+    In other words, $f$ has exactly $n$ roots in complex numbers when counted
+    with multiplicity.
+    
+    For example, the polynomial $x^2 + 1$ has no real roots, but it has 2 roots,
+    namely $i$ and $-i$, in complex numbers\footnote{In fact, this is one way to
+    define complex numbers, by adjoining the roots of $x^2 + 1$ to
+    $\mathbb{R}$.}. The polynomial $x^3 - 1$ has only one real root, 1, but it
+    has two complex roots, which are $(-1 + \sqrt{3}i)/2$ and $(-1 -
+    \sqrt{3}i)/2$ respectively.
 \end{theorem}
 
-\newpage
 \begin{technique}[Some Useful Identities]
     \label{teq: algidentities}
     For any real numbers $a$, $b$ and $c$, the following identities hold.
@@ -56,7 +90,7 @@
     There are also many other variants of induction. One important and generally more useful version is `strong induction', where we assume in step 2 that $P(k)$ is true for all $i \leq k \leq n$, rather than just $P(n)$. Another version which is used less often is `forward - backward induction' which is described below as technique \ref{teq: f.b.induction}.
 \end{technique}
 
-\begin{technique}[Forward - Backward Induction]
+\begin{technique}[Forward-Backward Induction]
     \label{teq: f.b.induction}
     This is a rarely used variant of induction, but it can handle some problems where normal induction fails. The procedure is generally like this:
     \begin{enumerate}
@@ -67,7 +101,4 @@
         \item Finally we show that if $P(n)$ is true, $P(n - 1)$ must also be true.
     \end{enumerate}
     You can see why this technique is called forward - backward induction. We use step 2 to skip over a chunk of numbers, and then use step 3 to show that $P$ is also true for the numbers that we skipped. You can read more about this technique \href{https://brilliant.org/wiki/forward-backwards-induction/}{here}. 
-\end{technique}
-\begin{technique}[Simon's Favorite Factoring Trick]
-    \label{teq: SFFT}
 \end{technique}
