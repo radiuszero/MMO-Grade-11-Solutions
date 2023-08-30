@@ -114,7 +114,7 @@
     OD}{2} = \frac{CO \cdot \sin \angle AOC \cdot OD}{2} = \frac{5 \cdot \sin
     \theta \cdot 3}{2} = \frac{15 \sin \theta}{2}. \]
     Therefore, the total area of the region is 
-    \[ A_1 + A_2 = \frac{5 \pi \theta}{72} + \frac{15 \theta}{2}. \qedhere \]
+    \[ A_1 + A_2 = \frac{5 \pi \theta}{72} + \frac{15 \sin\theta}{2}. \qedhere \]
 \end{solution}
 
 \begin{question}
@@ -147,8 +147,8 @@
             \[ \log 21 = \frac{a}{b} \Longrightarrow 21 = 10^\frac{a}{b}
             \Longrightarrow 21^b = 10^a. \]
             However, the left hand side is even and the right hand side is odd
-            which is clearly not possible. Therefore, $\log 21$ must be
-            irrational. 
+            which is clearly not possible unless $a = b = 0$. Therefore, $\log
+            21$ must be irrational. 
 
         \item Finally, suppose that $\sqrt{3}$ is irrational. Then $\sqrt{3} =
             \frac{a}{b}$ for some relatively prime integers $a$ and $b$. Then 
@@ -169,7 +169,7 @@
 \begin{solution}
     Let $H$ be the foot of perpendicular from $A$ onto side $BC$, and let $A'$
     be the diametrically opposide point of $A$ on circle $(ABC)$. Then $\angle
-    ABA' = \angle ACA' = 90^\circ$. We also have $\angle ABH = \angle ABC =
+    AHB = \angle ACA' = 90^\circ$. We also have $\angle ABH = \angle ABC =
     \angle AA'C$ so $\triangle ABH \sim \triangle AA'C$. Let $S$ be the area of
     $\triangle ABC$ and $R$ be the radius of $(ABC)$. Then
     \[ 2S = AH \cdot BC = \frac{AB \cdot AC \cdot BC}{AA'} = \frac{abc}{2R}. \]
@@ -227,7 +227,7 @@
 \end{question}
 \begin{solution}
     This is one of the rare problems which need \hyperref[teq:
-    f.b.induction]{forward - backward induction} to be solved. The base case $n
+    f.b.induction]{forward-backward induction} to be solved. The base case $n
     = 2$ is true. Now suppose that the inequality is true for $n = k$. We must
     first show that it is true for $n = 2k$:
     \begin{align*}
@@ -236,9 +236,11 @@
         &= f\left( \frac{1}{2} \left( \dfrac{x_1 + x_2 + \cdots + x_k}{k} + \dfrac{x_{k + 1} + x_{k + 2} + \cdots + x_{2k}}{k} \right) \right)\\
         &\leq \frac{1}{2}\left( f\left( \frac{x_1 + x_2 + \cdots + x_k}{k} \right) + f\left( \frac{x_{k + 1} + x_{k + 2} + \cdots + x_{2k}}{k} \right) \right) \\
         &\leq \frac{1}{2} \left( \frac{1}{k} \left( f(x_1) + f(x_2) + \cdots + f(x_k) \right) + \frac{1}{k} \left( f(x_{k + 1}) + f(x_{k + 2}) + \cdots + f(x_{2k}) \right) \right) \\
-        &= \frac{f(x_1) + f(x_2) + \cdots + f(x_{2k})}{2k}.
+        &= \frac{f(x_1) + f(x_2) + \cdots + f(x_{2k})}{2k}
     \end{align*}
-    Hence the inequality is true for $n = 2k$. Now observe that
+    where the third inequality is because of the base case and the fourth is
+    because of the induction hypothesis. Hence the inequality is true for $n =
+    2k$. Now observe that
     \[
         f \left( \frac{1}{k} \left( x_1 + x_2 + \cdots + x_{k - 1} + \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) \right) = f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right)
     \]
@@ -250,7 +252,7 @@
     \begin{align*}
         f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq \frac{1}{k} \left( f(x_1) + f(x_2) + \cdots + f\left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) \right)\\
         (k - 1) f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq f(x_1) + f(x_2) + \cdots + f(x_{k - 1})\\
-        f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq \frac{f(x_1) + f(x_2) + \cdots + f(x_{k - 1})}{k - 1}
+        f \left( \frac{x_1 + x_2 + \cdots + x_{k - 1}}{k - 1} \right) &\leq \frac{f(x_1) + f(x_2) + \cdots + f(x_{k - 1})}{k - 1}.
     \end{align*}
     Therefore, we have proved that this inequality is also true for $n = k -
     1$, and we are done by forward-backward induction.
@@ -323,6 +325,42 @@
         &= (x_3 - x_2)f(x_1) + (x_2 - x_1)f(x_3) - ((x_3 - x_2) + (x_2 - x_1))y_2\\
         &= (x_3 - x_2)(f(x_1) - y_2) + (x_2 - x_1)(f(x_3) - y_2). 
     \end{align*}
+    \begin{center}
+        \begin{asy}
+            size(6cm);
+            import graph;
+            real f(real x) {
+                return 0.2 * (x - 1) * (x - 1) + 2;
+            }
+            pen mydash = linetype(new real[] {5,5});
+            real xmin = -0.1;
+            real xmax = 5;
+            real ymin = -0.1;
+            real ymax = 5;
+            draw((xmin, 0)--(xmax, 0), arrow=Arrow);
+            draw((0, ymin)--(0, ymax), arrow=Arrow);
+            draw(graph(f, xmin, 4.5, operator..));
+            path tick = (0, 0)--(0, -0.2cm);
+            real x1 = 1;
+            real x2 = 2;
+            real x3 = 3.5;
+            draw((x1, 0), tick, L=Label("$x_1$", position=EndPoint));
+            draw((x2, 0), tick, L=Label("$x_2$", position=EndPoint));
+            draw((x3, 0), tick, L=Label("$x_3$", position=EndPoint));
+            pair P1 = (x1, f(x1));
+            pair P = (x2, f(x2));
+            pair P3 = (x3, f(x3));
+            dot("$P_1$", P1, dir(225));
+            dot("$P_3$", P3, dir(315));
+            pair P2 = (x2 - x1)/(x3 - x1) * P3 + (x3 - x2)/(x3 - x1) * P1;
+            dot("$P_2$", P2, dir(90));
+            draw(P1--P3);
+            draw((x1, 0)--P1, mydash);
+            draw((x2, 0)--P2, mydash);
+            draw((x3, 0)--P3, mydash);
+        \end{asy}
+    \end{center}
+
     However, since $P_1$, $P_2$ and $P_3$ are collinear, lines $P_1P_2$ and
     $P_2P_3$ have the same slope. Therefore,
     \[ \frac{y_2 - f(x_1)}{x_2 - x_1} = \frac{f(x_3) - y_2}{x_3 - x_2}
@@ -331,14 +369,23 @@
     and we are done. 
 \end{solution}
 \begin{remark}
-    Functions that satisfy the given relation are called \href{https://en.wikipedia.org/wiki/Convex_function}{convex functions}. 
+    The reason for constructing the point $P_2$ is due to the following
+    observation. Let $A_1$ be the area of the rectangle with base length $x_3 - x_2$
+    and height $f(x_1)$. Similarly define $A_2$ and $A_3$ with base lengths $x_3
+    - x_1$ and $x_2 - x_1$. Then the complicated inequality is equivalent to
+    much simpler $A_1 + A_3 \geq A_2$. However, it can be shown that the sum on
+    the left is the same as the area of a rectangle with length $x_3 - x_1$,
+    and height equal to that of $P_2$. Therefore, the inequality amounts to
+    showing that the height of $P_2$ is greater than or equal to $f(x_2)$ which
+    follows readily from the given convexity condition. The above proof is just
+    an algebraic translation of this geometric argument.
 \end{remark}
 % Add in area motivation? 
 \begin{question}
     Equilateral triangle $ABC$ is inscribed in a circle. $P$ is a point on arc
     $AB$. Prove that $PA + PB = PC$.
 \end{question}
-\begin{solution}
+\begin{solution}[1]
     Let $p$ be the side length of the equilateral triangle $ABC$. Then by
     \hyperref[thm: ptolemy]{Ptolemy's theorem} on quadrilateral $ACBP$,
     \[ PA \cdot p + PB \cdot p = PC \cdot p \Longrightarrow PA + PB = PC. \qedhere \]
@@ -361,12 +408,21 @@
         add(pathticks(A--B, s=3));
         add(pathticks(B--C, s=3)); 
         add(pathticks(C--A, s=3));
-        dot("$A$", A, dir(A));
-        dot("$B$", B, dir(B));
-        dot("$C$", C, dir(C));
+        dot("$C$", A, dir(A));
+        dot("$A$", B, dir(B));
+        dot("$B$", C, dir(C));
         dot("$P$", P, dir(P));
     \end{asy}
 \end{center}
+\begin{solution}[2]
+    Let segment $PC$ and segment $AB$ intersect at $E$. Then $\angle PCA =
+    \angle PBA = \angle PBE$, and $\angle CPA = \angle CBA = \angle CAB = \angle
+    CPB = \angle BPE$. Therefore, $\triangle PCA \sim \triangle PBE$. Similarly,
+    $\triangle PCB \sim \triangle PAE$. Consequently,
+    \[ \frac{PA}{PC} + \frac{PB}{PC} = \frac{AE}{BC} + \frac{EB}{AC}
+    = \frac{AE + EB}{AB} = \frac{AB}{AB} = 1. \]
+    Rearranging gives our desired identity.
+\end{solution}
 
 \begin{question}
     $\triangle ABC$ is inscribed in a circle. The tangent at $C$ and the line
@@ -404,7 +460,7 @@
             dot("$E$", E, dir(270));
         \end{asy}
     \end{center}
-    Finally, 
+    This shows that
     \[ \frac{BC}{CD} = \frac{EB}{BC} \Longrightarrow BC^2 = BE \cdot CD. \qedhere \]
 \end{solution}
 
@@ -463,7 +519,7 @@
 \end{question}
 \begin{solution}
     From the given conditions we have $a_1 c_1 \geq b_1^2$ and $a_2 c_2 \geq
-    b_2^2$. By \hyperref[thm: cs]{Cauchy Schwarz} inequality,
+    b_2^2$. By \hyperref[thm: cs]{Cauchy-Schwarz} inequality,
     \[ (a_1 + a_2)(c_1 + c_2) = ((\sqrt{a_1})^2 +
     (\sqrt{a_2})^2)((\sqrt{c_1})^2 + (\sqrt{c_2})^2) \geq (\sqrt{a_1c_1} +
     \sqrt{a_2c_2})^2 = (b_1 + b_2)^2. \qedhere \]
@@ -552,36 +608,16 @@
     How many integers between 1 and 1,000,000 have the sum of digits equal to 10?
 \end{question}
 \begin{solution}
-    Let $f(n)$ denote the number of $n$-tuples $(x_1, x_2, \ldots, x_n)$ where
-    $x_1, x_2, \ldots, x_n$ are non-negative integers and
-    \setcounter{equation}{0}
-    \begin{equation}
-        x_1 + x_2 + \cdots + x_n = 10. 
-    \end{equation}
-    Call an $n$-tuple \emph{good} if it satisfies (1). Finally, let $g(n)$ be
-    the number of $n$-digit numbers whose digits sum to $10$. It is easy to see
-    that $f(n)$ is the sum of number of elements in the following three sets:
-    \begin{enumerate}
-        \item the set of good $n$-tuples with $x_1 = 0$.
-        \item the set of good $n$-tuples with $x_1 > 0$ and $x_i < 10$ for all $i$.
-        \item the set of good $n$-tuples with $x_1 > 0$ and $x_i = 10$ for some $i$.
-    \end{enumerate}
-    Notice that the elements in the first set are just good $(n - 1)$-tuples
-    with 0 added in front of them. Hence there are $f(n - 1)$ elements in this
-    set. Meanwhile, the number of elements in the second set is equivalent to
-    the number of $n$-digit numbers whose digits sum to $10$, which is just
-    $g(n)$. Finally, the number of elements in the final set is just 1, which
-    is $(10, 0, 0, \ldots, 0)$. Therefore, we have
-    \[ g(n) = f(n + 1) - f(n) - 1. \]
-    The quantity we seek is 
-    \begin{align*}
-        g(1) + g(2) + \cdots + g(6) &= (f(1) - f(0) - 1) + (f(2) - f(1) - 1) + \cdots + (f(6) - f(5) - 1)\\
-        &= f(6) - f(0) - 6.
-    \end{align*}
-    By \hyperref[teq: starsandbars]{Stars and Bars}, $f(6) = \binom{15}{5} =
-    72072$. Meanwhile, $f(0)$ is obviously 0. Therefore,
-    there are a total of $72066$ numbers between 1 and 1,000,000 whose digits
-    sum to 10.
+    Note that this number is just the number of $6$-tuples $(x_1, x_2, \ldots,
+    x_6)$ such that $x_1 + x_2 + \cdots + x_6 = 10$, with the restriction that
+    $0 \leq x_i \leq 9$ for all $1 \leq i \leq 6$ since they are supposed to
+    represent digits. If we remove this restriction, then by \hyperref[teq:
+    starsandbars]{stars and bars}, the number of such tuples is $\binom{15}{5} =
+    72072$. Since such a tuple already satisfies $0 \leq x_i \leq 10$ for all $1
+    \leq i \leq 6$, the only tuples that violate the restriction are $(10, 0, 0,
+    0, 0, 0)$ and its variants. There are 6 of them, so the total number of
+    integers between 1 and 1,000,000 with digit sum equal to 10 is $72072 - 6 =
+    72066$.
 \end{solution}
 
 \begin{question}
@@ -590,7 +626,7 @@
 \end{question}
 \begin{solution}
     Take any vertex $v$ of the hexagon. Since there are 5 edges connected to
-    $v$, by the \hyperref[thm: pigeonhole]{Pigeonhole principle}, there are at
+    $v$, by the \hyperref[thm: pigeonhole]{pigeonhole principle}, there are at
     least three edges of the same colour. WLOG, suppose that these three edges
     are blue, and suppose that they connect $v$ to three other vertices $x$,
     $y$ and $z$. Then if one of the edges $(x, y)$, $(y, z)$ or $(z, x)$ are
@@ -611,6 +647,6 @@
         &= (2018 + 2017)(2018 - 2017) + (2016 + 2015)(2016 - 2015) + \cdots + (2 + 1)(2 - 1)\\
         &= 2018 + 2017 + 2016 + 2015 + \cdots + 2 + 1\\
         &= \frac{2018 \cdot 2019}{2}\\
-        &= 2037171.
+        &= 2037171. \qedhere
     \end{align*}
 \end{solution}

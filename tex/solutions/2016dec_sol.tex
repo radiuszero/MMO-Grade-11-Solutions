@@ -116,7 +116,7 @@
     Line $\ell_{1}$ has equation $3x - 2y = 1$ and goes through $A = (-1, -2)$.
     Line $\ell_{2}$ has equation $y = 1$ and meets line $\ell_{1}$ at point
     $B$. Line $\ell_{3}$ has positive slope, goes through point $A$ and meets
-    $l_{2}$ at point $C$. The area of $\triangle ABC$ is 3. What is the slope
+    $\ell_{2}$ at point $C$. The area of $\triangle ABC$ is 3. What is the slope
     of line $\ell_{3}$?
 \end{question}
 \begin{solution}
@@ -263,8 +263,8 @@
     \end{align}
     From now on it's just traditional equation solving. But I actually failed
     at this part and had to look up the solution online because I'm absolutely
-    terrible at solving equations. (That's what happens when you avoid solving
-    any algebra problem for a whole year.) Anyway, substituting $r =
+    terrible at solving equations\footnote{That's what happens when you avoid solving
+    any algebra problem for a whole year.}. Anyway, substituting $r =
     \frac{1}{4p}$ and $s = \frac{1}{36q}$ into equation (2) gives us 
     \[ \frac{1}{4p} + \frac{1}{36q} = \frac{4}{3}\Longrightarrow 27q + 3p =
     144pq. \]
@@ -280,18 +280,16 @@
     those who flip tails remain seated. What is the number of ways that no two
     adjacent people will stand?
 \end{question}
-\begin{solution}
-    Consider the table as the cycle graph $C_8$ and the people as its 8
-    vertices. The idea is to first consider the table as empty, and choose a
-    set of positions, such that none of them are adjacent. Then we fill that
-    set with standing people and the rest with sitting ones. The number of ways
-    to do this is the same as the number of ways in the original problem
-    (Convince yourself that this is true.) Thus the problem becomes a corollary
-    of the following more general problem.
-
+\begin{solution} 
+    Note that this number is the same as the number of ways to choose a set of
+    people from the table such that no two people in the set are adjacent to
+    each other\footnote{Such a set is called an \emph{independent set}.}. In fact,
+    we will solve the following more general problem. The original problem is
+    the special case when $G$ is the cycle graph $C_8$.
     \begin{quote}
-        Let $G$ be a graph. What is the number of ways to choose a set of
-        vertices of $G$, such that none of them are connected by an edge?
+        Let $G$ be a graph. What is the
+        number of ways to choose a set of vertices of $G$, such that none of
+        them are connected by an edge?
     \end{quote}
 
     Let $f(G)$ be the number of ways. We will use a \hyperref[teq:
@@ -316,11 +314,12 @@
     %include a picture here.
     Now going back to our problem, take a vertex $v$ of $C_8$. Then applying
     our claim gives us 
-    \[ f(C_8) = f(P_7) + f(P_5). \]
-    We can do the same thing repeatedly to find the values of $f$ for $P_5$ and
-    $P_7$, so I'll only show how to find $f(P_5)$. The main idea remains the
-    same, break down the graph until it becomes feasible to find the values of
-    $f$ manually. In the following, we always remove the left most vertex.
+    \[ f(C_8) = f(P_7) + f(P_5) \]
+    where $P_n$ is the path graph with $n$ vertices. We can do the same thing
+    repeatedly to find the values of $f$ for $P_5$ and $P_7$, so I'll only show
+    how to find $f(P_5)$. The main idea remains the same, break down the graph
+    until it becomes feasible to find the values of $f$ manually. In the
+    following, we always remove the left most vertex.
     \begin{align*}
     f(P_5) &= f(P_4) + f(P_3)\\
     &= f(P_3) + f(P_2) +f (P_3)\\
@@ -330,7 +329,7 @@
     Similarly, we have $f(P_7) = 34$. Hence $f(C_8) = 47$.
 \end{solution}
 \begin{remark}
-    From the recurrence we got, it is not hard to prove that $f(P_n) = F_{n+2}$
+    From the recurrence we got, it is not hard to prove that $f(P_n) = F_{n+1}$
     where $F_n$ is the $n$th Fibonacci number.
 \end{remark}
 
@@ -386,8 +385,9 @@
     them must be divisible by 3. Therefore, their product, $n^3 - n$, is
     divisible by 3. Similarly, $k$ and $k + 1$ are two consecutive integers, so
     one of them must be divisible by 2. Therefore, $4k(k + 1)$ is divisible by
-    8 and hence $n^3 - n$ is also divisible by 8. Finally, by lemma \ref{lem:
-    weakCRT} it follows that $n^3 - n$ is divisible by $24$. 
+    8 and hence $n^3 - n$ is also divisible by 8. Since $n^3 - n$ is divisible
+    by both $8$ and $3$, it is divisible by their least common multiple which is
+    $24$.
 \end{solution}
 
 \begin{question}
@@ -403,7 +403,7 @@
     arrangements where 2 of the 3 paintings are together. 
     \begin{enumerate}
         \item Consider 3 paintings that are to be together as a block. Then
-            there are $5! = 120$ ways to permute the 4 remaining paints and the
+            there are $5! = 120$ ways to permute the 4 remaining paintings and the
             block. In addition, there are $3! = 6$ ways to permute the 3
             paintings in the block. Therefore, there are a total of $120 \cdot
             6 = 720$ ways to permute 7 paintings such that 3 of the painting
@@ -419,7 +419,7 @@
     A box contains 2 red marbles, 2 green marbles, and 2 yellow marbles, Mg Gyi
     takes 2 marbles from the box at random; then Mg Latt takes 2 of the
     remaining marbles at random; and then Mg Nge takes the last 2 marbles. What
-    is the probability that Mg Nge gets two marbles of the same colour. 
+    is the probability that Mg Nge gets two marbles of the same colour?
 \end{question}
 \begin{solution}
     Let a \emph{draw} be an arrangement of 6 marbles, where the first 2 are the

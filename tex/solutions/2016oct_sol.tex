@@ -1,6 +1,6 @@
 \solutionheader{2016 Regional Round}
 \begin{question}
-    In the sequence $u_{1}$, $u_{2}$, $\ldots$, $u_{n}$, $\ldots$, the $n$th
+    In the sequence $u_{1}, u_{2}, \ldots, u_{n}, \ldots, $ the $n$th
     term is defined by $u_{n} = 1 - \frac{1}{u_{n - 1}}$ for $n \geq 2$. If
     $u_{1} = 3$, compute $u_{2}$, $u_{3}$ and $u_{4}$. Write down $u_{2016}$.
 \end{question}
@@ -31,8 +31,8 @@
     $0.9 \leq \frac{x}{y} \leq 0.91$, find the value of $y^2 - x^2$.
 \end{question}
 \begin{solution}
-    This is pretty straightforward inequality manipulation. From the problem,
-    we have the following two relations. 
+    This is a straightforward inequality manipulation. From the problem,
+    we have the following inequalities.
     \[ 56 \leq x + y \leq 59 \quad \text{and} \quad 0.9y \leq x \leq 0.91y. \]
     This allows us to bound $y$.
     \[ 56 \leq x + y \leq 0.91y + y = 1.91y \Longrightarrow y \geq 29.31, \]
@@ -40,6 +40,7 @@
     \[ 59 \geq x + y \geq 0.9y + y = 1.9y \Longrightarrow y \leq 31.06. \]
     Since $y$ is a positive integer, the only possible values are 30 and 31. So
     we will consider two cases.
+
     \begin{case}{$y = 30$.}
         In this case, $27 \leq x \leq 27.3$, so it follows that $x = 27$. This
         satifies the first relation, and thus $(x, y) = (27, 30)$ is a solution
@@ -50,6 +51,7 @@
         satisifies the first relation, and so $(x, y) = (28, 31)$ is also a
         solution pair.
     \end{case}
+
     Finally, the possible values of $y^2 - x^2$ are 171 and 177.
 \end{solution}
 
@@ -59,7 +61,7 @@
     the number $x$. 
 \end{question}
 \begin{solution}
-    From the problem statement, there exist positive integers $y$ and $z$ such
+    By the problem statement, there exist positive integers $y$ and $z$ such
     that
     \[ x + 15 = y^2 \quad \text{and} \quad x - 74 = z^2. \]
     Subtracting the two equations gives
@@ -144,8 +146,33 @@
 \begin{solution}
     Consider two unit equilateral triangles, separated unit distance apart.
     Next, we draw 6 circles with unit radius centered at each of the vertices.
-    It is obvious that each circle passes through exactly three other vertices.
-    % Insert figure
+    It is obvious that each circle passes through exactly three other vertices. \qedhere
+    \begin{center}
+        \begin{asy}
+            size(6cm);
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(90);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair B1 = rotate(-90, B) * C;
+            pair C1 = rotate(90, C) * B;
+            pair A1 = A + B1 - B;
+            draw(A--B--C--cycle, mydash);
+            draw(A1--B1--C1--cycle, mydash);
+            draw(circle(A, abs(A - B)));
+            draw(circle(B, abs(A - B)));
+            draw(circle(C, abs(A - B)));
+            draw(circle(A1, abs(A - B)));
+            draw(circle(B1, abs(A - B)));
+            draw(circle(C1, abs(A - B)));
+            dot(A);
+            dot(B);
+            dot(C);
+            dot(A1);
+            dot(B1);
+            dot(C1);
+        \end{asy}
+    \end{center}
 \end{solution}
 
 \begin{question}
@@ -244,7 +271,7 @@
     A fair die is thrown three times. The results of the first, second and
     third throw are recorded as $x$, $y$ and $z$ respectively. Suppose that $x
     + y = z$. What is the probability that at least one of $x$, $y$ and $z$ is
-    2. 
+    2?
 \end{question}
 \begin{solution}
     Since the value of $z$ is automatically determined by those of $x$ and $y$,
@@ -271,7 +298,8 @@
             \hline
         \end{tabular}
     \end{center}
-    It is easy to see that the number of desired triples is 8 and the total is
+    It is easy to see that the number of desired triples (those in which at
+    least one component is $2$) is 8 and the total is
     15. Thus the probability is $\frac{8}{15}$.
 \end{solution}
 \begin{remark}
@@ -324,17 +352,29 @@
     that adjacent walls are never of the same colour. In how many ways can U
     Tet Toe paint his room?
 \end{question}
-\begin{solution}
+\begin{solution}[1]
+    Let $R$ be the number of colourings where the top wall is red. Since there
+    are three possible colours for the top wall, by symmetry, the total number
+    of colourings is $3R$. Now let $R_1$ be the number of colourings where the
+    top wall is red and the right wall is yellow. Since the right wall can be
+    yellow or green, again by symmetry, $R = 2R_1$. Now let's count $R_1$. The
+    left wall can either be yellow or green. If it is yellow, then the bottom
+    wall can be either red or green, which gives 2 colourings. If it is green,
+    then the bottom wall can only be red, which gives 1 colouring. Hence, in
+    total, $R_1 = 3$, so the total number of colourings is $3R = 6R_1 = 18$.
+\end{solution}
+\begin{solution}[2]
     We just need to find the \hyperref[def: chromaticpoly]{chromatic
-    polynomial} of $C_4$. By \hyperref[teq: DC]{deletion-contraction},
-    \[ P(C_4, 3) = P(P_4, 3) - P(C_3, 3). \]
-    We will first find $P(P_4, 3)$. There are 3 choices for the first vertex
-    and 2 choices each for the remaining vertices. Therefore, $P(P_3, 3) = 3
-    \cdot 2 \cdot 2 \cdot 2 = 24$. Next, let's find the value of $P(C_3, 3)$.
-    There are 3 choices for the first vertex, 2 choices for the second vertex,
-    and only 1 choice for the final vertex. Therefore, $P(C_3, 3) = 3 \cdot 2
-    \cdot 1 = 6$. Hence there are $24 - 6 = 18$ ways in which U Tet Toe can
-    paint his room. 
+    polynomial} of the cycle graph of $4$ vertices, $C_4$. By \hyperref[teq:
+    DC]{deletion-contraction},
+    \[ P(C_4, 3) = P(P_4, 3) - P(C_3, 3), \]
+    where $P_4$ denotes the path graph with $4$ vertices. We will first find
+    $P(P_4, 3)$. There are 3 choices for the first vertex and 2 choices each for
+    the remaining vertices. Therefore, $P(P_3, 3) = 3 \cdot 2 \cdot 2 \cdot 2 =
+    24$. Next, let's find the value of $P(C_3, 3)$. There are 3 choices for the
+    first vertex, 2 choices for the second vertex, and only 1 choice for the
+    final vertex. Therefore, $P(C_3, 3) = 3 \cdot 2 \cdot 1 = 6$. Hence there
+    are $24 - 6 = 18$ ways in which U Tet Toe can paint his room. 
 \end{solution}
 
 \begin{question}
@@ -368,9 +408,9 @@
         \end{asy}
     \end{center}
     Due to the symmetry, $O$ is also the incenter of $\triangle ABC$. Since
-    $\angle OBD = 30^\circ$, $\triangle OBD$ is a 30-60 right triangle, and $OB
-    : OD = 2 : 1$. Therefore, if we let the area of the circumcircle by $A_1$
-    and that of the incircle by $A_2$,
+    $\angle OBD = 30^\circ$, $\triangle OBD$ is a $30^\circ$-$60^\circ$ right
+    triangle, and $OB : OD = 2 : 1$. Therefore, if we let the area of the
+    circumcircle by $A_1$ and that of the incircle by $A_2$,
     \[ \frac{A_1}{A_2} = \frac{\pi OB^2}{\pi OD^2} = 4. \qedhere \]
 \end{solution}
 
@@ -387,13 +427,13 @@
     \intertext{Squaring again, we have}
         4u^2 - 4u + 100 &= 3u^2 - 11u\\
         u^2 - 29u + 100 &= 0\\
-        (u - 25)(u - 4) &= 0\\
+        (u - 25)(u - 4) &= 0
     \end{align*}
     which shows that $u = 4$ or $u = 25$. It is easy to check that $u = 25$
     does not satisfy the equation, so $u = 4$ must be the only solution.
     Finally,
     \[ 3x^2 - 8x + 1 = 4 \Longrightarrow (x - 3)(3x + 1) = 0. \]
-    and hence $x = 3$ or $-\frac{1}{3}$.
+    and hence $x = 3$ or $x = -\frac{1}{3}$.
 \end{solution}
 
 \begin{question}
@@ -501,9 +541,9 @@
 \begin{solution}
     Let $x$, $y$ and $z$ be primes such that $xyz = 19(x + y + z)$. Then since
     $19 \mid xyz$ and $x$, $y$, $z$ are primes, one of them must be 19. WLOG,
-    suppose that $x = 19$. Then \hyperref[teq: SFFT]{SFFT} gives us 
+    suppose that $x = 19$. Then,
     \[ yz = 19 + y + z \Longrightarrow (y - 1)(z - 1) = 20. \]
-    Remember that $y$ and $z$ are both positive integers. Theis means that $y -
+    Remember that $y$ and $z$ are both positive integers. This means that $y -
     1$ and $z - 1$ are both positive divisors of 20. Hence
     \begin{center}
         \begin{tabular}{ |c|c| }
@@ -521,6 +561,6 @@
     \end{center}
     Checking these cases, we see that $(y, z) = (11, 3)$ or $(3, 11)$. Hence
     $(x, y, z)$ can be any permutation of $(19, 11, 3)$. Adding the size
-    condition, we see that $(p, q, r) = (3, 11, 19)$. Consequently, $p(q + r) =
+    condition gives $(p, q, r) = (3, 11, 19)$. Consequently, $p(q + r) =
     90$.
 \end{solution}

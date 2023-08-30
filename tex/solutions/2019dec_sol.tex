@@ -172,7 +172,7 @@
     (-n)^2f(1)$. Hence, we see that $f(x) = x^2f(1) = cx^2$ where $c$ is a
     constant, for all integers $x$. On the other hand, it is easy to check that
     all functions of the form $f(x) = cx^2$ satisfy the given equation.
-    Therefore, it follows that this must be the only solution.
+    Therefore, it follows that they must be the only solutions.
 \end{solution}
 
 \begin{question}
@@ -223,8 +223,7 @@
 \end{question}
 \begin{solution}
     % Add a technique about Euclidean algorithm and Bezout's lemma.
-    By the \hyperref[teq: euclideanalg]{Euclidean algorithm}, we can find a
-    solution pair as follows:
+    Using the Euclidean algorithm, we can find a solution pair as follows:
     \begin{align*}
         2021 &= 2019 + 2\\
         2019 &= 2 \cdot 1009 + 1\\
@@ -364,8 +363,8 @@
     Hence if $f$ satisfies the given equation, then $f(x) = a \cos x + b \sin
     x$ for some real constants $a$ and $b$. On the other hand, it is easy to
     check that all functions of the above form satisfy the given equation.
-    Therefore, it follows that $f(x) = a \cos x + b \sin x$ is the only
-    solution to the given functional equation.
+    Therefore, it follows that functions of the form $f(x) = a \cos x + b \sin
+    x$ are the only solutions to the given functional equation.
 \end{solution}
 
 \begin{question}
@@ -387,15 +386,15 @@
 
 \begin{question}
     $AB$ is a diameter of a circle $O$ with radius 10 cm. $OQ$ is a radius of a
-    circle $O$. such that $QO \perp AB$. A point $P$ is on $OQ$. Draw a
+    circle $O$ such that $QO \perp AB$. A point $P$ is on $OQ$. Draw a
     semicircle centered at $P$ with diameter $CD$ where $CD$ is the chord of
     circle $O$ and $CD \perp PQ$. $PQ$ produced meets the semicircle at $R$.
     Find the maximum possible length of $QR$.
 \end{question}
 \begin{solution}
     The length of $QR$ is
-    \[ QR = PR - PQ = PC - OQ + OP = PC + OP - 10. \]
-    By the \hyperref[thm: amgm]{AM-RMS inequality}, 
+    \[ QR = PR - PQ = PC - (OQ - OP) = PC + OP - 10. \]
+    By the \hyperref[thm: amgm]{RMS-AM inequality}, 
     \[ CP + OP - 10 \leq 2\sqrt{\frac{CP^2 + OP^2}{2}} - 10 =
     2\sqrt{\frac{100}{2}} - 10 = 10(\sqrt{2} - 1). \]
     Hence the maximum value of $QR$ is $10(\sqrt{2} - 1)$, achieved when $CP = OP = 5\sqrt{2}$.
@@ -522,7 +521,7 @@
             real r1 = .8;
             real r2 = 1.2;
             pair S = (3, 0);
-            pen filler = Cyan;
+            pen filler = royalblue;
 
             path block(int i, pair O){
                 return arc(O, r1, (-(i - 1) + 1/2)*s + 90, (-(i - 1) - 1/2)*s + 90)--arc(O, r2, (-(i - 1) - 1/2)*s + 90, (-(i - 1) + 1/2)*s + 90)--cycle;
@@ -583,7 +582,7 @@
     Since the only positive divisor of 1 is 1 itself, it follows that $d = 1$.
     Now notice that
     \[ 6(14n + 6) + (-7)(12n + 5) = 1 \]
-    for any positive integer $n$. Therefore, $\gcd(14n + 6, 12n + 5) = 1$, and
+    for any positive integer $n$. Therefore, by the first part, $\gcd(14n + 6, 12n + 5) = 1$, and
     so $\frac{12n + 5}{14n + 6}$ is in lowest terms for every positive integer
     $n$.
 \end{solution}

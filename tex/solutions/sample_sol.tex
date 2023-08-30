@@ -21,14 +21,14 @@
         p = f(p) = \frac{p}{p - q} &\Longrightarrow p^2 - pq = p\\
         2q = f(2q) = \frac{p}{q} &\Longrightarrow p = 2q^2
     \end{align}
-    Substituting the value of $p$ in (1), we get $4q^4 - 2q^3 - 2q = 0.$ Since
-    $q > 0$, we can cancel out $2q$ from both sides, which leaves us with 
+    Substituting the value of $p$ in (1), we get $4q^4 - 2q^3 - 2q^2 = 0.$ Since
+    $q > 0$, we can cancel out $2q^2$ from both sides, which leaves us with 
     \[2q^2 - q - 1 = 0 \Longrightarrow (q - 1)(2q + 1) = 0.\] 
     Solving this shows that $q = 1$ or $q = -\frac{1}{2}$. Since $q$ is
     non-negative, we can discard the latter, and hence $q = 1$. This gives us
     $p = 2$. Therefore, the original function becomes $f(x) = \frac{2}{x - 1}$.
     Finally, 
-    \[ x = (f \circ f)(x) = \frac{2}{\dfrac{2}{x - 1} - 1} \Longrightarrow x^2
+    \[ x = (f \circ f)(x) = \frac{2}{\frac{2}{x - 1} - 1} \Longrightarrow x^2
     - x - 2 = 0. \qedhere \]
 \end{solution}
 
@@ -48,7 +48,7 @@
         \intertext{Notice that all the fractions with even powers cancel out. Therefore, if we let $t$ be the largest odd number less than or equal to $n$, we have}
         2\left(\frac{1}{2} + \frac{1}{2^3} + \cdots + \frac{1}{2^t}\right) &= \frac{341}{256}\\
         1 + \frac{1}{2^2} + \frac{1}{2^4} + \cdots + \frac{1}{2^{t - 1}} &= \frac{341}{256}\\
-        \intertext{This is a GP with starting term $a = 1$ and common ratio $r = \frac{1}{4}$. Since $ar^{n - 1} = u_n = \frac{1}{2^{t - 1}}$, it follows that $n = \frac{t + 1}{2}$, so the GP summation formula gives us}
+        \intertext{This is a GP with starting term $a = 1$ and common ratio $r = \frac{1}{4}$. Since $ar^{n - 1} = u_n = \frac{1}{2^{t - 1}}$, it follows that there are $n = \frac{t + 1}{2}$ terms, and so the GP summation formula gives us}
         \frac{1 - \frac{1}{2^{t + 1}}}{\frac{3}{4}} &= \frac{341}{256}\\
         \frac{1}{2^{t + 1}} &= 1 - \frac{341 \times 3}{256 \times 4}\\
         \frac{1}{2^{t + 1}} &= \frac{1}{1024}
@@ -57,8 +57,9 @@
     equal to $n$, this means that $n$ must be either 9 or 10, and these are the
     only solutions.
 \end{solution}
-
+\phantomsection
 \stepcounter{question}
+\label{sol: Sample Problems P4}
 \begin{question}
     In the binomial expansion of $(1 + x)^n$, the coefficients of 5th, 6th and
     7th terms are consecutive terms of an AP. Find the first three terms of the
@@ -183,8 +184,9 @@
     so by mathematical induction, this identity is true for all $n \in
     \mathbb{N}$.
 \end{solution}
+\phantomsection
 \stepcounter{question}
-
+\label{sol: Sample Problems P10}
 \begin{question}
     If the base $BC$ of $\triangle ABC$ is trisected at $P$ and $Q$, show that 
     \[AB^2 + AC^2 = AP^2 + AQ^2 + 4PQ^2.\]
@@ -281,7 +283,7 @@
     First, since
     \[ OX_1^2 = OA \cdot OB = 10 \Longrightarrow OX_1 = \sqrt{10},\] 
     it follows that there is only one such $X_1$. Now take any point $Y$ other
-    than $X_1$ on $\ell_2$. We must show that $\angle AX_1B > \angle AYB$. Let
+    than $X_1$ on $\ell_1$. We must show that $\angle AX_1B > \angle AYB$. Let
     line $\overline{AX_1}$ meet $(AYB)$ at $Z$. Since $(AYB)$ is not tangent to
     $\ell_2$, it follows that $X$ lies inside $(AYB)$. Therefore,
     \[ \angle AX_1B = \angle AZB + \angle X_1BZ > \angle AZB = \angle AYB\] 
@@ -326,13 +328,14 @@
 \begin{solution}
     Notice that $n^3 - n = (n - 1)n(n + 1)$. Since $n - 1$, $n$ and $n + 1$ are
     three consecutive integers, it follows that one of them must be divisible
-    by 3. Similarly, since $n - 1$ and $n$ are two consecutive integers, one of
-    them must be divisible by 2. Since 2 and 3 are relatively prime, by lemma
-    \ref{lem: weakCRT} it follows that $n^3 - n$ is divisible by $2 \times 3 =
-    6$.
+    by 3. Similarly, since $n - 1$ and $n$ are two consecutive
+    integers, one of them must be divisible by 2, so $n^3 - n$ is also divisible by
+    $2$. Since $n^3 - n$ is divisible by both $2$ and $3$, it must be divisible
+    by their least common multiple which is 6.
 \end{solution}
+\phantomsection
 \stepcounter{question}
-
+\label{sol: Sample Problems P15}
 \begin{question}
     The 5-digit number $\overline{A986B}$ is divisible by 72. What is the value of $A + B$?
 \end{question}
@@ -419,7 +422,7 @@
             dot("$K$", K, dir(225));
         \end{asy}
     \end{center}
-    Then by the tangent-chord theorem, 
+    Then by the tangent-chord theorem, $\angle PAK = \angle AQB$, so
     \[ \angle PAB = \angle BAK - \angle PAK = \angle ABK - \angle AQB = \angle
     BAQ,\] 
     so it follows that ray $AB$ internally bisects $\angle PAQ$. Therefore, by

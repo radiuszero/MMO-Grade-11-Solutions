@@ -7,8 +7,8 @@
 \begin{solution}
     Since $x^2 - (ay + bz)x + abyz = (x - ay)(x - bz)$, it follows that both $x
     - ay$ and $x - bz$ divide $f(x) = x^n + py^n + qz^n$. Therefore, by the
-    factor theorem,
-    \[ f(ay) = a^ny^n + py^n + qz^n = 0 \] 
+    \hyperref[thm: remainder]{factor theorem},
+    \[ f(ay) = a^ny^n + py^n + qz^n = 0, \] 
     and 
     \[ f(bz) = b^nz^n + py^n + qz^n = 0.\]
     From the above two equations, we have
@@ -28,7 +28,7 @@
     \[u_{1} + u_{2} + u_{3} + \cdots + u_{100}.\]
 \end{question}
 \begin{solution}
-    First let's find the value of $k$.
+    First, let's find the value of $k$.
     \[ u_1 = 1, \quad u_2 = 1 - k \quad\text{and}\quad u_3 = (1 - k)^2 - k(1 - k) = 1 - 3k + 2k^2 = 1. \]
     Since $k \ne 0$, this implies that $k = \frac{3}{2}$, and hence $u_2 = 1 -
     \frac{3}{2} = -\frac{1}{2}$. Now comes the key fact. Notice that the value
@@ -38,7 +38,7 @@
     with odd indices are equal to 1 and those with even indices are equal to
     $-\frac{1}{2}$. Therefore,
     \[ u_1 + u_2 + u_3 + \cdots + u_{100} = 1 - \frac{1}{2} + 1 - \cdots -
-    \frac{1}{2} = \frac{50}{2} = 25. \qedhere \]
+    \frac{1}{2} = 50 - \frac{50}{2} = \frac{50}{2} = 25. \qedhere \]
 \end{solution}
 
 \begin{question}
@@ -98,9 +98,9 @@
             \mathbb{P}(B) = \frac{1}{6} \cdot \frac{11}{36} = \frac{11}{216}$. 
     \end{enumerate}
 
-    Finally, suppose that $A$ and $B$ are independent. Then $\mathbb{P}(A \cap
-    B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$. But obviously this is not true in
-    our case, so we conclude that $A$ and $B$ are not independent. 
+    If $A$ and $B$ are independent, then $\mathbb{P}(A \cap B) = \mathbb{P}(A)
+    \cdot \mathbb{P}(B)$. But obviously this is not true in our case, so we
+    conclude that $A$ and $B$ are not independent. 
 \end{solution}
 
 \begin{question}
@@ -203,8 +203,10 @@
         &= \frac{2\pi \cdot CE \cdot DE}{4}\\
         &= \frac{\pi \cdot AE \cdot BE}{2}\\
         &= \frac{36 \pi}{2}\\
-        &= 18 \pi. \qedhere
+        &= 18 \pi,
     \end{align*}
+    where we used the fact that $AE \cdot BE = CE \cdot DE$ since $A$, $B$, $C$,
+    $D$ are concyclic.
 \end{solution}
 
 \begin{question}
@@ -270,7 +272,7 @@
 \begin{solution}
     Let $N = \overline{abcabc}$. Then 
     \[ N = 100000a + 10000b + 1000c + 100a + 10b + c = 1001(100a + 10b + c). \]
-    Since 7, 11 and 13 all divide 1001, they must also be the prime factors of
+    Since 7, 11 and 13 all divide 1001, they must also be prime factors of
     $N$.
 \end{solution}
 
@@ -282,9 +284,9 @@
 \begin{solution}
     Rearranging the given equation gives
     \[ a^{2014}(a^2 - 1) = b^{2014}(1 - b^2).\]
-    Therefore,
-    \[ \frac{a^2 - 1}{1 - b^2} = \left( \frac{b}{a} \right)^{2014} < 1
-    \Longrightarrow a^2 - 1 < 1 - b^2 \Longrightarrow a^2 + b^2 < 2. \qedhere \]
+    Since $a \ne 1$,
+    \[ \frac{1 - b^2}{a^2 - 1} = \left( \frac{a}{b} \right)^{2014} > 1
+    \Longrightarrow 1 - b^2 > a^2 - 1 \Longrightarrow a^2 + b^2 < 2. \qedhere \]
 \end{solution}
 
 \begin{question}
@@ -413,7 +415,7 @@
     2} = x^2(x^{2k} - y^{2k}) - y^{2k}(x^2 - y^2). \]
     But both $x^{2k} - y^{2k}$ and $x^2 - y^2$ are divisible by $x + y$, so it
     follows that $x^{2k + 2} - y^{2k + 2}$ is also divisible by $x + y$. Hence
-    $x^n - y^n$ is divisible by $x + y$ for all even $n$.
+    by mathematical induction, $x^n - y^n$ is divisible by $x + y$ for all even $n$.
 \end{solution}
 
 \begin{question}
@@ -422,21 +424,14 @@
     \[m < p, n < q \text{  and  }\frac{p}{m}+\frac{q}{n} \text{  is an integer.}\]
     Prove that $m = n$.
 \end{question}
-\begin{solution}
-    Let the greatest common divisor of $m$ and $n$ be $d$. Then $m = dm'$ and
-    $n = dn'$ for some relatively prime $m'$ and $n'$. Notice that $m' \leq m <
-    p$, so $\gcd(m', p) = 1$, and similarly, $\gcd(n', q) = 1$. Therefore,
-    there exists an integer $S$ such that
-    \begin{align*}
-        S &= \frac{p}{m} + \frac{q}{n}\\
-        mnS &= pn + qm\\
-        m'n'd^2S &= pm'd + qn'd\\
-        m'n'dS &= pm' + qn'\\
-        pm' &= n'(m'dS - q)
-    \end{align*}
-    Therefore, $n'$ divides $pm'$. But $n'$ is relatively prime to both $p$ and
-    $m'$, so it must be the case that $n' = 1$. Similarly, $m' = 1$ so $m = d =
-    n$ as desired.
+\begin{solution} 
+    Since $m < p$, it follows that $m$ and $p$ are relatively prime. Similarly,
+    $n$ and $p$ are also relatively prime. Now since $p/m + q/n$ is an integer,
+    \[ \frac{pn}{m} = n\left(\frac{p}{m} + \frac{q}{n}\right) - q \]
+    is also an integer. Since $\gcd(m, p) = 1$, by \hyperref[lem:
+    euclid]{Euclid's lemma}, it follows that $m$ divides $n$, and since they're
+    positive, $m \leq n$. Similarly, $n \leq m$, so it must be the case that $m
+    = n$.
 \end{solution}
 
 \begin{question}

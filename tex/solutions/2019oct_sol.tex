@@ -39,7 +39,7 @@
                     label("$c$", M);
                 \end{asy}
             \end{center}
-        \item By using a) and b), show that $h \leq \frac{c}{2}$, and that the
+        \item By using (1) and (2), show that $h \leq \frac{c}{2}$, and that the
             sign of equality only holds if and only if $a = b$. 
         
         \item Show that of all right triangles having the same length of
@@ -49,27 +49,27 @@
 \begin{solution}
     Since the square of a real number is always non-negative,
     \[ (x - y)^2 \geq 0 \Longrightarrow x^2 + y^2 \geq 2xy, \]
-    and the equality holds if and only if $x - y = 0 \Rightarrow x = y$.
+    and the equality holds if and only if $x - y = 0 \Longleftrightarrow x = y$.
 
     In $\triangle BDC$ and $\triangle BCA$, we have $\angle BDC = \angle BCA =
     90^\circ$ and $\angle B$ as a common angle, so these two triangles are
     similar. Therefore, 
-    \[ \frac{BC}{CD} = \frac{BA}{AC} \Longrightarrow \frac{a}{h} = \frac{c}{d}
+    \[ \frac{BC}{CD} = \frac{BA}{AC} \Longrightarrow \frac{a}{h} = \frac{c}{b}
     \Longrightarrow h = \frac{ab}{c}. \]
     Now by the first part and the Pythagoras's theorem,
     \[ h = \frac{1}{c} \cdot ab \leq \frac{1}{c} \cdot \frac{a^2 + b^2}{2} =
     \frac{c^2}{2c} = \frac{c}{2}. \]
     Finally, as the equality holds if and only if $a = b$, we see that the $h$
-    is maximum when the right triangle is isosceles. Since the length of
-    hypotenuse is the same, this means that the area of the right triangle is
-    maximum when it is isosceles.
+    is maximum when the right triangle is isosceles. Since the area of
+    $\triangle ABC$ is $hc/2$ and $c$ is constant, it is maximized when $h$ is
+    maximized, so we're done.
 \end{solution}
 
 \begin{question}
     Find all functions over the reals such that $f(x) + 2f(1 - x) = x(1 - x)$.
 \end{question}
 \begin{solution}
-    Letting $x \mapsto 1 - x$ in the equation, we have
+    Substituing $x$ with $1 - x$ in the equation, we have
     \[ f(1 - x) + 2f(x) = (1 - x)x. \]
     Multiplying this equation by 2 and subtracting the original equation gives
     us
@@ -117,7 +117,7 @@
         \end{asy}
     \end{center}
     We also have $\angle APQ = \angle CPA$, so $\triangle PAQ \sim \triangle
-    PCA$ by SAS.
+    PCA$.
 \end{solution}
 
 \begin{question}
@@ -162,11 +162,11 @@
     -\frac{b^2 - 4ac}{4a} < 0. \]
     Finally, let's find the roots of $f(x) = 0$.
     \begin{align*}
-        f(x) &= 0\\
-        a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a} &= 0\\
-        \left( x + \frac{b}{2a} \right)^2 &= \frac{b^2 - 4ac}{4a^2}\\
-        x + \frac{b}{2a} &= \pm \frac{\sqrt{b^2 - 4ac}}{2a}\\
-        x = &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}. 
+        && f(x) &= 0\\
+        &\Longleftrightarrow& a \left( x + \frac{b}{2a} \right)^2 - \frac{b^2 - 4ac}{4a} &= 0\\
+        &\Longleftrightarrow& \left( x + \frac{b}{2a} \right)^2 &= \frac{b^2 - 4ac}{4a^2}\\
+        &\Longleftrightarrow& x + \frac{b}{2a} &= \pm \frac{\sqrt{b^2 - 4ac}}{2a}\\
+        &\Longleftrightarrow& x = &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}. 
     \end{align*}
     Since $b^2 - 4ac > 0$, the square root will evaluate to a positive real
     number, and we will have two distinct real roots.
@@ -349,7 +349,7 @@
             label("$r$", midpoint(I--D), dir(0));
         \end{asy}
     \end{center}
-    Now let's applying this formula to our 3-4-5 right triangle. Its area is
+    Now let's apply this formula to our 3-4-5 right triangle. Its area is
     10, so its inradius is
     \[ r = \frac{20}{3 + 4 + 5} = \frac{20}{12} = \frac{5}{3}. \qedhere \]
 \end{solution}
@@ -361,22 +361,15 @@
     drawn? 
 \end{question}
 \begin{solution}
-    For simplicity, suppose that we continue drawing after we are supposed to
-    stop, but we don't care about those extra balls. Let an \emph{arrangement}
-    be an array of 5 balls, and call an arrangement \emph{favourable} if it
-    satisfies the problem conditions. First, since there are a total of 5
-    balls, there are $\binom{5}{3} = 10$ ways to choose 3 positions for the 3
-    red balls. Then the 2 green balls can be filled in the remaining spots.
-    Therefore, the total number of arrangements is $10$. Now we will calculate
-    the number of favourable arrangments. Suppose that the last ball in an
-    arrangement is a red ball. That would mean that the 2 green balls came
-    before it, and hence it would have stopped without all 3 red balls being
-    drawn. This means that an arrangement is favourable if and only if its last
-    ball is green. The number of such arrangements is $\binom{4}{3} = 4$.
-    Therefore, the probability is
-    \[ \mathbb{P}(\text{3 reds are drawn}) = \frac{4}{10} = \frac{2}{5}. \qedhere \]
+    Suppose that we continue drawing after we are supposed to stop until there
+    are no balls left. Note that 3 reds will be drawn before both greens are
+    drawn if and only if the fifth ball is green. Therefore, we just need to
+    calculate the probability that the fifth ball is green. Note that by
+    symmetry, the number of draws where the fifth ball is green is exactly the
+    same as the number of draws where the first ball is green. Therefore, the
+    probability is just that of drawing a green ball at the start, which is
+    $2/5$.
 \end{solution}
-% There has to be a better solution here. The probability is the same as the probability to draw a green ball.
 
 \begin{question}
     If 75! is divisible by $5^n$, find the maximum value of $n$. 
@@ -401,7 +394,7 @@
     midpoints. Therefore, $ALMN$ is a parallelogram, and so $\angle LMN =
     \angle LAN$. Now since $L$ is the midpoint of the hypotenuse in right
     triangle $ABP$, we see that $LA = LP$. Similarly, $NA = NP$. Therefore,
-    $\triangle LAN \cong \triangle LPN$ by SSS. This implies that $\angle LMN =
+    $\triangle LAN \cong \triangle LPN$. This implies that $\angle LMN =
     \angle LAN = \angle LPN$ so $L$, $M$, $N$, $P$ are concyclic as desired.
 \end{solution}
 \begin{center}
@@ -465,7 +458,8 @@
 \end{solution}
 
 \begin{question}
-    Prove that $\binom{n}{m}\binom{m}{k} = \binom{n}{k}\binom{n - k}{m - k}$ if all variables are integers and $n \geq m \geq k \geq 0$.
+    Prove that $\binom{n}{m}\binom{m}{k} = \binom{n}{k}\binom{n - k}{m - k}$ if
+    all variables are integers and $n \geq m \geq k \geq 0$.
 \end{question}
 \begin{solution}
     Suppose that there are $n - m$ blue balls, $m - k$ green balls, and $k$ red
@@ -474,15 +468,17 @@
     that we place the blue balls first. There are $\binom{n}{n - m}$ ways to
     choose $n - m$ positions out of $n$ positions. After this, there will be
     $m$ places left for red and green balls. The number of ways to choose $k$
-    places from these $m$ places for red balls is $\binom{m}{k}$. Therefore,
+    places from these $m$ places for red balls is $\binom{m}{k}$. The green
+    balls are placed in the places left, so there is no choice. Therefore,
     the total number of arrangements is
     \[ \binom{n}{n - m}\binom{m}{k} = \binom{n}{m}\binom{m}{k}. \]
     Now suppose that we place the red balls first. There are $\binom{n}{k}$
     ways to choose $k$ positions out of $n$ positions. Then there will be $n -
     k$ positions remaining for blue and green balls. Out of those $n - k$
     positions, there are $\binom{n - k}{m - k}$ ways to choose $m - k$
-    positions for the green balls. Therefore, the total number of arrangements
-    counted this way is
+    positions for the green balls. Again, the remaining blue balls are placed in
+    the places left, so there is no choice. Therefore, the total number of
+    arrangements counted this way is
     \[ \binom{n}{k}\binom{n - k}{m - k}. \]
     Since the total number of arrangements is the same, we have our desired
     identity.
@@ -504,10 +500,10 @@
 \begin{solution}
     Let's show the first inequality.
     \begin{align*}
-        k &\leq n\\
-        k(k - 1) &\leq n(k - 1)\\
-        k^2 - k &\leq nk - n\\
-        n &\leq -k^2 + nk + k.
+        && k &\leq n &&\\
+        &\Longleftrightarrow& k(k - 1) &\leq n(k - 1) &&\\
+        &\Longleftrightarrow& k^2 - k &\leq nk - n && \\
+        &\Longleftrightarrow& n &\leq -k^2 + nk + k. &&
     \end{align*}
     The second inequality follows from the \hyperref[thm: amgm]{AM-GM inequality}. 
     \[ \frac{(n + 1)^2}{4} = \left( \frac{(n + 1 - k) + k}{2} \right)^2 \geq
