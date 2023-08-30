@@ -7,6 +7,30 @@
         
         \item $\frac{1}{BQ} = \frac{1}{AP} + \frac{1}{CR}$. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (-1, 0);
+            pair B = (0, 0);
+            pair C = (1.5, 0);
+            pair P = (-1, 2/3);
+            pair Q = extension(B, rotate(90, B)*A, P, C);
+            pair R = extension(A, Q, rotate(90, C)*A, C);
+            draw(A--R--C--P--cycle);
+            draw(A--C);
+            draw(P--B--R);
+            draw(Q--B);
+            dot("$A$", A, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$B$", B, dir(270));
+            dot("$P$", P, dir(135));
+            dot("$Q$", Q, dir(90));
+            dot("$R$", R, dir(45));
+        \end{asy}
+    \end{center}
     
     \problem $PA$ and $PB$ are the tangent segments at $A$ and $B$ to a circle
     whose center is $O$. $AB$ and $OP$ are intercept at $Q$. Prove that $AB

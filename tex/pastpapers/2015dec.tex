@@ -4,7 +4,7 @@
     b$. Find $x$, if $\frac{12}{6 - x} \otriangle 2 = 3 \otriangle 5$. 
 
     \problem If $x + \frac{1}{x} = 7$, find the value of $x^3 + \frac{1}{x^3}$. 
-
+    
     \problem Find the value of 
     \[
     \frac{\frac{1}{2} - \frac{1}{3}}{\frac{1}{3} - \frac{1}{4}} \cdot
@@ -22,6 +22,28 @@
 
     \problem The point $P$ lies on a circle with radius $r$ which has $AB$ as a
     diameter. Show that $PA \cdot  PB \leq 2r^2$ and $PA + PB \leq 2\sqrt{2}r$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = dir(0);
+            pair P = dir(60);
+            pair O = (0, 0);
+            draw(A--B--P--cycle, black+1);
+            draw(circumcircle(A, B, P));
+            draw(rightanglemark(A, P, B, 4));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$P$", P, dir(P));
+            dot("$O$", O, dir(270));
+            label("$r$", (-.5, 0), dir(270));
+            label("$r$", (.5, 0), dir(270));
+        \end{asy}
+    \end{center}
+
 
     \problem In a sequence, $u_{1} = 1$, $u_{2} = 2$ and $u_{3} = 3$. For $n
     \geq 4$, the $n$th term $u_{n}$ is calculated from the previous three terms
@@ -32,12 +54,74 @@
     \problem In the figure, a square $ABCD$ of side length 6 is given. Two
     circles with diameters $AD$ and $CD$ are drawn. Determine the combined area
     of two shaded regions.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(225);
+            pair B = dir(135);
+            pair C = dir(45);
+            pair D = dir(315);
+            pair O = (0, 0);
+            pair M = midpoint(D--C);
+            pair N = midpoint(D--A);
+            filldraw(B--arc(N, abs(N-A), 180, 90)--arc(M, abs(M-C), 180, 90)--cycle, .6*gray+.4*white);
+            filldraw(arc(M, abs(M-C), 180, 270)--arc(N, abs(N-A), 90, 0)--cycle, .6*gray+.4*white);
+            draw(circle(M, abs(M-C)));
+            draw(circle(N, abs(N-A)));
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--C);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$O$", O, dir(135));
+        \end{asy}
+    \end{center}
+
 
     \problem In $\triangle ABC$, $\angle A = 90^\circ$. The point $P$ lies
     inside $\triangle ABC$ with distances from $AB$, $BC$ and $CA$ equal to $x$,
     $y$ and $z$ respectively. If we denote $a = BC$, $b = CA$ and $c = AB$, show
-    that 
-    \[ z = \frac{bc - cx - ay}{b}. \]
+    that $z = \frac{bc - cx - ay}{b}$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(70);
+            pair B = dir(180);
+            pair C = dir(0);
+            pair P = (.1, .3);
+            pair X = foot(P, A, B);
+            pair Y = foot(P, B, C);
+            pair Z = foot(P, C, A);
+            draw(A--B--C--cycle, black+1);
+            draw(P--X);
+            draw(P--Y);
+            draw(P--Z);
+            draw(rightanglemark(P, Y, C, 3));
+            draw(rightanglemark(P, X, B, 3));
+            draw(rightanglemark(P, Z, C, 3));
+            draw(rightanglemark(B, A, C, 3));
+            label("$x$", midpoint(P--X), dir(35));
+            label("$y$", midpoint(P--Y), dir(180));
+            label("$z$", midpoint(P--Z), dir(-55));
+            label("$a$", midpoint(B--C), dir(270));
+            label("$b$", midpoint(C--A), dir(35));
+            label("$c$", midpoint(A--B), dir(125));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("\contour{white}{$P$}", P, dir(340));
+        \end{asy}
+    \end{center}
+
 
     \problem An integer is chosen from the set $\{1, 2, 3, \ldots, 100\}$. Find
     the probability that the integer is divisible by 3 or 7.

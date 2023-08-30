@@ -47,6 +47,33 @@
     and $\triangle APD$ is equilateral. $BP$ and $CP$ cut $AD$ at $Q$ and $R$
     respectively. If the area of $\triangle APD$ is 12, find the area of the
     trapezium $BQRC$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = dir(240);
+            pair C = dir(300);
+            pair D = dir(0);
+            pair T = extension(A, B, C, D);
+            pair M = (0, 0);
+            pair P = 2*M - T;
+            pair Q = extension(P, B, A, D);
+            pair R = extension(P, C, A, D);
+            draw(A--B--C--D--cycle);
+            draw(A--P--D);
+            draw(B--P--C);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$P$", P, dir(90));
+            dot("$Q$", Q, dir(135));
+            dot("$R$", R, dir(45));
+        \end{asy}
+    \end{center}
     
     \problem
     \begin{enumerate}
@@ -70,7 +97,8 @@
     \frac{1}{2}(x - 1)$, $b = \frac{1}{2}(x + 1)$ and $c = \frac{1}{2}(1 - x)$,
     show that $f(x) = Ax + B$ where $A = f(1) - f(0)$ and $B = f(0)$.
     Conversely, show that the function $f:\mathbb{R} \rightarrow \mathbb{R}$
-    defined by $f(x) = Ax + B$ satisfies the given equation. 
+    defined by $f(x) = Ax + B$, where $A$ and $B$ are constants, satisfies the
+    given equation. 
     
     \problem In a trapezium $ABCD$, with $AB \parallel CD$, there are two
     circles with diameter $AD$ and $BC$ respectively. Two circles do not

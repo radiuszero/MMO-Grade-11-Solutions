@@ -1,14 +1,21 @@
 \paperheader{2015 National Round}
 \begin{problems}
-    \problem If $x^{n} + py^{n} + qz^{n}$ is divisible by $x^2 - (ay + bz)x + abyz$ and $y, z \ne 0$, show that 
+    \problem[fixed] If $x^{n} + py^{n} + qz^{n}$ is divisible by $x^2 - (ay + bz)x +
+    abyz$ and $y, z \ne 0$, show that 
     \[\frac{p}{a^n} + \frac{q}{b^n} + 1 = 0.\] 
 
-    \problem A sequence is defined by $u_{1} = 1$, $u_{n + 1} = u_{n}^2 - ku_{n}$, where $k \ne 0$ is a constant. If $u_{3} = 1$, calculate the value of $k$ and find the value of
+    \problem A sequence is defined by $u_{1} = 1$, $u_{n + 1} = u_{n}^2 -
+    ku_{n}$, where $k \ne 0$ is a constant. If $u_{3} = 1$, calculate the value
+    of $k$ and find the value of
     \[u_{1} + u_{2} + u_{3} + \cdots + u_{100}.\] 
 
-    \problem A rectangular room has a width of $x$ yards. The length of the room is 4 yards longer than its width. Given that the perimeter of the room is greater than 19.2 yards and the area of the room is less than 21 square yards, find the set of possible values of $x$. 
+    \problem A rectangular room has a width of $x$ yards. The length of the room
+    is 4 yards longer than its width. Given that the perimeter of the room is
+    greater than 19.2 yards and the area of the room is less than 21 square
+    yards, find the set of possible values of $x$. 
 
-    \problem Two dice are thrown. Event $A$ is that the sum of the numbers on the dice is 7. Event $B$ is that at least one number on the die is 6. Find 
+    \problem Two dice are thrown. Event $A$ is that the sum of the numbers on
+    the dice is 7. Event $B$ is that at least one number on the die is 6. Find 
     \begin{enumerate}
         \item $\mathbb{P}(A)$, 
         
@@ -20,40 +27,174 @@
     \end{enumerate}
     Are $A$ and $B$ independent? 
 
-    \problem In $\triangle ABC$, $\angle A = 30^\circ$, $AB = 8$ cm and $BC = x$ cm. If $\angle C > 30^\circ$, determine the set of all possible values of $x$. 
+    \problem In $\triangle ABC$, $\angle A = 30^\circ$, $AB = 8$ cm and $BC = x$
+    cm. If $\angle C > 30^\circ$, determine the set of all possible values of
+    $x$. 
 
-    \problem Let $f(x)$ be a polynomial with real coefficients. When $f(x)$ is divided by both $x - a$ and $x - b$, where $a$ and $b$ are distinct real numbers, the remainder is a real constant $r$. Prove that $f(x)$ has also the remainder $r$ when it is divided by $x^2 - (a + b)x + ab$. 
+    \problem[fixed] Let $f(x)$ be a polynomial with real coefficients. When $f(x)$ is
+    divided by both $x - a$ and $x - b$, where $a$ and $b$ are distinct real
+    numbers, the remainder is a real constant $r$. Prove that $f(x)$ has also
+    the remainder $r$ when it is divided by $x^2 - (a + b)x + ab$. 
 
-    \problem Three circles are tangent to each other as shown. The two smaller circles are tangent to chord $AB$ which has length 12 at its midpoint. What is the area of the shaded region? 
+    \problem[fixed] Three circles are tangent to each other as shown. The two smaller
+    circles are tangent to chord $AB$ which has length 12 at its midpoint. What
+    is the area of the shaded region? 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real s = 20;
+            pair A = dir(180-s);
+            pair B = dir(s);
+            pair C = dir(90);
+            pair D = dir(270);
+            pair E = midpoint(A--B);
+            pair O1 = midpoint(C--E);
+            pair O2 = midpoint(D--E);
+            filldraw(circle((0, 0), 1), .6*gray + .4*white);
+            filldraw(circle(O1, abs(O1-E)), white);
+            filldraw(circle(O2, abs(O2-E)), white);
+            draw(A--B);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$E$", E, dir(90));
+        \end{asy}
+    \end{center}
 
-    \problem In a sequence, $u_{1} = 1$, $u_{2} = 2$ and $u_{3} = 3$. For $n \geq 4$, the $n$th term $u_{n}$ is calculated from the previous three terms as $u_{n} = u_{n - 3} + u_{n - 2} - u_{n - 1}$. For example, $u _ {4} = u_{1} + u_{2} - u_{3} = 0$. By using mathematical induction, prove that $u_{2n + 1} = 2n + 1$ for all integers $n \geq 0$. 
+    \problem In a sequence, $u_{1} = 1$, $u_{2} = 2$ and $u_{3} = 3$. For $n
+    \geq 4$, the $n$th term $u_{n}$ is calculated from the previous three terms
+    as $u_{n} = u_{n - 3} + u_{n - 2} - u_{n - 1}$. For example, $u _ {4} =
+    u_{1} + u_{2} - u_{3} = 0$. By using mathematical induction, prove that
+    $u_{2n + 1} = 2n + 1$ for all integers $n \geq 0$. 
 
-    \problem In the diagram, $AB = BC = 1$ and $ABC$ is the diameter of the larger semicircle. $AB$ and $BC$ are diameters of the smaller semicircles. What is the diameter of the circle tangent to all three semicircles? 
+    \problem In the diagram, $AB = BC = 1$ and $ABC$ is the diameter of the
+    larger semicircle. $AB$ and $BC$ are diameters of the smaller semicircles.
+    What is the diameter of the circle tangent to all three semicircles? 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = (0, 0);
+            pair C = dir(0);
+            pair O = (0, 2/3);
+            pair X = dir(90);
+            pair M = midpoint(A--B);
+            pair N = midpoint(B--C);
+            draw(arc(B, 1, 0, 180)--A--C--cycle);
+            draw(arc(M, 1/2, 0, 180));
+            draw(arc(N, 1/2, 0, 180));
+            draw(circle(O, 1/3));
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(270));
+            dot("$C$", C, dir(315));
+        \end{asy}
+    \end{center}
 
-    \problem A six-digit number is of the form $abcabc$, where all the digits are nonzero. Find three different prime factors of that number. 
+    \problem A six-digit number is of the form $abcabc$, where all the digits
+    are nonzero. Find three different prime factors of that number. 
 
-    \problem Real numbers $a$ and $b$ are such that $a > b > 0$, $a \ne 1$ and $a^{2016} + b^{2016} = a^{2014} + b^{2014}$. Prove that $a^2 + b^2 < 2$. 
+    \problem Real numbers $a$ and $b$ are such that $a > b > 0$, $a \ne 1$ and
+    $a^{2016} + b^{2016} = a^{2014} + b^{2014}$. Prove that $a^2 + b^2 < 2$. 
 
-    \problem In $\triangle ABC$, $AC = \frac{1}{2}(AB + BC)$ and $BN$ is the bisector of $\angle ABC$. $K$ and $M$ are the midpoints of $AB$ and $BC$ respectively. If $\angle ABC = \beta$, prove that $\angle KNM = 90^\circ - \frac{1}{2}\beta$. 
+    \problem In $\triangle ABC$, $AC = \frac{1}{2}(AB + BC)$ and $BN$ is the
+    bisector of $\angle ABC$. $K$ and $M$ are the midpoints of $AB$ and $BC$
+    respectively. If $\angle ABC = \beta$, prove that $\angle KNM = 90^\circ -
+    \frac{1}{2}\beta$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = (-1, 0);
+            pair C = (1, 0);
+            real s = .4;
+            pair N = (1-s)*A + s*C;
+            pair B[] = intersectionpoints(circle(A, 4*s), circle(C, 4-4*s));
+            pair B = B[0];
+            pair K = midpoint(A--B);
+            pair M = midpoint(C--B);
+            pair I = incenter(A, B, C);
+            draw(B--N);
+            draw(N--K);
+            draw(N--M);
+            draw(A--C);
+            draw(A--B--C--cycle, black+1);
+            add(pathticks(B--K, 1, .5, 6, 3));
+            add(pathticks(K--A, 1, .5, 6, 3));
+            add(pathticks(C--M, 2, .5, 1, 3));
+            add(pathticks(M--B, 2, .5, 1, 3));
+            dot("$A$", A, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$N$", N, dir(270));
+            dot("$K$", K, dir(180));
+            dot("$M$", M, dir(0));
+            dot("$B$", B, dir(B));
+        \end{asy}
+    \end{center}
 
-    \problem If the $(m - n)$th and $(m + n)$th terms of a geometric progression are the arithmetic mean and harmonic mean of $x > 0$ and $y > 0$, prove that the $m$th term is their geometric mean. 
+    \problem If the $(m - n)$th and $(m + n)$th terms of a geometric progression
+    are the arithmetic mean and harmonic mean of $x > 0$ and $y > 0$, prove that
+    the $m$th term is their geometric mean. 
 
-    \problem Show that the sum of the squares of the lengths of the sides of a parallelogram equals the sum of the squares of the lengths of the diagonals. 
+    \problem Show that the sum of the squares of the lengths of the sides of a
+    parallelogram equals the sum of the squares of the lengths of the diagonals. 
 
-    \problem If $n$ is a positive even integer, prove by mathematical induction that $x^n - y^n$ is divisible by $x + y$. 
+    \problem If $n$ is a positive even integer, prove by mathematical induction
+    that $x^n - y^n$ is divisible by $x + y$. 
 
-    \problem Prime numbers $p$, $q$ and positive integers $m$, $n$ satisfy the following conditions:
+    \problem Prime numbers $p$, $q$ and positive integers $m$, $n$ satisfy the
+    following conditions:
     \[m < p,\quad n < q \quad \text{and} \quad\frac{p}{m}+\frac{q}{n} \text{  is an integer.}\]
     Prove that $m = n$. 
 
-    \problem $A$, $B$ and $C$ are three points on the circumference of a circle, and the tangent at $A$ meets $BC$ produced at $T$. Prove that $AB^2 : AC^2 = TB : TC$. 
+    \problem $A$, $B$ and $C$ are three points on the circumference of a circle,
+    and the tangent at $A$ meets $BC$ produced at $T$. Prove that $AB^2 : AC^2 =
+    TB : TC$. 
     
-    \problem $ABCD$ is a cyclic quadrilateral. $AE$ is drawn to meet $BD$ at $E$ such that $\angle BAE = \angle CAD$. Prove that 
+    \problem $ABCD$ is a cyclic quadrilateral. $AE$ is drawn to meet $BD$ at $E$
+    such that $\angle BAE = \angle CAD$. Prove that 
     \begin{enumerate}
         \item $\triangle ABE \sim \triangle ACD$, 
         
         \item $\triangle AED \sim \triangle ABC$,
         
         \item $AB \cdot CD + AD \cdot BC = AC \cdot BD$.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(110);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = dir(50);
+            pair M = midpoint(A--B);
+            pair O = extension(B, rotate(90, B)*C, M, rotate(90, M)*B);
+            pair E = 2*foot(O, B, D) - B;
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--C);
+            draw(B--D);
+            draw(A--E);
+            draw(anglemark(B, A, E, 5));
+            draw(anglemark(C, A, D, 5));
+            draw(circle((0, 0), 1));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(D));
+            dot("$E$", E, dir(315));
+        \end{asy}
+    \end{center}
     \end{enumerate}
 \end{problems}

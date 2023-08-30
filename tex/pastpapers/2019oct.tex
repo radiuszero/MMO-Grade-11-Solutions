@@ -8,12 +8,45 @@
         \item By using similar triangles, prove that $h = \frac{ab}{c}$ for the
             given figure.
         
-        \item By using a) and b), show that $h \leq \frac{c}{2}$, and that the
+        \item By using (1) and (2), show that $h \leq \frac{c}{2}$, and that the
             sign of equality only holds if and only if $a = b$. 
         
         \item Show that of all right triangles having the same length of
             hypotenuse, the isosceles right triangle maximizes the area. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real s = -.16;
+            pair A = dir(180);
+            pair B = dir(0);
+            pair A1 = (xpart(A), ypart(A)+s);
+            pair B1 = (xpart(B), ypart(B)+s);
+            pair M = midpoint(A1--B1);
+            real k = .1;
+            pair MA = M + k*unit((-1, 0));
+            pair MB = M + k*unit((1, 0));
+            pair C = dir(110);
+            pair D = foot(C, A, B);
+            draw(A--B--C--cycle, black+1);
+            draw(C--D);
+            draw(MA--A1, arrow=Arrow(size=5));
+            draw(MB--B1, arrow=Arrow(size=5));
+            draw(rightanglemark(A, C, B, 3));
+            draw(rightanglemark(B, D, C, 3));
+            dot("$A$", A, dir(225));
+            dot("$B$", B, dir(315));
+            dot("$C$", C, dir(90));
+            dot("$D$", D, dir(270));
+            label("$b$", midpoint(C--A), dir(135));
+            label("$a$", midpoint(C--B), dir(45));
+            label("$h$", midpoint(C--D), dir(0));
+            label("$c$", M);
+            \end{asy}
+    \end{center}
 
     \problem Find all functions over the reals such that $f(x) + 2f(1 - x) =
     x(1 - x)$.
@@ -21,6 +54,34 @@
     \problem In the given figure, $ABCD$ is a rectangle. $P$ and $Q$ are points
     on $BC$ such that $AB = BP = PQ = QC$. Find two similar but not congruent
     triangles and prove their similarity. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(7cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = (0, 1);
+            pair B = (0, 0);
+            pair P = (1, 0);
+            pair Q = (2, 0);
+            pair C = (3, 0);
+            pair D = (3, 1);
+            draw(A--B--C--D--cycle, black+1);
+            draw(A--P);
+            draw(A--Q);
+            draw(A--C);
+            add(pathticks(A--B, s=4));
+            add(pathticks(B--P, s=4));
+            add(pathticks(P--Q, s=4));
+            add(pathticks(Q--C, s=4));
+            dot("$A$", A, dir(135));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(45));
+            dot("$P$", P, dir(270));
+            dot("$Q$", Q, dir(270));
+        \end{asy}
+    \end{center}
     
     \problem Let $f(x) = ax^2 + bx + c$, $a \ne 0$. 
     \begin{enumerate}
@@ -51,9 +112,62 @@
         
         \item Prove that $AP \parallel MN$ and $AP = 2MN$. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair B = (2, -.5);
+            pair D = -B;
+            pair C = (.5, 1.5);
+            pair P = -C;
+            pair N = (0, 0);
+            pair A = (-2.5, -.7);
+            pair M = midpoint(A--C);
+            draw(D--C--B--P);
+            draw(D--A);
+            draw(A--P);
+            draw(A--C);
+            draw(D--B--A);
+            draw(N--M);
+            dot("$A$", A, dir(180));
+            dot("$B$", B, dir(0));
+            dot("$C$", C, dir(90));
+            dot("$D$", D, dir(135));
+            dot("$P$", P, dir(270));
+            dot("$M$", M, dir(135));
+            dot("$N$", N, dir(45));
+        \end{asy}
+    \end{center}
     
     \problem In the given figure, $\angle BAC = 60^\circ$, $AB = 24$ cm, $BD
     \perp AC$ and $DC = 3$ cm. Find the diameter of the circle. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            real s = 30;
+            pair A = dir(170);
+            pair B = dir(s);
+            pair C = dir(s-120);
+            pair D = foot(B, C, A);
+            pair O = (0, 0);
+            pair E = -C;
+            draw(B--A--C);
+            draw(B--D);
+            draw(circumcircle(A, B, C));
+            draw(rightanglemark(B, D, A, 2.5));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(B));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(225));
+            label("24", midpoint(A--B), dir(100));
+            label("3", midpoint(D--C), dir(225));
+        \end{asy}
+    \end{center}
     
     \problem In an AP, the $k$th term is 11. The sum of the first $k$ terms is
     26. The sum of the next $k$ terms is 74. Find the first term and the common
@@ -61,6 +175,24 @@
     
     \problem What is the radius of the inscribed circle of a 3-4-5 right
     triangle? 
+    \begin{center}
+        \begin{asy}
+            size(5cm);
+            import olympiad;
+            pair A = (-3, 0);
+            pair B = (0, 4);
+            pair C = (0, 0);
+            pair I = incenter(A, B, C);
+            pair P = foot(I, A, C);
+            real r = abs(I - P);
+            draw(A--B--C--cycle);
+            draw(rightanglemark(B, C, A, 5));
+            draw(circle(I, r));
+            label("$3$", midpoint(A--C), dir(-90));
+            label("$4$", midpoint(B--C), dir(0));
+            label("$5$", midpoint(A--B), dir(135));
+        \end{asy}
+    \end{center}
     
     \problem A bag contains 3 red balls and 2 green balls. Balls are drawn at
     random, one at a time but not replaced, until all 3 of red balls are drawn
@@ -72,6 +204,31 @@
     \problem If $L$, $M$, $N$ are the midpoints of the sides of $\triangle
     ABC$, and $P$ is the foot of perpendicular from $A$ to $BC$, prove that
     $L$, $P$, $M$, $N$ are concyclic.
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair M = midpoint(B--C);
+            pair N = midpoint(C--A);
+            pair L = midpoint(A--B);
+            pair P = foot(A, B, C);
+            draw(A--B--C--cycle, black+1);
+            draw(A--P);
+            draw(rightanglemark(A, P, C, 2.5));
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$M$", M, dir(270));
+            dot("$N$", N, dir(45));
+            dot("$L$", L, dir(135));
+            dot("$P$", P, dir(270));
+        \end{asy}
+    \end{center}
     
     \problem In a GP, the $k$th term is 864. The sum of the first $k$ terms is
     2080. The sum of the first $2k$ terms is 12610. Find the first term and the

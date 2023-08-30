@@ -14,6 +14,29 @@
         \item Find the ratio of the areas of $\triangle DEF$ and $\triangle
             ABC$. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(90);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = (2/3)*A+(1/3)*B;
+            pair E = foot(D, B, C);
+            pair F = foot(E, A, C);
+            pair M = midpoint(B--C);
+            draw(A--B--C--cycle, black+1);
+            draw(D--E--F--cycle);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$E$", E, dir(270));
+            dot("$F$", F, dir(30));
+            dot("$D$", D, dir(120));
+        \end{asy}
+    \end{center}
     
     \problem
     \begin{enumerate}
@@ -73,6 +96,46 @@
         \item Prove that the nine points $A',B',C',A'',B'',C'',D,E,F$ are
             concyclic. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(120);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair D = foot(A, B, C);
+            pair E = foot(B, C, A);
+            pair F = foot(C, A, B);
+            pair H = A+B+C;
+            pair A1 = midpoint(B--C);
+            pair B1 = midpoint(C--A);
+            pair C1 = midpoint(A--B);
+            pair A2 = midpoint(A--H);
+            pair B2 = midpoint(B--H);
+            pair C2 = midpoint(C--H);
+            draw(A--B--C--cycle, black+1);
+            draw(A--D);
+            draw(B--E);
+            draw(C--F);
+            dot("$A$", A, dir(A));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$A'$", A1, dir(270));
+            dot("$B'$", B1, dir(45));
+            dot("$C'$", C1, dir(165));
+            dot("\contour{white}{$A''$}", A2, dir(45));
+            dot("\contour{white}{$B''$}", B2, dir(270));
+            dot("\contour{white}{$C''$}", C2, dir(270));
+            dot("$H$", H, dir(305));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(45));
+            dot("$F$", F, dir(165));
+        \end{asy}
+    \end{center}
     
     \problem Let $f:\mathbb{R} \rightarrow \mathbb{R}$ be a function such that 
     \[f(x + y) + f(x - y) = 2f(x)\cos y,\mathspace x, y \in \mathbb{R}.\]
@@ -97,10 +160,42 @@
     ways can a three-person planning committee be selected? 
     
     \problem $AB$ is a diameter of a circle $O$ with radius 10 cm. $OQ$ is a
-    radius of a circle $O$. such that $QO \perp AB$. A point $P$ is on $OQ$.
+    radius of a circle $O$ such that $QO \perp AB$. A point $P$ is on $OQ$.
     Draw a semicircle centered at $P$ with diameter $CD$ where $CD$ is the
     chord of circle $O$ and $CD \perp PQ$. $PQ$ produced meets the semicircle
     at $R$. Find the maximum possible length of $QR$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            pair A = dir(180);
+            pair B = dir(0);
+            pair Q = dir(90);
+            real s = 50;
+            pair D = dir(s);
+            pair C = dir(180-s);
+            pair P = midpoint(C--D);
+            pair O = (0, 0);
+            pair R = P+abs(P-D)*unit(P-O);
+            draw(circle(O, 1));
+            draw(A--B);
+            draw(O--R);
+            draw(C--D);
+            draw(arc(P, abs(P-D), 0, 180));
+            draw(rightanglemark(R, P, D, 2.5));
+            draw(rightanglemark(R, O, B, 2.5));
+            dot("$A$", A, dir(180));
+            dot("$B$", B, dir(0));
+            dot("$O$", O, dir(270));
+            dot("$P$", P, dir(225));
+            dot("$C$", C, dir(165));
+            dot("$D$", D, dir(15));
+            dot("$Q$", Q, dir(135));
+            dot("$R$", R, dir(90));
+        \end{asy}
+    \end{center}
     
     \problem Find all positive integers $s$ such that $\ceil*{\frac{s}{3}} - 21
     = \ceil*{\frac{s}{5}}$ where $\ceil*{x}$ is the smallest integer greater
@@ -136,8 +231,51 @@
         
         \item Show that $AP = AQ$. 
     \end{enumerate}
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(6cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            pair A = dir(60);
+            pair B = dir(210);
+            pair C = dir(330);
+            pair H = orthocenter(A, B, C);
+            pair D = foot(A, B, C);
+            pair E = foot(B, C, A);
+            pair F = foot(C, A, B);
+            pair O = (0, 0);
+            pair P[] = intersectionpoints(E--(F+unit(F-E)), circle(O, 1));
+            pair P = P[0];
+            pair Q = extension(B, P, D, F);
+            draw(A--B--C--cycle, black+1);
+            draw(A--D);
+            draw(B--E);
+            draw(C--F);
+            draw(Q--B);
+            draw(Q--D);
+            draw(P--E);
+            draw(P--A);
+            draw(Q--A);
+            draw(rightanglemark(A, D, B, 2.5));
+            draw(rightanglemark(B, E, C, 2.5));
+            draw(rightanglemark(C, F, A, 2.5));
+            draw(circle(O, 1));
+            dot("$A$", A, dir(45));
+            dot("$B$", B, dir(225));
+            dot("$C$", C, dir(315));
+            dot("$D$", D, dir(270));
+            dot("$E$", E, dir(45));
+            dot("\contour{white}{$F$}", F, dir(80));
+            dot("$P$", P, dir(180));
+            dot("$Q$", Q, dir(135));
+            dot("\contour{white}{$H$}", H, dir(315));
+        \end{asy}
+    \end{center}
     
-    \problem A car drives from town $A$ to $B$ at the average speed of 30 km/h,
+    \problem[fixed] A car drives from town $A$ to $B$ at the average speed of 30 km/h,
     from town $B$ to town $C$ at average speed of 60 km/h; and on the way back,
     the car drives from $C$ to $B$ at average speed of 30 km/h\footnote{The
     original problem set this to be 20 km/h, but in that case the total

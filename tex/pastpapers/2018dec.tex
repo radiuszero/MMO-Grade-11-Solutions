@@ -14,6 +14,33 @@
     $OC$ are radii with $OA = OC = 5$ units. Find the area of region $ABCD$,
     bounded by arc $ABC$, line segments $CD$ and $DA$, in terms of $\theta$, if
     the line segment $DA = 8$ units and $\angle AOC$ is $\theta^\circ$. 
+    \begin{center}
+        \begin{asy}
+            import olympiad;
+            size(5cm);
+            defaultpen(fontsize(11pt));
+            pen mydash = linetype(new real[] {5,5});
+            usepackage("contour", "outline");
+            texpreamble("\contourlength{1pt}");
+            real s = 35;
+            pair A = dir(s);
+            pair C = dir(-s);
+            pair B = dir(0);
+            pair D = (3/5)*dir(180+s);
+            pair O = (0, 0);
+            pair H = foot(C, A, D);
+            draw(A--O--C--cycle);
+            draw(O--D--C);
+            draw(circle(O, 1));
+            draw(anglemark(C, O, A, 5));
+            dot("$A$", A, dir(A));
+            dot("$C$", C, dir(C));
+            dot("$D$", D, dir(210));
+            dot("$O$", O, dir(135));
+            label("$B$", B, dir(0));
+            label("\contour{white}{$\theta^\circ$}", 0.15*dir(0), dir(0));
+        \end{asy}
+    \end{center}
     
     \problem Prove that
     \begin{enumerate}
